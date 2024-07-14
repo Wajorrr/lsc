@@ -1,0 +1,36 @@
+import os
+
+Import('env')
+
+# Find subdirs
+dir_list = ['.']
+dir_list.append('stats')
+dir_list.append('admission')
+dir_list.append('parsers')
+dir_list.append('lib')
+dir_list.append('caches')
+dir_list.append('common')
+dir_list.append('segment')
+dir_list.append('kangaroo')
+dir_list.append('cacheAlgo')
+
+# Add all cpp files in subdirs
+files = []
+for dir in dir_list:
+    files.append(Glob('%s/*.cpp' % dir))
+    files.append(Glob('%s/*.c' % dir))
+
+# 添加 Zstandard 库名称，确保不包含前缀 'lib' 和后缀 '.so' 或 '.a'
+env.Append(LIBS=['zstd'])
+
+# 使用 pkg-config 获取 GLib 的编译和链接标志
+glib_cflags = os.popen('pkg-config --cflags glib-2.0').read().strip()
+glib_libs = os.popen('pkg-config --libs glib-2.0').read().strip()
+
+# 将 GLib 的编译和链接标志添加到环境中
+env.Append(CPPFLAGS=glib_cflags.split())
+env.Append(LINKFLAGS=glib_libs.split())
+
+env.Program('cache', files)
+
+# env.SConscript('lib/SConscript', {'env': env}, variant_dir='', duplicate=0)

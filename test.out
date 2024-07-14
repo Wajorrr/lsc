@@ -1,0 +1,18 @@
+{
+    "Random.preLogAdmission": {
+        "sizeAdmits": 0,
+        "sizePossibleAdmits": 0
+    },
+    "global": {
+        "accessesAfterFlush": 0,
+        "misses": 0
+    },
+    "log": {
+        "bytes_written": 0,
+        "logCapacity": 20971520,
+        "stores_requested_bytes": 0
+    },
+    "memCache": {
+        "lruCacheCapacity": 4823449
+    }
+}

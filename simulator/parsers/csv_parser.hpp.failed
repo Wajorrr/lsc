@@ -1,0 +1,189 @@
+#pragma once
+
+// disable threading as there seems to be a bug in csv.h
+#define CSV_IO_NO_THREAD 1
+
+#include <iostream>
+#include <fstream>
+#include <random>
+#include <sstream>
+#include <string>
+#include <stdint.h>
+#include <cassert>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
+#include <unordered_set>
+
+#include "../constants.hpp"
+#include "../lib/csv.h"
+#include "parser.hpp"
+
+namespace parser
+{
+
+    typedef float float32_t;
+
+    template <unsigned column_count, char separator>
+    class CSVParser : public virtual Parser
+    {
+    public:
+        CSVParser(std::string filename, uint64_t _numRequests, double _sampling, double _seed, double _object_scaling,
+                  const std::vector<std::string> &column_names, const std::vector<std::string> &type_names, bool has_header)
+        {
+            std::cout << "Parsing CSV file: " << filename << std::endl;
+
+            this->column_names = column_names;
+            this->type_names = type_names;
+            reader->set_header(column_names[0], column_names[1], column_names[2], column_names[3], column_names[4]);
+            if (has_header)
+                reader->read_header(io::ignore_extra_column,
+                                    column_names[0], column_names[1], column_names[2], column_names[3], column_names[4]);
+
+            numRequests = _numRequests;
+            totalRequests = _numRequests;
+            sampling = _sampling;
+            scaling = _object_scaling;
+            if (sampling != 1)
+            {
+                randomGenerator.seed(_seed);
+                unif = std::uniform_real_distribution<double>(0.0, 1.0);
+            }
+        }
+
+        void go(VisitorFn visit)
+        {
+            std::string tmp;
+            int64_t shard = 0;
+
+            using VarType = std::variant<uint64_t, int64_t, int32_t, double, char, std::string>;
+
+            // 初始化变量存储
+            std::unordered_map<std::string, VarType> variables;
+            // 初始化变量类型
+            for (size_t i = 0; i < column_names.size(); ++i)
+            {
+                if (type_names[i] == "uint64_t")
+                {
+                    variables[column_names[i]] = uint64_t(0);
+                }
+                else if (type_names[i] == "int64_t")
+                {
+                    variables[column_names[i]] = int64_t(0);
+                }
+                else if (type_names[i] == "uint32_t")
+                {
+                    variables[column_names[i]] = uint32_t(0);
+                }
+                else if (type_names[i] == "int32_t")
+                {
+                    variables[column_names[i]] = int32_t(0);
+                }
+                else if (type_names[i] == "double")
+                {
+                    variables[column_names[i]] = double(0);
+                }
+                else if (type_names[i] == "char")
+                {
+                    variables[column_names[i]] = char(0);
+                }
+                else if (type_names[i] == "string")
+                {
+                    variables[column_names[i]] = std::string("");
+                }
+            }
+
+            Request req;
+            req.req_num = 0;
+            while (reader->read_row(variables[column_names[0]], variables[column_names[1]], variables[column_names[2]], variables[column_names[3]]))
+            {
+                if (numRequests == 0)
+                {
+                    std::cout << "Finished Processing "
+                              << totalRequests << " Requests\n";
+                    return;
+                }
+
+                if (sampling != 1 && (selected_items.find(shard) == selected_items.end()))
+                {
+                    if (discarded_items.find(shard) == discarded_items.end())
+                    {
+                        double currentRandom = unif(randomGenerator);
+                        if (currentRandom < sampling) // 根据采样率和随机数判断是否采样
+                        {
+                            selected_items.insert(shard);
+                        }
+                        else
+                        {
+                            discarded_items.insert(shard);
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                // req.id = std::hash<std::string>{}(key);
+                // req.req_size = size + key_size;
+                // double s = req.req_size * scaling;
+                // req.req_size = round(s);
+
+                // if (req.req_size >= MAX_TAO_SIZE)
+                // {
+                //     req.req_size = MAX_TAO_SIZE - 1;
+                // }
+                if (req.req_size == 0)
+                {
+                    req.req_size = 1;
+                }
+
+                // if (op == "SET")
+                // {
+                //     req.type = parser::SET;
+                // }
+                // else if (op == "GET")
+                // {
+                //     req.type = parser::GET;
+                // }
+                // else if (op == "DELETE")
+                // {
+                //     req.type = parser::DELETE;
+                // }
+                // else
+                // {
+                //     req.type = parser::OTHER;
+                // }
+
+                uint op_count = 1;
+                for (uint i = 0; i < op_count; i++)
+                {
+                    req.req_num++;
+                    req.time = req.req_num;
+                    visit(req);
+                    if (numRequests != 0)
+                    {
+                        numRequests--;
+                    }
+                }
+            }
+        }
+
+    private:
+        typedef io::CSVReader<column_count, io::trim_chars<' '>, io::no_quote_escape<separator>> CSVformat;
+        CSVformat *reader;
+        std::vector<std::string> column_names = {"ts", "obj", "sz", "op"};
+        std::vector<std::string> type_names = {"int32_t", "uint64_t", "int64_t", "string"};
+        int64_t numRequests;
+        int64_t totalRequests;
+        double sampling;
+        double scaling;
+        std::mt19937 randomGenerator;
+        std::uniform_real_distribution<double> unif;
+        std::unordered_set<int64_t> selected_items;
+        std::unordered_set<int64_t> discarded_items;
+    };
+
+} // namespace parser

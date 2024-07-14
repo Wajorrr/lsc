@@ -1,0 +1,95 @@
+{
+    "Random.preLogAdmission": {},
+    "cacheAlgo": {
+        "lruCacheCapacity": 513802240
+    },
+    "global": {
+        "GetsAfterFlush": 0,
+        "misses": 0
+    },
+    "log": {
+        "bytes_written": 0,
+        "logCapacity": 524288000,
+        "request_bytes_written": 0
+    }
+}
+{
+    "Random.preLogAdmission": {},
+    "cacheAlgo": {
+        "current_size": 513802240,
+        "hits": 294591,
+        "lruCacheCapacity": 513802240,
+        "misses": 705409,
+        "numEvictions": 579968,
+        "sizeEvictions": 2375548928
+    },
+    "global": {
+        "GetsAfterFlush": 29018,
+        "SetsAfterFlush": 970982,
+        "accessesAfterFlush": 1000000,
+        "compulsoryMisses": 20589,
+        "hits": 8410,
+        "hitsSize": 34447360,
+        "misses": 20608,
+        "missesSize": 84410368,
+        "timestamp": 1577809432,
+        "totalAccesses": 1000000,
+        "totalGets": 29018,
+        "totalSets": 970982,
+        "uniqueBytes": 2497986560,
+        "updateCount": 286181,
+        "updateSize": 1172197376
+    },
+    "log": {
+        "bytes_written": 43932868608,
+        "current_size": 513802240,
+        "hits": 294591,
+        "logCapacity": 524288000,
+        "misses": 705409,
+        "numBlockFlushes": 564199,
+        "numEvictions": 579968,
+        "request_bytes_written": 4061548544,
+        "stores_requested": 991589,
+        "stores_requested_bytes": 513802240
+    }
+}
+{
+    "Random.preLogAdmission": {},
+    "cacheAlgo": {
+        "current_size": 513802240,
+        "hits": 599147,
+        "lruCacheCapacity": 513802240,
+        "misses": 1400853,
+        "numEvictions": 1275412,
+        "sizeEvictions": 5224087552
+    },
+    "global": {
+        "GetsAfterFlush": 33751,
+        "SetsAfterFlush": 1966249,
+        "accessesAfterFlush": 2000000,
+        "compulsoryMisses": 22894,
+        "hits": 10696,
+        "hitsSize": 43810816,
+        "misses": 23055,
+        "missesSize": 94433280,
+        "timestamp": 1577811012,
+        "totalAccesses": 2000000,
+        "totalGets": 33751,
+        "totalSets": 1966249,
+        "uniqueBytes": 4208287744,
+        "updateCount": 588451,
+        "updateSize": 2410295296
+    },
+    "log": {
+        "bytes_written": 103832137728,
+        "current_size": 513802240,
+        "hits": 599147,
+        "logCapacity": 524288000,
+        "misses": 1400853,
+        "numBlockFlushes": 1253139,
+        "numEvictions": 1275412,
+        "request_bytes_written": 8148185088,
+        "stores_requested": 1989303,
+        "stores_requested_bytes": 513802240
+    }
+}

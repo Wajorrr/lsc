@@ -15,7 +15,7 @@ struct candidate_t
 
   static candidate_t make(const parser::Request &req)
   { // 没有用到请求的num
-    return candidate_t{.id = req.id, .obj_size = req.size(), .hit_count = 0, .oracle_count = req.oracle_count};
+    return candidate_t{.id = req.id, .obj_size = req.req_size, .hit_count = 0, .oracle_count = req.oracle_count};
   }
 
   inline bool operator==(const candidate_t &that) const

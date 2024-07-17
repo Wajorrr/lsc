@@ -101,6 +101,9 @@ extern "C"
     CHECK_CONDITION(x, !=, true, FMT, ##__VA_ARGS__)
 #define ASSERT_ZERO(x, FMT, ...) CHECK_CONDITION(a, !=, 0, FMT, ##__VA_ARGS__)
 
+// 通过一个do { ... } while(0)循环来包装assert语句，这是一种常见的技巧
+// 用于确保宏在使用时像一个语句一样，即使在没有大括号的情况下也能正确地使用
+// DEBUG级别才进行assert检查
 #if LOGLEVEL < INFO_LEVEL
 #define DEBUG_ASSERT(x) \
     do                  \

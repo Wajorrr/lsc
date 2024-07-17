@@ -25,7 +25,6 @@ namespace cache
 
         flashCache::BlockGC *_log = nullptr;
         // admission::Policy *_prelog_admission = nullptr;
-        CacheAlgo::LRU *_lru = nullptr;
         CacheAlgo::CacheAlgoAbstract *_cache_algo = nullptr;
         bool warmed_up = false;
         bool _record_dist = false;

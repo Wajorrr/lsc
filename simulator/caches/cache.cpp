@@ -79,7 +79,7 @@ namespace cache
 
     void Cache::access(const parser::Request &req)
     {
-        assert(req.size() >= 0);
+        assert(req.req_size >= 0);
         // 只统计读取请求，GET=1
         if (req.type >= parser::OP_SET)
         {

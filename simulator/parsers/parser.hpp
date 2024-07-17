@@ -35,7 +35,7 @@ namespace parser
   {
     int64_t req_size; // 请求大小
     uint64_t id;      // 请求的对象id
-    int64_t req_num;  // 请求数量
+    int64_t req_num;  // 请求计数，逻辑时间戳
     uint64_t time;    // 请求时间戳
     req_op_e type;    // 请求类型
     int64_t next_access_vtime;
@@ -46,7 +46,7 @@ namespace parser
     int32_t ttl;
     bool valid;
 
-    inline int64_t size() const { return req_size; }
+    // inline int64_t size() const { return req_size; }
   } __attribute__((packed));
 
   // VisitorFn 是一个函数指针

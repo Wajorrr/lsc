@@ -19,7 +19,7 @@ struct Block
 
   static Block make(const parser::Request &req)
   { // 没有用到请求的num
-    return Block{._lba = req.id, ._size = req.size(), .hit_count = 0, .oracle_count = req.oracle_count};
+    return Block{._lba = req.id, ._size = req.req_size, .hit_count = 0, .oracle_count = req.oracle_count};
   }
 
   inline bool operator==(const Block &that) const

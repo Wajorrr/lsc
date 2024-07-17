@@ -66,7 +66,7 @@ namespace cache
 
     void BlockCache::access(const parser::Request &req)
     {
-        assert(req.size() >= 0);
+        assert(req.req_size >= 0);
         // 统计读写请求
         if (req.type != parser::OP_GET && req.type != parser::OP_SET)
         {

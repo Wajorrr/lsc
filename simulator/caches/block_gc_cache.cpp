@@ -24,7 +24,7 @@ namespace cache
         auto &log_stats = statsCollector->createLocalCollector("log");
 
         auto &lru_stats = statsCollector->createLocalCollector("cacheAlgo");
-        _lru = new CacheAlgo::LRU(cache_capacity, lru_stats);
+        _cache_algo = new CacheAlgo::LRU(cache_capacity, lru_stats);
         // _cache_algo = new CacheAlgo::LRU(log_capacity, lru_stats);
 
         uint64_t segment_size = 1024 * 1024 * (uint64_t)cfg.read<int>("log.segmentSizeMB", 2);
@@ -55,18 +55,19 @@ namespace cache
     BlockGCCache::~BlockGCCache()
     {
         delete _log;
+        delete _cache_algo;
         // delete _prelog_admission;
     }
 
     void BlockGCCache::insert(Block id)
     {
-        std::vector<uint64_t> evict = _lru->set(id._lba, id._capacity);
+        std::vector<uint64_t> evict = _cache_algo->set(id._lba, id._capacity);
         _log->evict(evict);
         _log->insert({id});
-        // INFO("insert %lu,lru size %lu, log size %lu\n", id._lba, _lru->get_current_size(), _log->getTotalSize());
-        if (_lru->get_current_size() != _log->getTotalSize())
+        // INFO("insert %lu,lru size %lu, log size %lu\n", id._lba, _cache_algo->get_current_size(), _log->getTotalSize());
+        if (_cache_algo->get_current_size() != _log->getTotalSize())
         {
-            ERROR("lru size %lu, log size %lu\n", _lru->get_current_size(), _log->getTotalSize());
+            ERROR("lru size %lu, log size %lu\n", _cache_algo->get_current_size(), _log->getTotalSize());
             abort();
         }
 
@@ -80,7 +81,7 @@ namespace cache
     bool BlockGCCache::find(Block id)
     {
         // 分别查找内存缓存和flash日志缓存
-        bool logic_find = _lru->get(id._lba);
+        bool logic_find = _cache_algo->get(id._lba);
         bool physic_find = _log->find(id);
         if (logic_find && physic_find)
         {
@@ -98,13 +99,13 @@ namespace cache
 
     void BlockGCCache::update(Block id)
     {
-        std::vector<uint64_t> evict = _lru->set(id._lba, id._capacity);
+        std::vector<uint64_t> evict = _cache_algo->set(id._lba, id._capacity);
         _log->evict(evict);
         _log->update({id});
-        // INFO("update %lu, lru size %lu, log size %lu\n", id._lba, _lru->get_current_size(), _log->getTotalSize());
-        // if (_lru->get_current_size() != _log->getTotalSize())
+        // INFO("update %lu, lru size %lu, log size %lu\n", id._lba, _cache_algo->get_current_size(), _log->getTotalSize());
+        // if (_cache_algo->get_current_size() != _log->getTotalSize())
         // {
-        //     ERROR("lru size %lu, log size %lu\n", _lru->get_current_size(), _log->getTotalSize());
+        //     ERROR("lru size %lu, log size %lu\n", _cache_algo->get_current_size(), _log->getTotalSize());
         //     abort();
         // }
     }

@@ -70,6 +70,7 @@ namespace flashCache
             _log_stats["numEvictions"] += current_segment._items.size();
             _log_stats["sizeEvictions"] += current_segment._size;
             _log_stats["numLogFlushes"]++;
+            _log_stats["stores_requested_bytes"] -= current_segment._size;
             _total_size -= current_segment._size;
             current_segment._items.clear();
             current_segment._size = 0;

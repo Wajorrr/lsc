@@ -10,6 +10,33 @@ namespace stats
 
     LocalStatsCollector::LocalStatsCollector(StatsCollector &parent) : _parent(parent) {}
 
+    void LocalStatsCollector::addChild(std::string name, LocalStatsCollector *child)
+    {
+        children[name] = child;
+    }
+
+    LocalStatsCollector &LocalStatsCollector::createChild(std::string name)
+    {
+        LocalStatsCollector *child = new LocalStatsCollector(_parent);
+        children[name] = child;
+        return *child;
+    }
+
+    json LocalStatsCollector::toJson()
+    {
+        json j;
+        for (const auto &counter : counters)
+        {
+            // j["counters"][counter.first] = counter.second;
+            j[counter.first] = counter.second;
+        }
+        for (const auto &child : children)
+        {
+            j["children"][child.first] = child.second->toJson();
+        }
+        return j;
+    }
+
     void LocalStatsCollector::print()
     {
         _parent.print();
@@ -42,9 +69,10 @@ namespace stats
     {
         // INFO("Printing stats\n");
         json blob;
-        for (auto local : locals)
+        for (const auto &local : locals)
         {
-            blob[local.first] = local.second->counters;
+            // blob[local.first] = local.second->counters;
+            blob[local.first] = local.second->toJson();
         }
         // 使用 json 类的 dump 函数将 blob 转换为字符串，并将其写入 _outputFile。
         // dump 函数的参数 PRETTY_JSON_SPACES 指定了在格式化 JSON 时每个级别应该缩进的空格数。这样可以使输出的 JSON 更易于阅读

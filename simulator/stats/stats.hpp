@@ -24,8 +24,14 @@ namespace stats
         friend class StatsCollector;
         ~LocalStatsCollector() {}
 
+        void addChild(std::string name, LocalStatsCollector *child); // 添加子LocalStatsCollector
+        LocalStatsCollector &createChild(std::string name);          // 创建子LocalStatsCollector
+
+        json toJson();
+
     private:
-        std::unordered_map<std::string, int64_t> counters; // 计数
+        std::unordered_map<std::string, int64_t> counters;     // 计数
+        std::map<std::string, LocalStatsCollector *> children; // 存储子LocalStatsCollector的容器
         LocalStatsCollector(StatsCollector &parent);
         StatsCollector &_parent;
     };

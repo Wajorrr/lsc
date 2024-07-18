@@ -23,9 +23,34 @@ namespace cache
         uint64_t readmit = cfg.read<int>("log.readmit", 0);
         auto &log_stats = statsCollector->createLocalCollector("log");
 
-        auto &lru_stats = statsCollector->createLocalCollector("cacheAlgo");
-        _cache_algo = new CacheAlgo::LRU(cache_capacity, lru_stats);
-        // _cache_algo = new CacheAlgo::LRU(log_capacity, lru_stats);
+        std::string cache_algo_name = cfg.read<const char *>("cache.cacheAlgoName");
+        auto &cache_algo_stats = statsCollector->createLocalCollector("cacheAlgo");
+
+        if (cache_algo_name == "LRU")
+        {
+            INFO("Creating LRU cache\n");
+            _cache_algo = new CacheAlgo::LRU(cache_capacity, cache_algo_stats);
+        }
+        else if (cache_algo_name == "FIFO")
+        {
+            INFO("Creating FIFO cache\n");
+            _cache_algo = new CacheAlgo::FIFO(cache_capacity, cache_algo_stats);
+        }
+        else if (cache_algo_name == "S3FIFO")
+        {
+            INFO("Creating S3FIFO cache\n");
+            _cache_algo = new CacheAlgo::S3FIFO(statsCollector, cache_capacity, cache_algo_stats);
+        }
+        else if (cache_algo_name == "SIEVE")
+        {
+            INFO("Creating SIEVE cache\n");
+            _cache_algo = new CacheAlgo::SIEVE(cache_capacity, cache_algo_stats);
+        }
+        else
+        {
+            ERROR("Unknown cache algorithm %s\n", cache_algo_name.c_str());
+            abort();
+        }
 
         uint64_t segment_size = 1024 * 1024 * (uint64_t)cfg.read<int>("log.segmentSizeMB", 2);
 
@@ -59,10 +84,13 @@ namespace cache
         // delete _prelog_admission;
     }
 
-    void BlockGCCache::insert(Block id)
+    void BlockGCCache::insert(const parser::Request *req)
     {
-        std::vector<uint64_t> evict = _cache_algo->set(id._lba, id._capacity);
+        std::vector<uint64_t> evict = _cache_algo->set(req, true);
         _log->evict(evict);
+        Block id = Block::make(*req);
+        if (req->type == parser::OP_SET)
+            id.is_dirty = true;
         _log->insert({id});
         // INFO("insert %lu,lru size %lu, log size %lu\n", id._lba, _cache_algo->get_current_size(), _log->getTotalSize());
         if (_cache_algo->get_current_size() != _log->getTotalSize())
@@ -78,11 +106,11 @@ namespace cache
         }
     }
 
-    bool BlockGCCache::find(Block id)
+    bool BlockGCCache::find(const parser::Request *req)
     {
         // 分别查找内存缓存和flash日志缓存
-        bool logic_find = _cache_algo->get(id._lba);
-        bool physic_find = _log->find(id);
+        bool logic_find = _cache_algo->get(req, false);
+        bool physic_find = _log->find(Block::make(*req));
         if (logic_find && physic_find)
         {
             return true;
@@ -97,10 +125,12 @@ namespace cache
         }
     }
 
-    void BlockGCCache::update(Block id)
+    void BlockGCCache::update(const parser::Request *req)
     {
-        std::vector<uint64_t> evict = _cache_algo->set(id._lba, id._capacity);
+        std::vector<uint64_t> evict = _cache_algo->set(req, true);
         _log->evict(evict);
+        Block id = Block::make(*req);
+        id.is_dirty = true;
         _log->update({id});
         // INFO("update %lu, lru size %lu, log size %lu\n", id._lba, _cache_algo->get_current_size(), _log->getTotalSize());
         // if (_cache_algo->get_current_size() != _log->getTotalSize())

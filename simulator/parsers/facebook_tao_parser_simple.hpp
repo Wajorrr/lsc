@@ -101,7 +101,7 @@ namespace parser
         {
           req.req_num++;
           req.time = req.req_num;
-          visit(req);
+          visit(&req);
           if (numRequests != 0)
           {
             numRequests--;

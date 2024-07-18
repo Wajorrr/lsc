@@ -176,12 +176,13 @@ namespace parser
                 {
                     req.req_num++;
                     req.id = lba + i;
-                    req.req_size = io_size >= page_size ? page_size : io_size;
-                    io_size -= req.req_size;
-                    visit(req);
+                    req.req_size = page_size;
+                    // req.req_size = io_size >= page_size ? page_size : io_size;
+                    // io_size -= req.req_size;
+                    visit(&req);
                 }
 
-                visit(req);
+                visit(&req);
                 if (numRequests < 0) // numRequests < 0表示不限制请求数量
                     continue;
                 if (numRequests != 0)

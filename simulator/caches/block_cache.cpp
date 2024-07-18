@@ -64,20 +64,20 @@ namespace cache
         return cache_ret;
     }
 
-    void BlockCache::access(const parser::Request &req)
+    void BlockCache::access(const parser::Request *req)
     {
-        assert(req.req_size >= 0);
+        assert(req->req_size >= 0);
         // 统计读写请求
-        if (req.type != parser::OP_GET && req.type != parser::OP_SET)
+        if (req->type != parser::OP_GET && req->type != parser::OP_SET)
         {
             return;
         }
         // 请求时间戳
-        globalStats["timestamp"] = req.time;
+        globalStats["timestamp"] = req->time;
         // 没有用到请求的num
 
-        auto id = Block::make(req); // 根据请求对象构造一个候选对象candidate
-        bool hit = this->find(id);  // 请求是否命中
+        // auto id = Block::make(*req); // 根据请求对象构造一个候选对象candidate
+        bool hit = this->find(req); // 请求是否命中
 
         // 需要区分两种请求：缓存负载、存储负载
         // 缓存负载请求(例如cachelib的metakv负载)中GET请求未命中时后续会进行一次SET请求
@@ -86,41 +86,40 @@ namespace cache
         // 所以这里如果采用GET miss后默认写入缓存，会导致后续原本进行缓存写入的SET请求被视作更新请求
         // 需要过滤这种负载的情况
 
-        if (hit && req.type == parser::OP_SET)
+        if (hit && req->type == parser::OP_SET)
         {
-            if (_promotFlag[id])
+            if (_promotFlag[req->id])
             {
-                _promotFlag[id] = false;
+                _promotFlag[req->id] = false;
                 return;
             }
             else
             {
-                id.is_dirty = true;
                 // INFO("update: %ld\n", id._lba);
-                this->update(id);
+                this->update(req);
                 globalStats["updateCount"]++; // 更新次数
-                globalStats["updateSize"] += id._capacity;
+                globalStats["updateSize"] += req->req_size;
             }
         }
 
-        if (req.type == parser::OP_GET)
+        if (req->type == parser::OP_GET)
         {
             if (hit)
             {
-                globalStats["hits"]++;                   // 命中次数
-                globalStats["hitsSize"] += id._capacity; // 命中的字节数
-                if (_promotFlag[id])
-                    _promotFlag[id] = false;
+                globalStats["hits"]++;                    // 命中次数
+                globalStats["hitsSize"] += req->req_size; // 命中的字节数
+                if (_promotFlag[req->id])
+                    _promotFlag[req->id] = false;
             }
             else
             {
-                globalStats["misses"]++;                   // 缺失次数
-                globalStats["missesSize"] += id._capacity; // 缺失的字节数
+                globalStats["misses"]++;                    // 缺失次数
+                globalStats["missesSize"] += req->req_size; // 缺失的字节数
             }
         }
 
-        trackAccesses(req.type);    // 统计全局和一段时间窗口内的access访问次数
-        trackHistory(id, req.type); // 统计强制不命中数以及WSS
+        trackAccesses(req->type); // 统计全局和一段时间窗口内的access访问次数
+        trackHistory(req);        // 统计强制不命中数以及WSS
 
         // stats?
         if ((_stats_interval > 0) && ((getTotalAccesses() % _stats_interval) == 0))
@@ -132,10 +131,8 @@ namespace cache
 
         if (!hit)
         {
-            if (req.type == parser::OP_SET)
-                id.is_dirty = true;
-            // INFO("insert: %ld\n", id._lba);
-            this->insert(id);
+            // INFO("insert: %ld\n", req->id);
+            this->insert(req);
 
 #ifdef CacheTrace
             if (req.type == parser::OP_GET)
@@ -183,18 +180,18 @@ namespace cache
         }
     }
 
-    void BlockCache::trackHistory(Block id, parser::req_op_e req_op)
+    void BlockCache::trackHistory(const parser::Request *req)
     {
-        if (!_historyAccess[id]) // 若当前请求没被访问过
+        if (!_historyAccess[req->id]) // 若当前请求没被访问过
         {
             // first time requests are considered as compulsory misses
             // 默认set操作为直接缓冲写入到缓存，驱逐时写入到后端
-            if (req_op == parser::OP_GET)
+            if (req->type == parser::OP_GET)
             {
                 globalStats["compulsoryMisses"]++; // 强制不命中次数
             }
-            _historyAccess[id] = true;
-            globalStats["uniqueBytes"] += id._capacity; // 唯一对象的总字节数，WSS
+            _historyAccess[req->id] = true;
+            globalStats["uniqueBytes"] += req->req_size; // 唯一对象的总字节数，WSS
         }
     }
 

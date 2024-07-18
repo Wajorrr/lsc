@@ -3,6 +3,7 @@
 #include "parsers/parser.hpp"
 #include "stats/stats.hpp"
 #include "block.hpp"
+#include <unordered_map>
 
 namespace cache
 {
@@ -28,11 +29,11 @@ namespace cache
         static BlockCache *create(const libconfig::Setting &settings);
 
         /* access method, calls insert and find */
-        void access(const parser::Request &req);
+        void access(const parser::Request *req);
 
-        virtual void insert(Block id) = 0;
-        virtual bool find(Block id) = 0;
-        virtual void update(Block id) = 0;
+        virtual void insert(const parser::Request *req) = 0;
+        virtual bool find(const parser::Request *req) = 0;
+        virtual void update(const parser::Request *req) = 0;
         virtual double calcFlashWriteAmp() = 0;
 
         double calcMissRate();
@@ -45,15 +46,15 @@ namespace cache
 
     protected:
         /* useful functions that are common to caches */
-        void trackHistory(Block id, parser::req_op_e req_op);
+        void trackHistory(const parser::Request *req);
         void trackAccesses(parser::req_op_e req_op);
         void flushStats();
         stats::StatsCollector *statsCollector = nullptr;
         stats::LocalStatsCollector &globalStats;
 
     private:
-        BlockMap<bool> _historyAccess;
-        BlockMap<bool> _promotFlag;
+        std::unordered_map<uint64_t, bool> _historyAccess;
+        std::unordered_map<uint64_t, bool> _promotFlag;
         uint64_t _stats_interval;
 
     }; // class BlockCache

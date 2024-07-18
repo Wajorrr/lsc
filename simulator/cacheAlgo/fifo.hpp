@@ -9,15 +9,15 @@
 
 namespace CacheAlgo
 {
-    class LRU : public virtual CacheAlgoAbstract
+    class FIFO : public virtual CacheAlgoAbstract
     {
     public:
-        LRU(uint64_t _max_size, stats::LocalStatsCollector &_cache_algo_stats)
-            : CacheAlgoAbstract("LRU", _max_size, _cache_algo_stats)
+        FIFO(uint64_t _max_size, stats::LocalStatsCollector &_cache_algo_stats)
+            : CacheAlgoAbstract("FIFO", _max_size, _cache_algo_stats)
         {
-            cache_algo_stats["lruCacheCapacity"] = _max_size; // 缓存容量，单位为字节
-            lru_head = nullptr;
-            lru_tail = nullptr;
+            cache_algo_stats["fifoCacheCapacity"] = _max_size; // 缓存容量，单位为字节
+            fifo_head = nullptr;
+            fifo_tail = nullptr;
         }
 
         bool get(const parser::Request *req, bool set_on_miss)
@@ -61,53 +61,44 @@ namespace CacheAlgo
 
         cache_obj_t *find(const parser::Request *req, const bool update_cache)
         {
-            cache_obj_t *cache_obj = cache_find_base(req, update_cache);
-            if (cache_obj && likely(update_cache))
-            {
-                /* lru_head is the newest, move cur obj to lru_head */
-#ifdef USE_BELADY
-                if (req->next_access_vtime != INT64_MAX)
-#endif
-                    move_obj_to_head(&lru_head, &lru_tail, cache_obj);
-            }
-            return cache_obj;
+            return cache_find_base(req, update_cache);
         }
 
         cache_obj_t *insert(const parser::Request *req)
         {
             cache_obj_t *obj = cache_insert_base(req);
-            prepend_obj_to_head(&lru_head, &lru_tail, obj);
+            prepend_obj_to_head(&fifo_head, &fifo_tail, obj);
 
             return obj;
         }
 
         cache_obj_t *to_evict(const parser::Request *req)
         {
-            DEBUG_ASSERT(lru_tail != NULL || current_size == 0);
+            DEBUG_ASSERT(fifo_tail != NULL || current_size == 0);
 
             to_evict_candidate_gen_vtime = req_num;
-            return lru_tail;
+            return fifo_tail;
         }
 
         obj_id_t evict(const parser::Request *req)
         {
-            cache_obj_t *obj_to_evict = lru_tail;
-            DEBUG_ASSERT(lru_tail != NULL);
+            cache_obj_t *obj_to_evict = fifo_tail;
+            DEBUG_ASSERT(fifo_tail != NULL);
 
             // we can simply call remove_obj_from_list here, but for the best performance,
             // we chose to do it manually
-            // remove_obj_from_list(&lru_head, &lru_tail, obj)
+            // remove_obj_from_list(&fifo_head, &fifo_tail, obj)
 
-            lru_tail = lru_tail->queue.prev;
-            if (likely(lru_tail != NULL))
+            fifo_tail = fifo_tail->queue.prev;
+            if (likely(fifo_tail != NULL))
             {
-                lru_tail->queue.next = NULL;
+                fifo_tail->queue.next = NULL;
             }
             else
             {
                 /* obj_num has not been updated */
                 DEBUG_ASSERT(obj_num == 1);
-                lru_head = NULL;
+                fifo_head = NULL;
             }
 
 #if defined(TRACK_DEMOTION)
@@ -128,7 +119,7 @@ namespace CacheAlgo
                 return false;
             }
 
-            remove_obj_from_list(&lru_head, &lru_tail, obj);
+            remove_obj_from_list(&fifo_head, &fifo_tail, obj);
             cache_remove_obj_base(obj, true);
 
             return true;
@@ -136,7 +127,7 @@ namespace CacheAlgo
 
         void print_cache()
         {
-            cache_obj_t *cur = lru_head;
+            cache_obj_t *cur = fifo_head;
             // print from the most recent to the least recent
             if (cur == NULL)
             {
@@ -152,8 +143,8 @@ namespace CacheAlgo
         }
 
     private:
-        cache_obj_t *lru_head;
-        cache_obj_t *lru_tail;
+        cache_obj_t *fifo_head;
+        cache_obj_t *fifo_tail;
     };
 
 } // namespace CacheAlgo

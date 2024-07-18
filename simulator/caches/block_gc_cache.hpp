@@ -5,6 +5,9 @@
 #include "admission/admission.hpp"
 #include "segment/block_gc.hpp"
 #include "cacheAlgo/lru.hpp"
+#include "cacheAlgo/fifo.hpp"
+#include "cacheAlgo/s3fifo.hpp"
+#include "cacheAlgo/sieve.hpp"
 
 namespace cache
 {
@@ -14,9 +17,9 @@ namespace cache
     public:
         BlockGCCache(stats::StatsCollector *sc, stats::LocalStatsCollector &gs, const libconfig::Setting &settings);
         ~BlockGCCache();
-        void insert(Block id);
-        bool find(Block id);
-        void update(Block id);
+        void insert(const parser::Request *req);
+        bool find(const parser::Request *req);
+        void update(const parser::Request *req);
         double calcFlashWriteAmp();
         double calcMissRate();
 

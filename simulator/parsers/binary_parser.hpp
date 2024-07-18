@@ -152,7 +152,7 @@ namespace parser
                 {
                     req.req_size = MAX_TAO_SIZE - 1;
                 }
-                visit(req);
+                visit(&req);
                 if (numRequests < 0) // numRequests < 0表示不限制请求数量
                     continue;
                 if (numRequests != 0)

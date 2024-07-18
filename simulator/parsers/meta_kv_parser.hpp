@@ -131,7 +131,7 @@ namespace parser
                 {
                     req.req_num++;
                     req.time = req.req_num;
-                    visit(req);
+                    visit(&req);
                     if (numRequests < 0) // numRequests < 0表示不限制请求数量
                         continue;
                     if (numRequests != 0)

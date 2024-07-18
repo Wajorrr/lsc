@@ -20,6 +20,7 @@ namespace flashCache
 
         Segment::_capacity = segment_size;
         Segment template_segment = Segment();
+
         _segments.resize(_num_segments, template_segment); // 根据段的数量和大小来分配段数组空间
         for (auto &segment : _segments)
         {

@@ -51,7 +51,7 @@ extern "C"
 
 #if defined(TRACK_EVICTION_V_AGE) || defined(TRACK_DEMOTION) || \
     defined(TRACK_CREATE_TIME)
-#define CURR_TIME(cache, req) (cache->n_req)
+#define CURR_TIME(cache, req) (cache->req_num)
 #elif defined(TRACK_EVICTION_R_AGE)
 #define CURR_TIME(cache, req) (req->clock_time)
 #endif

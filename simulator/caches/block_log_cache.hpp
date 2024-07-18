@@ -13,9 +13,9 @@ namespace cache
     public:
         BlockLogCache(stats::StatsCollector *sc, stats::LocalStatsCollector &gs, const libconfig::Setting &settings);
         ~BlockLogCache();
-        void insert(Block id);
-        bool find(Block id);
-        void update(Block id);
+        void insert(const parser::Request *req);
+        bool find(const parser::Request *req);
+        void update(const parser::Request *req);
         double calcFlashWriteAmp();
         double calcMissRate();
 

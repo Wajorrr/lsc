@@ -28,6 +28,15 @@ struct Tags
         free_cache_obj(obj);
     }
 
+    void free_hashtable()
+    {
+        for (auto &kv : *this)
+        {
+            free_cache_obj(kv.second);
+        }
+        this->clear();
+    }
+
     cache_obj_t *lookup(obj_id_t id) const
     {
         auto itr = this->find(id); // 在hash表中查找对象

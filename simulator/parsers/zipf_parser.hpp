@@ -40,7 +40,7 @@ namespace parser
         req.id = obj_id;               // 请求id赋值为对象id
         req.req_size = obj_size;       // 请求大小赋值为对象大小
         req.req_num = i;               // 请求数量
-        visit(req);                    // 使缓存处理当前请求
+        visit(&req);                   // 使缓存处理当前请求
       }
     }
 

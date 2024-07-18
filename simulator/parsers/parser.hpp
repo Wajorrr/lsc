@@ -52,7 +52,7 @@ namespace parser
   // VisitorFn 是一个函数指针
   // 指向的函数接收一个 const Request& 类型的参数
   // 这种类型的函数指针通常用于实现访问者模式，这是一种行为设计模式，允许你在不修改类的情况下增加新的操作
-  typedef void (*VisitorFn)(const Request &);
+  typedef void (*VisitorFn)(const Request *);
 
   class Parser
   {

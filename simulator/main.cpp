@@ -11,7 +11,7 @@ using namespace std;
 // cache::WriteCache *_cache;
 cache::BlockCache *_cache;
 
-void simulateCache(const parser::Request &req)
+void simulateCache(const parser::Request *req)
 {
   _cache->access(req);
 }

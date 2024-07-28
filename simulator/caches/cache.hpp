@@ -28,7 +28,7 @@ namespace cache
         static Cache *create(const libconfig::Setting &settings);
 
         /* access method, calls insert and find */
-        void access(const parser::Request &req);
+        void access(const parser::Request *req);
 
         virtual void insert(candidate_t id) = 0;
         virtual bool find(candidate_t id) = 0;

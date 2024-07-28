@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <map>
 #include <random>
+#include "common/logging.h"
 
 /*
  sampling object id and object size from a Zipf-like distribution
@@ -36,16 +37,24 @@ class ZipfRequests
 {
 
 private:
+    // 对象ID和大小的对
     typedef std::pair<int64_t, int64_t> IdSizePair;
 
     std::mt19937_64 rd_gen;
-    std::vector<std::vector<IdSizePair>> popDist; // 流行度分布popDist
+    // 流行度分布桶popDist，将对象按频率总和分组，举例：若最后共分组出了3个桶
+    // 将对象按频率排序后，顺序遍历对象，频率累加，频率每加到总和的1/3，就分出一个组
+    std::vector<std::vector<IdSizePair>> popDist;
+    // 均匀分布，用于在不同桶之间均匀采样
     std::uniform_int_distribution<size_t> popOuterRng;
+    // 均匀分布，在同一个桶内均匀采样
     std::vector<std::uniform_int_distribution<size_t>> popInnerRngs;
 
+    // std::unordered_map<int64_t, IdSizePair> -> <对象ID,<对象大小,对象被采样的次数>>
     std::unordered_map<int64_t, IdSizePair> stats;
 
 public:
+    // sizeFile: 对象大小文件，存储可能的对象大小
+    // objCount: 对象数量，zipfAlpha: zipf分布的参数，min_size: 流行度桶的最小大小
     ZipfRequests(std::string sizeFile, uint64_t objCount, double zipfAlpha, uint64_t min_size)
     {
         objCount *= 1000;
@@ -56,6 +65,7 @@ public:
 
         // try to scan object sizes from file
         std::vector<int64_t> base_sizes;
+        // 指定了对象大小文件，从文件中读取对象大小
         if (sizeFile.size() > 0)
         {
             std::ifstream infile;
@@ -70,9 +80,11 @@ public:
             }
             infile.close();
         }
-        if (base_sizes.size() == 0) // 文件为空/不存在
+        // 文件为空/不存在，使用默认的对象大小64
+        if (base_sizes.size() == 0)
         {
-            base_sizes = std::vector<int64_t>({64});
+            // base_sizes = std::vector<int64_t>({64});
+            base_sizes = std::vector<int64_t>({4096});
         }
         // 均匀分布，将用于随机选择对象的大小
         std::uniform_int_distribution<uint64_t> size_dist(0, base_sizes.size() - 1);
@@ -86,19 +98,25 @@ public:
         uint64_t vec_size = min_size;
         // 创建一个空的流行度桶，流行度桶是一个向量，用于存储具有相似流行度的对象，每个对象都由一个ID和大小的对组成。
         popDist[popBucket].reserve(vec_size);
+        // 根据对象数量生成对象ID和大小，并将其添加到流行度桶中
         for (; objectId < objCount; objectId++)
         {
-            // 第n个元素的频率与1/n的幂成反比
+            // 流行度排名为n的元素的频率与1/n^alpha成正比
             ratesum += 1.0 / pow(double(objectId), zipfAlpha);
 
+            // 注意这里大小与对象频率没有关系，是随机选取的一个大小
             // 为每个对象生成一个ID和大小，并将其添加到当前的流行度桶中
             popDist[popBucket].push_back(
-                IdSizePair(
-                    objectId,
-                    base_sizes[size_dist(rd_gen)]));
+                IdSizePair(objectId,
+                           base_sizes[size_dist(rd_gen)]));
             if (objectId % 100000000 == 0)
             {
                 std::cout << "Generated object " << objectId << std::endl;
+            }
+            if (objectId == objCount - 1)
+            {
+                std::cout << "Generated object " << objectId << std::endl;
+                break;
             }
             // 当累计的频率超过1时，将创建一个新的流行度桶，并将累计频率重置为0
             // 相当于做分割，比如若有3个桶，首先按1/3概率选取到其中一个桶，即选取到了所有样本的前1/3、中1/3、后1/3
@@ -108,6 +126,7 @@ public:
                 // std::cerr << "init " << objectId << " " << ratesum << "\n";
                 // move to next popularity bucket
                 popDist.push_back(std::vector<IdSizePair>());
+                // 下一个桶容量翻倍，因为越往后每个对象的频率越低，所以每个桶的对象数量也越多
                 vec_size = 2 * popDist[popBucket].size();
                 popBucket++;
                 popDist[popBucket].reserve(vec_size);
@@ -123,6 +142,8 @@ public:
             popInnerRngs.push_back(std::uniform_int_distribution<size_t>(0, popDist[i].size() - 1));
         }
         std::cerr << "zipf debug objectCount " << popDist.size() << " smallest bucket size " << popDist[0].size() << " largest bucket size " << popDist[popDist.size() - 1].size() << " effective probability " << 1.0 / popDist.size() * 1.0 / popDist[popDist.size() - 1].size() << " theoretical probability " << 1 / pow(double(objCount), zipfAlpha) << "\n";
+
+        printBucketSize();
     }
 
     // 从Zipf-like分布中采样一个对象
@@ -146,6 +167,14 @@ public:
         { // 对象第一次被采样
             stats[id].first = size;
             stats[id].second = 1;
+        }
+    }
+
+    void printBucketSize()
+    {
+        for (size_t i = 0; i < popDist.size(); i++)
+        {
+            DEBUG("bucket %lu size %lu\n", i, popDist[i].size());
         }
     }
 

@@ -1,7 +1,7 @@
 # Libraries
 libraries = ['config++']
 cppFlags = ['-Wall', '-march=native', '-mcmodel=medium', '-fPIC', '-ffast-math', '-funroll-loops']
-cxxFlags = ['-std=c++14', '-g', '-O3']
+cxxFlags = ['-std=c++17', '-g', '-O3']
 cppPath = ['.']
 
 # Setup Environment

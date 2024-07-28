@@ -24,9 +24,12 @@ namespace flashCache
             template_block._capacity = log_capacity % block_size; // 创建一个单独的擦除块
             _blocks.push_back(template_block);
         }
-        std::cout << "Log capacity: " << _total_capacity
-                  << "\n\tNum Blocks: " << _num_blocks
-                  << "\n\tBlock Capacity: " << block_size << std::endl;
+
+        DEBUG("Log capacity: %ld, Num Blocks: %ld, Block Capacity: %ld\n",
+              _total_capacity, _num_blocks, block_size);
+        // std::cout << "Log capacity: " << _total_capacity
+        //           << "\n\tNum Blocks: " << _num_blocks
+        //           << "\n\tBlock Capacity: " << block_size << std::endl;
     }
 
     void FIFOLog::_insert(candidate_t item)

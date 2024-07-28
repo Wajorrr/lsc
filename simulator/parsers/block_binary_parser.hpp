@@ -163,7 +163,8 @@ namespace parser
                 req.next_access_op = next_access_op;
                 req.future_invalid_time = future_invalid_time;
 
-                if (req.req_num <= 10)
+                // if (req.req_num <= 10)
+                if (req.req_num <= 1)
                     INFO("id:%" PRIu64 ",req_size:%ld,time:%ld,type:%d,next_access_vtime:%ld,next_access_op:%d\n, future_invalid_time:%ld\n",
                          req.id, req.req_size, req.time, req.type, req.next_access_vtime, req.next_access_op, req.future_invalid_time);
 

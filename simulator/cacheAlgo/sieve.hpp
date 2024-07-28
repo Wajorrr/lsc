@@ -91,8 +91,6 @@ namespace CacheAlgo
         cache_obj_t *Sieve_to_evict_with_freq(const parser::Request *req,
                                               int to_evict_freq)
         {
-            cache_obj_t *pointer = pointer;
-
             /* if we have run one full around or first eviction */
             if (pointer == NULL)
                 pointer = q_tail;

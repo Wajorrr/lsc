@@ -3,6 +3,7 @@
 #include "parsers/parser.hpp"
 #include "stats/stats.hpp"
 #include "block.hpp"
+#include "block_log_abstract.hpp"
 #include <unordered_map>
 
 namespace cache
@@ -34,9 +35,10 @@ namespace cache
         virtual void insert(const parser::Request *req) = 0;
         virtual bool find(const parser::Request *req) = 0;
         virtual void update(const parser::Request *req) = 0;
-        virtual double calcFlashWriteAmp() = 0;
 
+        virtual double calcFlashWriteAmp();
         double calcMissRate();
+        virtual double calcCapacityUtilization();
 
         /* dumpStats to predefined stats file */
         void dumpStats();
@@ -51,6 +53,10 @@ namespace cache
         void flushStats();
         stats::StatsCollector *statsCollector = nullptr;
         stats::LocalStatsCollector &globalStats;
+        // admission::Policy *_prelog_admission = nullptr;
+        bool warmed_up = false;
+        flashCache::BlockLogAbstract *_log;
+        void checkWarmup();
 
     private:
         std::unordered_map<uint64_t, bool> _historyAccess;

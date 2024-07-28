@@ -49,7 +49,8 @@ namespace stats
 
     StatsCollector::StatsCollector(std::string output_filename)
     {
-        std::cout << "Stats file at " << output_filename << std::endl;
+        DEBUG("Stats file at %s\n", output_filename.c_str());
+        // std::cout << "Stats file at " << output_filename << std::endl;
         _outputFile.open(output_filename);
     }
 

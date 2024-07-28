@@ -5,14 +5,14 @@
 #include <unordered_map>
 #include <unordered_set>
 #include "candidate.hpp"
-#include "log_abstract.hpp"
+#include "object_log_abstract.hpp"
 #include "stats/stats.hpp"
 
 namespace flashCache
 {
 
     // log, does lazy eviction in a round robin fashion as much as possible
-    class FIFOLog : public virtual LogAbstract
+    class FIFOLog : public virtual ObjectLogAbstract
     {
 
     public:

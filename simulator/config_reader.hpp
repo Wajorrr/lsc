@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "common/logging.h"
 
 namespace misc
 {
@@ -56,12 +57,14 @@ namespace misc
             }
             catch (const libconfig::SettingTypeException &tex)
             {
-                std::cerr << "Type mismatched: " << key << std::endl;
+                ERROR("Type mismatched: %s\n", key.c_str());
+                // std::cerr << "Type mismatched: " << key << std::endl;
                 exit(-1);
             }
             catch (const libconfig::SettingNotFoundException &nfex)
             {
-                std::cerr << "Setting not found: " << key << std::endl;
+                ERROR("Setting not found: %s\n", key.c_str());
+                // std::cerr << "Setting not found: " << key << std::endl;
                 exit(-1);
             }
         }
@@ -75,12 +78,14 @@ namespace misc
             }
             catch (const libconfig::SettingTypeException &tex)
             {
-                std::cerr << "Type mismatched: " << key << std::endl;
+                ERROR("Type mismatched: %s\n", key.c_str());
+                // std::cerr << "Type mismatched: " << key << std::endl;
                 exit(-1);
             }
             catch (const libconfig::SettingNotFoundException &nfex)
             {
-                std::cerr << "Setting not found: " << key << ", using default value: " << _default << std::endl;
+                WARN("Setting not found: %s, using default value: %d\n", key.c_str(), _default);
+                // std::cerr << "Setting not found: " << key << ", using default value: " << _default << std::endl;
                 return _default;
             }
         }

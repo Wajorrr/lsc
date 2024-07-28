@@ -14,19 +14,22 @@ parser::Parser *parser::Parser::create(const libconfig::Setting &settings)
 
     std::string parserType = cfg.read<const char *>("trace.format");
 
-    std::cout << "Parser type: " << parserType << std::endl;
+    INFO("Parser Type: %s\n", parserType.c_str());
+    // std::cout << "Parser type: " << parserType << std::endl;
 
     // 负载中的请求总数/K个
     auto numKRequests = cfg.read<int>("trace.totalKAccesses", -1);
     // 负载中的请求总数/个
     int64_t numRequests = 1024 * numKRequests;
-    std::cout << "num requests: " << numRequests << std::endl;
+    INFO("Number of requests: %ld\n", numRequests);
+    // std::cout << "num requests: " << numRequests << std::endl;
+
     // 根据负载格式，返回对应的 Parser 实例
     if (parserType == "Zipf")
     {
         assert(numRequests > 0);
         auto alpha = cfg.read<float>("trace.alpha");
-        auto numObjects = cfg.read<int>("trace.numObjects");
+        auto numObjects = cfg.read<int>("trace.numKObjects");
         return new ZipfParser(alpha, numObjects, numRequests);
     }
     else if (parserType == "FacebookTaoSimple")
@@ -68,7 +71,8 @@ parser::Parser *parser::Parser::create(const libconfig::Setting &settings)
     }
     else
     {
-        std::cerr << "Unknown parser type: " << parserType << std::endl;
+        ERROR("Unknown parser type: %s\n", parserType.c_str());
+        // std::cerr << "Unknown parser type: " << parserType << std::endl;
         assert(false);
     }
 }

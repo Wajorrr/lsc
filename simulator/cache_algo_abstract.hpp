@@ -63,6 +63,18 @@ namespace CacheAlgo
             return true;
         }
 
+        void update_obj(const parser::Request *req)
+        {
+            cache_obj_t *obj = find(req, false);
+            if (obj == NULL)
+            {
+                return;
+            }
+            current_size += (int64_t)req->req_size - obj->obj_size;
+            obj->obj_size = req->req_size;
+            obj->misc.next_access_vtime = req->next_access_vtime;
+        }
+
         virtual void print_cache() = 0;
         virtual int64_t get_current_size()
         {
@@ -233,6 +245,12 @@ namespace CacheAlgo
             return true;
         }
 
+        void record_current_size()
+        {
+            cache_algo_stats["current_size"] = get_current_size();
+            // DEBUG_ASSERT(current_size <= cache_size);
+        }
+
     protected:
         cache_obj_t *cache_find_base(const parser::Request *req, const bool update_cache)
         {
@@ -313,8 +331,7 @@ namespace CacheAlgo
             {
                 if (!reinsert_on_update)
                 {
-                    current_size += (int64_t)req->req_size - old_size;
-                    obj->obj_size = req->req_size;
+                    update_obj(req);
                     return evicted;
                 }
                 else

@@ -157,11 +157,18 @@ namespace CacheAlgo
 
             evicted = cache_set_base(req, reinsert_on_update);
 
-            cache_algo_stats["current_size"] = get_current_size();
-            DEBUG_ASSERT(get_current_size() <= cache_size);
+            fifo->record_current_size();
+            main_cache->record_current_size();
+            record_current_size();
             // 每次操作后重置hit_on_ghost
             hit_on_ghost = false;
             return evicted;
+        }
+
+        void update_obj(const parser::Request *req)
+        {
+            fifo->update_obj(req);
+            main_cache->update_obj(req);
         }
 
         cache_obj_t *find(const parser::Request *req, const bool update_cache)
@@ -251,8 +258,9 @@ namespace CacheAlgo
 
         obj_id_t S3FIFO_evict_fifo(const parser::Request *req)
         {
-            // bool has_evicted = false;
-            obj_id_t has_evicted = 0;
+            bool has_evicted = false;
+            obj_id_t evicted = 0;
+
             // 可能有对象需要被继续插入到主缓存中，因此循环直至实际驱逐掉一个对象
             while (!has_evicted && fifo->get_current_size() > 0)
             {
@@ -274,6 +282,7 @@ namespace CacheAlgo
 
                     cache_obj_t *new_obj = main_cache->insert(req_local);
                     new_obj->misc.freq = obj_to_evict->misc.freq;
+
 #if defined(TRACK_EVICTION_V_AGE)
                     new_obj->create_time = obj_to_evict->create_time;
                 }
@@ -297,21 +306,30 @@ namespace CacheAlgo
                     {
                         fifo_ghost->get(req_local, true);
                     }
-                    // has_evicted = true;
-                    has_evicted = obj_to_evict->obj_id;
-                }
 
+                    has_evicted = true;
+                    evicted = obj_to_evict->obj_id;
+                    // if (obj_to_evict->obj_id == 0)
+                    // {
+                    //     ERROR("obj id %lu, freq %d\n", obj_to_evict->obj_id, obj_to_evict->S3FIFO.freq);
+                    // }
+                }
                 // remove from fifo, but do not update stat
                 bool removed = fifo->remove(req_local->id);
                 assert(removed);
             }
-            return has_evicted;
+            if (!has_evicted)
+            {
+                return S3FIFO_evict_main(req);
+            }
+            return evicted;
         }
 
         obj_id_t S3FIFO_evict_main(const parser::Request *req)
         {
             // evict from main cache
-            obj_id_t has_evicted = 0;
+            bool has_evicted = false;
+            obj_id_t evicted = 0;
             // 可能有需要被重新插入的对象，因此循环直至实际驱逐掉一个对象
             while (!has_evicted && main_cache->get_current_size() > 0)
             {
@@ -344,8 +362,12 @@ namespace CacheAlgo
                     record_eviction_age(obj_to_evict,
                                         CURR_TIME(*this, req) - obj_to_evict->create_time);
 #endif
-
-                    has_evicted = obj_to_evict->obj_id;
+                    has_evicted = true;
+                    evicted = obj_to_evict->obj_id;
+                    // if (obj_to_evict->obj_id == 0)
+                    // {
+                    //     ERROR("obj id %lu, freq %d\n", obj_to_evict->obj_id, obj_to_evict->S3FIFO.freq);
+                    // }
 
                     // main->evict(main, req);
                     bool removed = main_cache->remove(obj_to_evict->obj_id);
@@ -355,19 +377,27 @@ namespace CacheAlgo
                     }
                 }
             }
-            return has_evicted;
+            return evicted;
         }
 
         obj_id_t evict(const parser::Request *req)
         {
             // 主缓存的大小不是严格小于其预设容量，可以超出
             // 主缓存容量超出/或试用队列容量为0时，首先从主缓存中驱逐
+            int64_t test_size1 = get_current_size();
             if (main_cache->get_current_size() > main_cache->cache_size ||
                 fifo->get_current_size() == 0)
             {
                 return S3FIFO_evict_main(req);
             }
-            return S3FIFO_evict_fifo(req);
+            obj_id_t evicted = S3FIFO_evict_fifo(req);
+            int64_t test_size2 = get_current_size();
+            if (test_size1 - test_size2 != 4096)
+            {
+                ERROR("req id: %lu, evicted id %lu, evict size error: %ld\n", req->id, evicted, test_size1 - test_size2);
+                abort();
+            }
+            return evicted;
         }
 
         bool remove(const obj_id_t id)

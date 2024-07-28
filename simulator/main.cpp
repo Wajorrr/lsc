@@ -35,13 +35,15 @@ int main(int argc, char *argv[])
   }
   catch (const libconfig::FileIOException &fioex)
   {
-    std::cerr << "I/O error while reading config file." << std::endl;
+    ERROR("I/O error while reading config file.\n");
+    // std::cerr << "I/O error while reading config file." << std::endl;
     return (EXIT_FAILURE);
   }
   catch (const libconfig::ParseException &pex)
   {
-    std::cerr << "Parse error at " << pex.getFile() << ":" << pex.getLine()
-              << " - " << pex.getError() << std::endl;
+    ERROR("Parse error at %s:%d - %s\n", pex.getFile(), pex.getLine(), pex.getError());
+    // std::cerr << "Parse error at " << pex.getFile() << ":" << pex.getLine()
+    //           << " - " << pex.getError() << std::endl;
     return (EXIT_FAILURE);
   }
 

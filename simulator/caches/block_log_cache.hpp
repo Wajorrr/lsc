@@ -4,6 +4,7 @@
 #include "block_cache.hpp"
 #include "admission/admission.hpp"
 #include "segment/block_log.hpp"
+#include "segment/mblock_log.hpp"
 
 namespace cache
 {
@@ -16,16 +17,8 @@ namespace cache
         void insert(const parser::Request *req);
         bool find(const parser::Request *req);
         void update(const parser::Request *req);
-        double calcFlashWriteAmp();
-        double calcMissRate();
 
     private:
-        void checkWarmup();
-
-        flashCache::BlockLog *_log = nullptr;
-        // admission::Policy *_prelog_admission = nullptr;
-        bool warmed_up = false;
-        bool _record_dist = false;
     };
 
 } // namespace cache

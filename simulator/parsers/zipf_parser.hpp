@@ -11,6 +11,7 @@
 
 #include "../constants.hpp"
 #include "../lib/zipf.h"
+#include "common/logging.h"
 
 typedef double double64_t;
 
@@ -21,6 +22,7 @@ namespace parser
   {
 
   public:
+    // 参数：alpha为zipf分布的参数，numObjects为对象数量，_numRequests为请求数量
     ZipfParser(float alpha, uint64_t numObjects, uint64_t _numRequests)
         : zipf("", numObjects, alpha, 1), numRequests(_numRequests)
     {
@@ -40,7 +42,10 @@ namespace parser
         req.id = obj_id;               // 请求id赋值为对象id
         req.req_size = obj_size;       // 请求大小赋值为对象大小
         req.req_num = i;               // 请求数量
-        visit(&req);                   // 使缓存处理当前请求
+
+        req.type = parser::OP_GET; // 请求类型为读取操作
+
+        visit(&req); // 使缓存处理当前请求
       }
     }
 

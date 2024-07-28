@@ -19,7 +19,8 @@ namespace cache
         uint64_t log_capacity = flash_size_mb * 1024 * 1024;
 
         /* figure out what log version to use and initialize it */
-        uint64_t readmit = cfg.read<int>("log.readmit", 0);
+        // uint64_t readmit = cfg.read<int>("log.readmit", 0);
+
         auto &log_stats = statsCollector->createLocalCollector("log");
 
         // 下刷块大小的大小，默认为256KB，即擦除块的大小
@@ -27,15 +28,15 @@ namespace cache
         _log = new flashCache::FIFOLog(log_capacity, block_size, log_stats);
 
         /* Initialize prelog admission policy */
-        if (cfg.exists("preLogAdmission")) // 是否使用准入策略
-        {
-            std::string policyType = cfg.read<const char *>("preLogAdmission.policy");
-            std::cout << "Creating admission policy of type " << policyType << std::endl;
-            policyType.append(".preLogAdmission");
-            const libconfig::Setting &admission_settings = cfg.read<libconfig::Setting &>("preLogAdmission");
-            auto &admission_stats = statsCollector->createLocalCollector(policyType);
-            // _prelog_admission = admission::Policy::create(admission_settings, nullptr, _log, admission_stats);
-        }
+        // if (cfg.exists("preLogAdmission")) // 是否使用准入策略
+        // {
+        //     std::string policyType = cfg.read<const char *>("preLogAdmission.policy");
+        //     std::cout << "Creating admission policy of type " << policyType << std::endl;
+        //     policyType.append(".preLogAdmission");
+        //     const libconfig::Setting &admission_settings = cfg.read<libconfig::Setting &>("preLogAdmission");
+        //     auto &admission_stats = statsCollector->createLocalCollector(policyType);
+        //     // _prelog_admission = admission::Policy::create(admission_settings, nullptr, _log, admission_stats);
+        // }
 
         /* slow warmup */
         if (cfg.exists("cache.slowWarmup"))

@@ -44,6 +44,13 @@ __pycache__
 
 # Build system specific
 .sconsign.dblite
+run-scripts/kangaroo
 run-scripts/configs
 run-scripts/output
+run-scripts/logcache/*/output
+run-scripts/test/output
 simulator/bin
+
+graph-scripts/kangaroo
+graph-scripts/drawer/data
+graph-scripts/drawer/figure

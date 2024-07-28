@@ -77,20 +77,20 @@ namespace cache
         return cache_ret;
     }
 
-    void Cache::access(const parser::Request &req)
+    void Cache::access(const parser::Request *req)
     {
-        assert(req.req_size >= 0);
+        assert(req->req_size >= 0);
         // 只统计读取请求，GET=1
-        if (req.type >= parser::OP_SET)
+        if (req->type >= parser::OP_SET)
         {
             return;
         }
         // 请求时间戳
-        globalStats["timestamp"] = req.time;
+        globalStats["timestamp"] = req->time;
         // 没有用到请求的num
 
-        auto id = candidate_t::make(req); // 根据请求对象构造一个候选对象candidate
-        bool hit = this->find(id);        // 请求是否命中
+        auto id = candidate_t::make(*req); // 根据请求对象构造一个候选对象candidate
+        bool hit = this->find(id);         // 请求是否命中
 
         if (hit)
         {

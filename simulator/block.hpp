@@ -10,7 +10,7 @@ struct Block
 {
   uint64_t _lba;
   int64_t _size;
-  static int64_t _capacity;
+  static inline int64_t _capacity = 4096;
   mutable int hit_count;
   int64_t oracle_count;
   bool is_dirty;

@@ -20,6 +20,22 @@ namespace cache
         uint64_t block_size = (uint64_t)cfg.read<int>("log.blockSize", 4096);
         Block::_capacity = block_size;
 
+        uint64_t segment_size = 1024 * 1024 * (uint64_t)cfg.read<int>("log.segmentSizeMB", 2);
+        flashCache::Segment::_capacity = segment_size;
+
+        // uint64_t readmit = cfg.read<int>("log.readmit", 0);
+
+        /* Initialize prelog admission policy */
+        // if (cfg.exists("preLogAdmission")) // 是否使用准入策略
+        // {
+        //     std::string policyType = cfg.read<const char *>("preLogAdmission.policy");
+        //     std::cout << "Creating admission policy of type " << policyType << std::endl;
+        //     policyType.append(".preLogAdmission");
+        //     const libconfig::Setting &admission_settings = cfg.read<libconfig::Setting &>("preLogAdmission");
+        //     auto &admission_stats = statsCollector->createLocalCollector(policyType);
+        //     // _prelog_admission = admission::Policy::create(admission_settings, nullptr, _log, admission_stats);
+        // }
+
         // 打印统计信息的间隔
         _stats_interval = pow(10, stats_power);
     }
@@ -46,12 +62,12 @@ namespace cache
 
         if (!enableGC) // 只有flash上的日志记录缓存
         {
-            INFO("Creating BlockLogCache\n");
+            DEBUG("Creating BlockLogCache\n");
             cache_ret = new BlockLogCache(sc, gs, settings);
         }
         else if (enableGC)
         {
-            INFO("Creating BlockGCCache\n");
+            DEBUG("Creating BlockGCCache\n");
             cache_ret = new BlockGCCache(sc, gs, settings);
         }
         else
@@ -73,7 +89,7 @@ namespace cache
             return;
         }
         // 请求时间戳
-        globalStats["timestamp"] = req->time;
+        // globalStats["timestamp"] = req->time;
         // 没有用到请求的num
 
         // auto id = Block::make(*req); // 根据请求对象构造一个候选对象candidate
@@ -95,7 +111,7 @@ namespace cache
             }
             else
             {
-                // INFO("update: %ld\n", id._lba);
+                // INFO("update: %ld\n", req->id);
                 this->update(req);
                 globalStats["updateCount"]++; // 更新次数
                 globalStats["updateSize"] += req->req_size;
@@ -124,7 +140,6 @@ namespace cache
         // stats?
         if ((_stats_interval > 0) && ((getTotalAccesses() % _stats_interval) == 0))
         {
-            INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
             dumpStats();
             // flushStats();
         }
@@ -143,9 +158,17 @@ namespace cache
 
     void BlockCache::dumpStats() // 打印统计信息，并输出到outputfile
     {
-        INFO("Miss Rate: %lf, Flash Write Amp: %lf\n", calcMissRate(), calcFlashWriteAmp());
-        // std::cout << "Miss Rate: " << calcMissRate()
-        //           << " Flash Write Amp: " << calcFlashWriteAmp() << std::endl;
+        double missRate = calcMissRate();
+        double flashWriteAmp = calcFlashWriteAmp();
+        double capacityUtilization = calcCapacityUtilization();
+
+        // INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
+        // INFO("Miss Rate: %lf, Flash Write Amp: %lf, Capacity utilization: %lf\n",
+        //      missRate, flashWriteAmp, capacityUtilization);
+
+        // globalStats["missRate"] = missRate;
+        // globalStats["flashWriteAmp"] = flashWriteAmp;
+        // globalStats["capacityUtilization"] = capacityUtilization;
         statsCollector->print();
     }
 
@@ -199,6 +222,32 @@ namespace cache
     {
         // return globalStats["misses"] / (double)getAccessesAfterFlush(); // 时间窗口内的缺失率
         return globalStats["misses"] / (double)getGetsAfterFlush(); // 时间窗口内的缺失率
+    }
+
+    double BlockCache::calcFlashWriteAmp()
+    { // 计算写放大
+        double flash_write_amp = _log->calcWriteAmp();
+        return flash_write_amp;
+    }
+
+    double BlockCache::calcCapacityUtilization()
+    {
+        double utilization = _log->get_current_size() / (double)_log->get_total_size();
+        return utilization;
+    }
+
+    void BlockCache::checkWarmup()
+    {
+        // 当flash日志缓存的累计驱逐大小超过容量时，预热结束
+        if (_log->ratioEvictedToCapacity() < 1)
+        {
+            return;
+        }
+        flushStats(); // 总体的统计信息
+        std::cout << "Reached end of warmup, resetting stats\n\n";
+        _log->flushStats(); // flash日志缓存统计信息
+        dumpStats();        // 将统计信息写入输出文件
+        warmed_up = true;
     }
 
     void BlockCache::flushStats()

@@ -35,7 +35,7 @@ namespace CacheAlgo
         // virtual cache_obj_t evict(cache_obj_t item) = 0;
 
         // find(命中时提升)+set_on_miss为true时缺失时insert
-        virtual bool get(const parser::Request *req, bool set_on_miss) = 0;
+        virtual bool get(const parser::Request *req, bool update_stats = false, bool set_on_miss = false) = 0;
         // find，若update_cache为true，则进行提升，否则只是find
         virtual cache_obj_t *find(const parser::Request *req, const bool update_cache) = 0;
         // 写入，若对象存在则更新(先删除再插入/原地更新)，否则直接插入，插入时容量不够会进行驱逐

@@ -1,0 +1,20 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotly Graph</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div id="graph"></div>
+    <script>
+        var graphJSON = {{ graphJSON | safe }};
+        Plotly.newPlot('graph', graphJSON.data, graphJSON.layout);
+    </script>
+</body>
+
+</html>

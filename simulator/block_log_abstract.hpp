@@ -4,6 +4,7 @@
 #include "block.hpp"
 #include "stats/stats.hpp"
 #include "common/macro.h"
+#include "common/logging.h"
 
 namespace flashCache
 {
@@ -14,8 +15,9 @@ namespace flashCache
         static inline uint64_t _capacity = 0; // 段容量
         uint64_t _size;                       // 段中有效块数据量
         uint64_t _write_point;                // 已经写入了多少字节
+        bool _is_virtual;                     // 用于RIPQ，是否是虚拟段
 
-        Segment() : _size(0), _write_point(0) {}
+        Segment() { reset(); }
 
         void insert(Block &item)
         {
@@ -25,11 +27,36 @@ namespace flashCache
             DEBUG_ASSERT(_write_point <= _capacity);
         }
 
+        // void remove(uint64_t id) // 用于dram中，flash中通过索引来维护数据的有效性
+        // {
+        //     auto it = _items.find(id);
+        //     if (it != _items.end())
+        //     {
+        //         _size -= it->second._capacity;
+        //         _items.erase(it);
+        //     }
+        // }
+
         void reset()
         {
             _items.clear();
             _size = 0;
             _write_point = 0;
+            _is_virtual = false;
+        }
+    };
+
+    struct Group
+    {
+        std::list<int32_t> _segments;             // 组中包含的段
+        std::list<int32_t>::iterator _active_seg; // 当前开放段
+        Segment write_buffer;                     // DRAM写缓冲区，用于带写入缓存的flash cache
+        uint64_t _size;                           // 组中有效块数据量
+        uint64_t _capacity;                       // 组容量
+        Group() { reset(); }
+        void reset()
+        {
+            _size = 0;
         }
     };
 
@@ -91,19 +118,23 @@ namespace flashCache
         }
 
         /* returns true if the item is in sets layer */
-        virtual bool find(Block item)
+        virtual bool find(uint64_t id, bool updateStats = false)
         {
             // 查找对象，只记录了对象是否存在，即只模拟了命中/不命中，没有真正的返回对象
-            auto it = _item_active.find(item._lba);
+            auto it = _item_active.find(id);
             if (it == _item_active.end())
             {
-                _log_stats["misses"]++;
+                if (updateStats)
+                    _log_stats["misses"]++;
                 return false;
             }
             else
             {
-                _log_stats["hits"]++;
-                _segments[it->second]._items[item._lba].hit_count++;
+                if (updateStats)
+                {
+                    _log_stats["hits"]++;
+                    _segments[it->second]._items[id].hit_count++;
+                }
                 return true;
             }
         }
@@ -155,6 +186,25 @@ namespace flashCache
             _log_stats["num_rejected_from_sets"] = 0;
         }
 
+        void printSegment()
+        {
+            uint64_t temptotSize = 0;
+            // uint64_t temptotSize2 = 0;
+            for (int i = 0; i < _num_segments; i++)
+            {
+                temptotSize += _segments[i]._size;
+                // temptotSize2 = temptotSize2 + _segments[i]._capacity;
+                // DEBUG("temptotSize2:%lu, _total_capacity:%lu\n", temptotSize2, _total_capacity);
+                DEBUG("segment %d, item num %d, size %lu, capacity %lu\n",
+                      i, _segments[i]._items.size(), _segments[i]._size, _segments[i]._capacity);
+            }
+            if (temptotSize != _current_size)
+            {
+                ERROR("size mismatch! temptotSize:%lu, _current_size:%lu\n", temptotSize, _current_size);
+            }
+            // DEBUG("temptotSize:%lu, _current_size:%lu\n", temptotSize, _current_size);
+        }
+
     protected:
         void _insert(Block &item)
         {
@@ -177,6 +227,8 @@ namespace flashCache
     protected:
         std::vector<Segment> _segments;                 // 缓存段列表
         std::unordered_map<uint64_t, int> _item_active; // 标识有效块及其所在的段 <lba,segment_id>
+
+        // std::unordered_map<uint64_t, std::shared_ptr<Block>> _item_map; // 标识有效块
 
         uint64_t _active_segment; // 开放段标号
         uint64_t _num_segments;   // 段数量

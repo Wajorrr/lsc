@@ -37,8 +37,9 @@ namespace flashCache
         void _group_insert(Block &item, int group_idx);
         void print_group();
 
-        std::vector<std::list<int32_t>> _group;
-        std::vector<std::list<int32_t>::iterator> _group_active_seg;
+        std::vector<Group> _group;
+        // std::vector<std::list<int32_t>> _group;
+        // std::vector<std::list<int32_t>::iterator> _group_active_seg;
         std::unordered_map<int32_t, int32_t> _group_map; // <segment_id, group_id>
 
         bool _track_hits_per_item;

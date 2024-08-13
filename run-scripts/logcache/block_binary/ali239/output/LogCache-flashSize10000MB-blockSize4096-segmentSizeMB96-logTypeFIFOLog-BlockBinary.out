@@ -1,0 +1,3695 @@
+{
+    "global": {
+        "GetsAfterFlush": 0,
+        "misses": 0
+    },
+    "log": {
+        "bytes_written": 0,
+        "logCapacity": 10468982784,
+        "request_bytes_written": 0
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 233334,
+        "SetsAfterFlush": 766666,
+        "accessesAfterFlush": 1000000,
+        "compulsoryMisses": 88617,
+        "hits": 144717,
+        "hitsSize": 592760832,
+        "misses": 88617,
+        "missesSize": 362975232,
+        "totalAccesses": 1000000,
+        "totalGets": 233334,
+        "totalSets": 766666,
+        "uniqueBytes": 1141788672,
+        "updateCount": 576526,
+        "updateSize": 2361450496
+    },
+    "log": {
+        "bytes_written": 3503239168,
+        "current_size": 1141788672,
+        "hits": 144717,
+        "logCapacity": 10468982784,
+        "misses": 88617,
+        "request_bytes_written": 3503239168,
+        "stores_requested": 855283,
+        "stores_requested_bytes": 1141788672
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 463042,
+        "SetsAfterFlush": 1536958,
+        "accessesAfterFlush": 2000000,
+        "compulsoryMisses": 117764,
+        "hits": 345278,
+        "hitsSize": 1414258688,
+        "misses": 117764,
+        "missesSize": 482361344,
+        "totalAccesses": 2000000,
+        "totalGets": 463042,
+        "totalSets": 1536958,
+        "uniqueBytes": 1860718592,
+        "updateCount": 1200445,
+        "updateSize": 4917022720
+    },
+    "log": {
+        "bytes_written": 6777737216,
+        "current_size": 1860714496,
+        "hits": 345278,
+        "logCapacity": 10468982784,
+        "misses": 117764,
+        "request_bytes_written": 6777737216,
+        "stores_requested": 1654721,
+        "stores_requested_bytes": 1860714496
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 691816,
+        "SetsAfterFlush": 2308184,
+        "accessesAfterFlush": 3000000,
+        "compulsoryMisses": 135130,
+        "hits": 556686,
+        "hitsSize": 2280185856,
+        "misses": 135130,
+        "missesSize": 553492480,
+        "totalAccesses": 3000000,
+        "totalGets": 691816,
+        "totalSets": 2308184,
+        "uniqueBytes": 2485383168,
+        "updateCount": 1836531,
+        "updateSize": 7522430976
+    },
+    "log": {
+        "bytes_written": 10007814144,
+        "current_size": 2485383168,
+        "hits": 556686,
+        "logCapacity": 10468982784,
+        "misses": 135130,
+        "request_bytes_written": 10007814144,
+        "stores_requested": 2443314,
+        "stores_requested_bytes": 2485383168
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 886736,
+        "SetsAfterFlush": 3113264,
+        "accessesAfterFlush": 4000000,
+        "compulsoryMisses": 154911,
+        "hits": 714145,
+        "hitsSize": 2925137920,
+        "misses": 172591,
+        "missesSize": 706932736,
+        "totalAccesses": 4000000,
+        "totalGets": 886736,
+        "totalSets": 3113264,
+        "uniqueBytes": 3103707136,
+        "updateCount": 2507025,
+        "updateSize": 10268774400
+    },
+    "log": {
+        "bytes_written": 13458862080,
+        "current_size": 2404352000,
+        "hits": 714145,
+        "logCapacity": 10468982784,
+        "misses": 172591,
+        "numEvictions": 191830,
+        "request_bytes_written": 13458862080,
+        "sizeEvictions": 785735680,
+        "stores_requested": 3285855,
+        "stores_requested_bytes": 2404352000
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 1110179,
+        "SetsAfterFlush": 3889821,
+        "accessesAfterFlush": 5000000,
+        "compulsoryMisses": 163179,
+        "hits": 877625,
+        "hitsSize": 3594752000,
+        "misses": 232554,
+        "missesSize": 952541184,
+        "totalAccesses": 5000000,
+        "totalGets": 1110179,
+        "totalSets": 3889821,
+        "uniqueBytes": 3556294656,
+        "updateCount": 3160521,
+        "updateSize": 12945494016
+    },
+    "log": {
+        "bytes_written": 16885248000,
+        "current_size": 2519642112,
+        "hits": 877625,
+        "logCapacity": 10468982784,
+        "misses": 232554,
+        "numEvictions": 346707,
+        "request_bytes_written": 16885248000,
+        "sizeEvictions": 1420111872,
+        "stores_requested": 4122375,
+        "stores_requested_bytes": 2519642112
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 1298395,
+        "SetsAfterFlush": 4701605,
+        "accessesAfterFlush": 6000000,
+        "compulsoryMisses": 170884,
+        "hits": 1050880,
+        "hitsSize": 4304404480,
+        "misses": 247515,
+        "missesSize": 1013821440,
+        "totalAccesses": 6000000,
+        "totalGets": 1298395,
+        "totalSets": 4701605,
+        "uniqueBytes": 3984125952,
+        "updateCount": 3849665,
+        "updateSize": 15768227840
+    },
+    "log": {
+        "bytes_written": 20271595520,
+        "current_size": 2463547392,
+        "hits": 1050880,
+        "logCapacity": 10468982784,
+        "misses": 247515,
+        "numEvictions": 498003,
+        "request_bytes_written": 20271595520,
+        "sizeEvictions": 2039820288,
+        "stores_requested": 4949120,
+        "stores_requested_bytes": 2463547392
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 1518065,
+        "SetsAfterFlush": 5481935,
+        "accessesAfterFlush": 7000000,
+        "compulsoryMisses": 188276,
+        "hits": 1232781,
+        "hitsSize": 5049470976,
+        "misses": 285284,
+        "missesSize": 1168523264,
+        "totalAccesses": 7000000,
+        "totalGets": 1518065,
+        "totalSets": 5481935,
+        "uniqueBytes": 4390313984,
+        "updateCount": 4507572,
+        "updateSize": 18463014912
+    },
+    "log": {
+        "bytes_written": 23622529024,
+        "current_size": 2520231936,
+        "hits": 1232781,
+        "logCapacity": 10468982784,
+        "misses": 285284,
+        "numEvictions": 644356,
+        "request_bytes_written": 23622529024,
+        "sizeEvictions": 2639282176,
+        "stores_requested": 5767219,
+        "stores_requested_bytes": 2520231936
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 1783956,
+        "SetsAfterFlush": 6216044,
+        "accessesAfterFlush": 8000000,
+        "compulsoryMisses": 226011,
+        "hits": 1409350,
+        "hitsSize": 5772697600,
+        "misses": 374606,
+        "missesSize": 1534386176,
+        "totalAccesses": 8000000,
+        "totalGets": 1783956,
+        "totalSets": 6216044,
+        "uniqueBytes": 4894568448,
+        "updateCount": 5122618,
+        "updateSize": 20982243328
+    },
+    "log": {
+        "bytes_written": 26995302400,
+        "current_size": 2559635456,
+        "hits": 1409350,
+        "logCapacity": 10468982784,
+        "misses": 374606,
+        "numEvictions": 843121,
+        "request_bytes_written": 26995302400,
+        "sizeEvictions": 3453423616,
+        "stores_requested": 6590650,
+        "stores_requested_bytes": 2559635456
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 1997871,
+        "SetsAfterFlush": 7002129,
+        "accessesAfterFlush": 9000000,
+        "compulsoryMisses": 245367,
+        "hits": 1593587,
+        "hitsSize": 6527332352,
+        "misses": 404284,
+        "missesSize": 1655947264,
+        "totalAccesses": 9000000,
+        "totalGets": 1997871,
+        "totalSets": 7002129,
+        "uniqueBytes": 5334249472,
+        "updateCount": 5778113,
+        "updateSize": 23667150848
+    },
+    "log": {
+        "bytes_written": 30336667648,
+        "current_size": 2627821568,
+        "hits": 1593587,
+        "logCapacity": 10468982784,
+        "misses": 404284,
+        "numEvictions": 986742,
+        "request_bytes_written": 30336667648,
+        "sizeEvictions": 4041695232,
+        "stores_requested": 7406413,
+        "stores_requested_bytes": 2627821568
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 2207996,
+        "SetsAfterFlush": 7792004,
+        "accessesAfterFlush": 10000000,
+        "compulsoryMisses": 255074,
+        "hits": 1773132,
+        "hitsSize": 7262748672,
+        "misses": 434864,
+        "missesSize": 1781202944,
+        "totalAccesses": 10000000,
+        "totalGets": 2207996,
+        "totalSets": 7792004,
+        "uniqueBytes": 5678313472,
+        "updateCount": 6443498,
+        "updateSize": 26392567808
+    },
+    "log": {
+        "bytes_written": 33697251328,
+        "current_size": 2611204096,
+        "hits": 1773132,
+        "logCapacity": 10468982784,
+        "misses": 434864,
+        "numEvictions": 1145869,
+        "request_bytes_written": 33697251328,
+        "sizeEvictions": 4693479424,
+        "stores_requested": 8226868,
+        "stores_requested_bytes": 2611204096
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 2408854,
+        "SetsAfterFlush": 8591146,
+        "accessesAfterFlush": 11000000,
+        "compulsoryMisses": 264376,
+        "hits": 1947231,
+        "hitsSize": 7975858176,
+        "misses": 461623,
+        "missesSize": 1890807808,
+        "totalAccesses": 11000000,
+        "totalGets": 2408854,
+        "totalSets": 8591146,
+        "uniqueBytes": 6025797632,
+        "updateCount": 7115579,
+        "updateSize": 29145411584
+    },
+    "log": {
+        "bytes_written": 37080141824,
+        "current_size": 2560757760,
+        "hits": 1947231,
+        "logCapacity": 10468982784,
+        "misses": 461623,
+        "numEvictions": 1312005,
+        "request_bytes_written": 37080141824,
+        "sizeEvictions": 5373972480,
+        "stores_requested": 9052769,
+        "stores_requested_bytes": 2560757760
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 2657035,
+        "SetsAfterFlush": 9342965,
+        "accessesAfterFlush": 12000000,
+        "compulsoryMisses": 277210,
+        "hits": 2127468,
+        "hitsSize": 8714108928,
+        "misses": 529567,
+        "missesSize": 2169106432,
+        "totalAccesses": 12000000,
+        "totalGets": 2657035,
+        "totalSets": 9342965,
+        "uniqueBytes": 6370541568,
+        "updateCount": 7742207,
+        "updateSize": 31712079872
+    },
+    "log": {
+        "bytes_written": 40437891072,
+        "current_size": 2535481344,
+        "hits": 2127468,
+        "logCapacity": 10468982784,
+        "misses": 529567,
+        "numEvictions": 1511311,
+        "request_bytes_written": 40437891072,
+        "sizeEvictions": 6190329856,
+        "stores_requested": 9872532,
+        "stores_requested_bytes": 2535481344
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 2837010,
+        "SetsAfterFlush": 10162990,
+        "accessesAfterFlush": 13000000,
+        "compulsoryMisses": 280529,
+        "hits": 2291607,
+        "hitsSize": 9386422272,
+        "misses": 545403,
+        "missesSize": 2233970688,
+        "totalAccesses": 13000000,
+        "totalGets": 2837010,
+        "totalSets": 10162990,
+        "uniqueBytes": 6630678528,
+        "updateCount": 8439779,
+        "updateSize": 34569334784
+    },
+    "log": {
+        "bytes_written": 43861577728,
+        "current_size": 2499387392,
+        "hits": 2291607,
+        "logCapacity": 10468982784,
+        "misses": 545403,
+        "numEvictions": 1658412,
+        "request_bytes_written": 43861577728,
+        "sizeEvictions": 6792855552,
+        "stores_requested": 10708393,
+        "stores_requested_bytes": 2499387392
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 3087220,
+        "SetsAfterFlush": 10912780,
+        "accessesAfterFlush": 14000000,
+        "compulsoryMisses": 296154,
+        "hits": 2503819,
+        "hitsSize": 10255642624,
+        "misses": 583401,
+        "missesSize": 2389610496,
+        "totalAccesses": 14000000,
+        "totalGets": 3087220,
+        "totalSets": 10912780,
+        "uniqueBytes": 6968795136,
+        "updateCount": 9064012,
+        "updateSize": 37126193152
+    },
+    "log": {
+        "bytes_written": 47088357376,
+        "current_size": 2488520704,
+        "hits": 2503819,
+        "logCapacity": 10468982784,
+        "misses": 583401,
+        "numEvictions": 1824620,
+        "request_bytes_written": 47088357376,
+        "sizeEvictions": 7473643520,
+        "stores_requested": 11496181,
+        "stores_requested_bytes": 2488520704
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 3276284,
+        "SetsAfterFlush": 11723716,
+        "accessesAfterFlush": 15000000,
+        "compulsoryMisses": 312819,
+        "hits": 2664730,
+        "hitsSize": 10914734080,
+        "misses": 611554,
+        "missesSize": 2504925184,
+        "totalAccesses": 15000000,
+        "totalGets": 3276284,
+        "totalSets": 11723716,
+        "uniqueBytes": 7341297664,
+        "updateCount": 9741024,
+        "updateSize": 39899234304
+    },
+    "log": {
+        "bytes_written": 50525265920,
+        "current_size": 2389344256,
+        "hits": 2664730,
+        "logCapacity": 10468982784,
+        "misses": 611554,
+        "numEvictions": 2010910,
+        "request_bytes_written": 50525265920,
+        "sizeEvictions": 8236687360,
+        "stores_requested": 12335270,
+        "stores_requested_bytes": 2389344256
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 3510716,
+        "SetsAfterFlush": 12489284,
+        "accessesAfterFlush": 16000000,
+        "compulsoryMisses": 335496,
+        "hits": 2816906,
+        "hitsSize": 11538046976,
+        "misses": 693810,
+        "missesSize": 2841845760,
+        "totalAccesses": 16000000,
+        "totalGets": 3510716,
+        "totalSets": 12489284,
+        "uniqueBytes": 7696617472,
+        "updateCount": 10375135,
+        "updateSize": 42496552960
+    },
+    "log": {
+        "bytes_written": 53997953024,
+        "current_size": 2628747264,
+        "hits": 2816906,
+        "logCapacity": 10468982784,
+        "misses": 693810,
+        "numEvictions": 2166175,
+        "request_bytes_written": 53997953024,
+        "sizeEvictions": 8872652800,
+        "stores_requested": 13183094,
+        "stores_requested_bytes": 2628747264
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 3676213,
+        "SetsAfterFlush": 13323787,
+        "accessesAfterFlush": 17000000,
+        "compulsoryMisses": 339911,
+        "hits": 2965338,
+        "hitsSize": 12146024448,
+        "misses": 710875,
+        "missesSize": 2911744000,
+        "totalAccesses": 17000000,
+        "totalGets": 3676213,
+        "totalSets": 13323787,
+        "uniqueBytes": 7926837248,
+        "updateCount": 11085357,
+        "updateSize": 45405622272
+    },
+    "log": {
+        "bytes_written": 57485975552,
+        "current_size": 2495119360,
+        "hits": 2965338,
+        "logCapacity": 10468982784,
+        "misses": 710875,
+        "numEvictions": 2340145,
+        "request_bytes_written": 57485975552,
+        "sizeEvictions": 9585233920,
+        "stores_requested": 14034662,
+        "stores_requested_bytes": 2495119360
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 3916055,
+        "SetsAfterFlush": 14083945,
+        "accessesAfterFlush": 18000000,
+        "compulsoryMisses": 349285,
+        "hits": 3174695,
+        "hitsSize": 13003550720,
+        "misses": 741360,
+        "missesSize": 3036610560,
+        "totalAccesses": 18000000,
+        "totalGets": 3916055,
+        "totalSets": 14083945,
+        "uniqueBytes": 8178573312,
+        "updateCount": 11721730,
+        "updateSize": 48012206080
+    },
+    "log": {
+        "bytes_written": 60724449280,
+        "current_size": 2531356672,
+        "hits": 3174695,
+        "logCapacity": 10468982784,
+        "misses": 741360,
+        "numEvictions": 2485568,
+        "request_bytes_written": 60724449280,
+        "sizeEvictions": 10180886528,
+        "stores_requested": 14825305,
+        "stores_requested_bytes": 2531356672
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 4081436,
+        "SetsAfterFlush": 14918564,
+        "accessesAfterFlush": 19000000,
+        "compulsoryMisses": 356574,
+        "hits": 3317920,
+        "hitsSize": 13590200320,
+        "misses": 763516,
+        "missesSize": 3127361536,
+        "totalAccesses": 19000000,
+        "totalGets": 4081436,
+        "totalSets": 14918564,
+        "uniqueBytes": 8429600768,
+        "updateCount": 12419958,
+        "updateSize": 50872147968
+    },
+    "log": {
+        "bytes_written": 64233799680,
+        "current_size": 2328956928,
+        "hits": 3317920,
+        "logCapacity": 10468982784,
+        "misses": 763516,
+        "numEvictions": 2693529,
+        "request_bytes_written": 64233799680,
+        "sizeEvictions": 11032694784,
+        "stores_requested": 15682080,
+        "stores_requested_bytes": 2328956928
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 4307388,
+        "SetsAfterFlush": 15692612,
+        "accessesAfterFlush": 20000000,
+        "compulsoryMisses": 371103,
+        "hits": 3458990,
+        "hitsSize": 14168023040,
+        "misses": 848398,
+        "missesSize": 3475038208,
+        "totalAccesses": 20000000,
+        "totalGets": 4307388,
+        "totalSets": 15692612,
+        "uniqueBytes": 8756248576,
+        "updateCount": 13057865,
+        "updateSize": 53485015040
+    },
+    "log": {
+        "bytes_written": 67751976960,
+        "current_size": 2641424384,
+        "hits": 3458990,
+        "logCapacity": 10468982784,
+        "misses": 848398,
+        "numEvictions": 2838266,
+        "request_bytes_written": 67751976960,
+        "sizeEvictions": 11625537536,
+        "stores_requested": 16541010,
+        "stores_requested_bytes": 2641424384
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 4509054,
+        "SetsAfterFlush": 16490946,
+        "accessesAfterFlush": 21000000,
+        "compulsoryMisses": 377049,
+        "hits": 3634362,
+        "hitsSize": 14886346752,
+        "misses": 874692,
+        "missesSize": 3582738432,
+        "totalAccesses": 21000000,
+        "totalGets": 4509054,
+        "totalSets": 16490946,
+        "uniqueBytes": 8963702784,
+        "updateCount": 13735675,
+        "updateSize": 56261324800
+    },
+    "log": {
+        "bytes_written": 71129653248,
+        "current_size": 2591707136,
+        "hits": 3634362,
+        "logCapacity": 10468982784,
+        "misses": 874692,
+        "numEvictions": 2997222,
+        "request_bytes_written": 71129653248,
+        "sizeEvictions": 12276621312,
+        "stores_requested": 17365638,
+        "stores_requested_bytes": 2591707136
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 4684487,
+        "SetsAfterFlush": 17315513,
+        "accessesAfterFlush": 22000000,
+        "compulsoryMisses": 379620,
+        "hits": 3792874,
+        "hitsSize": 15535611904,
+        "misses": 891613,
+        "missesSize": 3652046848,
+        "totalAccesses": 22000000,
+        "totalGets": 4684487,
+        "totalSets": 17315513,
+        "uniqueBytes": 9133821952,
+        "updateCount": 14437963,
+        "updateSize": 59137896448
+    },
+    "log": {
+        "bytes_written": 74576388096,
+        "current_size": 2522337280,
+        "hits": 3792874,
+        "logCapacity": 10468982784,
+        "misses": 891613,
+        "numEvictions": 3153358,
+        "request_bytes_written": 74576388096,
+        "sizeEvictions": 12916154368,
+        "stores_requested": 18207126,
+        "stores_requested_bytes": 2522337280
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 4866105,
+        "SetsAfterFlush": 18133895,
+        "accessesAfterFlush": 23000000,
+        "compulsoryMisses": 390465,
+        "hits": 3923649,
+        "hitsSize": 16071266304,
+        "misses": 942456,
+        "missesSize": 3860299776,
+        "totalAccesses": 23000000,
+        "totalGets": 4866105,
+        "totalSets": 18133895,
+        "uniqueBytes": 9453375488,
+        "updateCount": 15110891,
+        "updateSize": 61894209536
+    },
+    "log": {
+        "bytes_written": 78136729600,
+        "current_size": 2432364544,
+        "hits": 3923649,
+        "logCapacity": 10468982784,
+        "misses": 942456,
+        "numEvictions": 3371620,
+        "request_bytes_written": 78136729600,
+        "sizeEvictions": 13810155520,
+        "stores_requested": 19076350,
+        "stores_requested_bytes": 2432364544
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5097938,
+        "SetsAfterFlush": 18902062,
+        "accessesAfterFlush": 24000000,
+        "compulsoryMisses": 411302,
+        "hits": 4094760,
+        "hitsSize": 16772136960,
+        "misses": 1003178,
+        "missesSize": 4109017088,
+        "totalAccesses": 24000000,
+        "totalGets": 5097938,
+        "totalSets": 18902062,
+        "uniqueBytes": 9755451392,
+        "updateCount": 15755283,
+        "updateSize": 64533639168
+    },
+    "log": {
+        "bytes_written": 81531863040,
+        "current_size": 2580361216,
+        "hits": 4094760,
+        "logCapacity": 10468982784,
+        "misses": 1003178,
+        "numEvictions": 3519986,
+        "request_bytes_written": 81531863040,
+        "sizeEvictions": 14417862656,
+        "stores_requested": 19905240,
+        "stores_requested_bytes": 2580361216
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5288139,
+        "SetsAfterFlush": 19711861,
+        "accessesAfterFlush": 25000000,
+        "compulsoryMisses": 418134,
+        "hits": 4266864,
+        "hitsSize": 17477074944,
+        "misses": 1021275,
+        "missesSize": 4183142400,
+        "totalAccesses": 25000000,
+        "totalGets": 5288139,
+        "totalSets": 19711861,
+        "uniqueBytes": 9973592064,
+        "updateCount": 16440200,
+        "updateSize": 67339059200
+    },
+    "log": {
+        "bytes_written": 84922920960,
+        "current_size": 2576908288,
+        "hits": 4266864,
+        "logCapacity": 10468982784,
+        "misses": 1021275,
+        "numEvictions": 3663807,
+        "request_bytes_written": 84922920960,
+        "sizeEvictions": 15006953472,
+        "stores_requested": 20733135,
+        "stores_requested_bytes": 2576908288
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5464799,
+        "SetsAfterFlush": 20535201,
+        "accessesAfterFlush": 26000000,
+        "compulsoryMisses": 428257,
+        "hits": 4417528,
+        "hitsSize": 18094194688,
+        "misses": 1047271,
+        "missesSize": 4289622016,
+        "totalAccesses": 26000000,
+        "totalGets": 5464799,
+        "totalSets": 20535201,
+        "uniqueBytes": 10216181760,
+        "updateCount": 17129356,
+        "updateSize": 70161842176
+    },
+    "log": {
+        "bytes_written": 88401805312,
+        "current_size": 2542555136,
+        "hits": 4417528,
+        "logCapacity": 10468982784,
+        "misses": 1047271,
+        "numEvictions": 3832375,
+        "request_bytes_written": 88401805312,
+        "sizeEvictions": 15697408000,
+        "stores_requested": 21582472,
+        "stores_requested_bytes": 2542555136
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5658095,
+        "SetsAfterFlush": 21341905,
+        "accessesAfterFlush": 27000000,
+        "compulsoryMisses": 440938,
+        "hits": 4546713,
+        "hitsSize": 18623336448,
+        "misses": 1111382,
+        "missesSize": 4552220672,
+        "totalAccesses": 27000000,
+        "totalGets": 5658095,
+        "totalSets": 21341905,
+        "uniqueBytes": 10573230080,
+        "updateCount": 17781484,
+        "updateSize": 72832958464
+    },
+    "log": {
+        "bytes_written": 91968659456,
+        "current_size": 2577563648,
+        "hits": 4546713,
+        "logCapacity": 10468982784,
+        "misses": 1111382,
+        "numEvictions": 4042514,
+        "request_bytes_written": 91968659456,
+        "sizeEvictions": 16558137344,
+        "stores_requested": 22453286,
+        "stores_requested_bytes": 2577563648
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5790954,
+        "SetsAfterFlush": 22209046,
+        "accessesAfterFlush": 28000000,
+        "compulsoryMisses": 448761,
+        "hits": 4663734,
+        "hitsSize": 19102654464,
+        "misses": 1127220,
+        "missesSize": 4617093120,
+        "totalAccesses": 28000000,
+        "totalGets": 5790954,
+        "totalSets": 22209046,
+        "uniqueBytes": 10822885376,
+        "updateCount": 18513520,
+        "updateSize": 75831377920
+    },
+    "log": {
+        "bytes_written": 95585345536,
+        "current_size": 2537132032,
+        "hits": 4663734,
+        "logCapacity": 10468982784,
+        "misses": 1127220,
+        "numEvictions": 4203329,
+        "request_bytes_written": 95585345536,
+        "sizeEvictions": 17216835584,
+        "stores_requested": 23336266,
+        "stores_requested_bytes": 2537132032
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 5998045,
+        "SetsAfterFlush": 23001955,
+        "accessesAfterFlush": 29000000,
+        "compulsoryMisses": 462186,
+        "hits": 4831286,
+        "hitsSize": 19788947456,
+        "misses": 1166759,
+        "missesSize": 4779044864,
+        "totalAccesses": 29000000,
+        "totalGets": 5998045,
+        "totalSets": 23001955,
+        "uniqueBytes": 11045253120,
+        "updateCount": 19176840,
+        "updateSize": 78548336640
+    },
+    "log": {
+        "bytes_written": 98995052544,
+        "current_size": 2550636544,
+        "hits": 4831286,
+        "logCapacity": 10468982784,
+        "misses": 1166759,
+        "numEvictions": 4369160,
+        "request_bytes_written": 98995052544,
+        "sizeEvictions": 17896079360,
+        "stores_requested": 24168714,
+        "stores_requested_bytes": 2550636544
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 6152897,
+        "SetsAfterFlush": 23847103,
+        "accessesAfterFlush": 30000000,
+        "compulsoryMisses": 465703,
+        "hits": 4963927,
+        "hitsSize": 20332244992,
+        "misses": 1188970,
+        "missesSize": 4870021120,
+        "totalAccesses": 30000000,
+        "totalGets": 6152897,
+        "totalSets": 23847103,
+        "uniqueBytes": 11219103744,
+        "updateCount": 19897695,
+        "updateSize": 81500958720
+    },
+    "log": {
+        "bytes_written": 102547755008,
+        "current_size": 2317414400,
+        "hits": 4963927,
+        "logCapacity": 10468982784,
+        "misses": 1188970,
+        "numEvictions": 4572603,
+        "request_bytes_written": 102547755008,
+        "sizeEvictions": 18729381888,
+        "stores_requested": 25036073,
+        "stores_requested_bytes": 2317414400
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 6363396,
+        "SetsAfterFlush": 24636604,
+        "accessesAfterFlush": 31000000,
+        "compulsoryMisses": 485663,
+        "hits": 5102677,
+        "hitsSize": 20900564992,
+        "misses": 1260719,
+        "missesSize": 5163905024,
+        "totalAccesses": 31000000,
+        "totalGets": 6363396,
+        "totalSets": 24636604,
+        "uniqueBytes": 11538300928,
+        "updateCount": 20545794,
+        "updateSize": 84155572224
+    },
+    "log": {
+        "bytes_written": 106075435008,
+        "current_size": 2598715392,
+        "hits": 5102677,
+        "logCapacity": 10468982784,
+        "misses": 1260719,
+        "numEvictions": 4717077,
+        "request_bytes_written": 106075435008,
+        "sizeEvictions": 19321147392,
+        "stores_requested": 25897323,
+        "stores_requested_bytes": 2598715392
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 6497481,
+        "SetsAfterFlush": 25502519,
+        "accessesAfterFlush": 32000000,
+        "compulsoryMisses": 491749,
+        "hits": 5217111,
+        "hitsSize": 21369286656,
+        "misses": 1280370,
+        "missesSize": 5244395520,
+        "totalAccesses": 32000000,
+        "totalGets": 6497481,
+        "totalSets": 25502519,
+        "uniqueBytes": 11722399744,
+        "updateCount": 21284012,
+        "updateSize": 87179313152
+    },
+    "log": {
+        "bytes_written": 109702713344,
+        "current_size": 2485043200,
+        "hits": 5217111,
+        "logCapacity": 10468982784,
+        "misses": 1280370,
+        "numEvictions": 4892177,
+        "request_bytes_written": 109702713344,
+        "sizeEvictions": 20038356992,
+        "stores_requested": 26782889,
+        "stores_requested_bytes": 2485043200
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 6747796,
+        "SetsAfterFlush": 26252204,
+        "accessesAfterFlush": 33000000,
+        "compulsoryMisses": 529800,
+        "hits": 5399282,
+        "hitsSize": 22115459072,
+        "misses": 1348514,
+        "missesSize": 5523513344,
+        "totalAccesses": 33000000,
+        "totalGets": 6747796,
+        "totalSets": 26252204,
+        "uniqueBytes": 12198010880,
+        "updateCount": 21878794,
+        "updateSize": 89615540224
+    },
+    "log": {
+        "bytes_written": 113052536832,
+        "current_size": 2749677568,
+        "hits": 5399282,
+        "logCapacity": 10468982784,
+        "misses": 1348514,
+        "numEvictions": 5050615,
+        "request_bytes_written": 113052536832,
+        "sizeEvictions": 20687319040,
+        "stores_requested": 27600717,
+        "stores_requested_bytes": 2749677568
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 6950371,
+        "SetsAfterFlush": 27049629,
+        "accessesAfterFlush": 34000000,
+        "compulsoryMisses": 558025,
+        "hits": 5560644,
+        "hitsSize": 22776397824,
+        "misses": 1389727,
+        "missesSize": 5692321792,
+        "totalAccesses": 34000000,
+        "totalGets": 6950371,
+        "totalSets": 27049629,
+        "uniqueBytes": 12689350656,
+        "updateCount": 22507004,
+        "updateSize": 92188688384
+    },
+    "log": {
+        "bytes_written": 116487602176,
+        "current_size": 2846883840,
+        "hits": 5560644,
+        "logCapacity": 10468982784,
+        "misses": 1389727,
+        "numEvictions": 5237312,
+        "request_bytes_written": 116487602176,
+        "sizeEvictions": 21452029952,
+        "stores_requested": 28439356,
+        "stores_requested_bytes": 2846883840
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 7217098,
+        "SetsAfterFlush": 27782902,
+        "accessesAfterFlush": 35000000,
+        "compulsoryMisses": 579320,
+        "hits": 5745172,
+        "hitsSize": 23532224512,
+        "misses": 1471926,
+        "missesSize": 6029008896,
+        "totalAccesses": 35000000,
+        "totalGets": 7217098,
+        "totalSets": 27782902,
+        "uniqueBytes": 13031047168,
+        "updateCount": 23100533,
+        "updateSize": 94619783168
+    },
+    "log": {
+        "bytes_written": 119827775488,
+        "current_size": 3170459648,
+        "hits": 5745172,
+        "logCapacity": 10468982784,
+        "misses": 1471926,
+        "numEvictions": 5380257,
+        "request_bytes_written": 119827775488,
+        "sizeEvictions": 22037532672,
+        "stores_requested": 29254828,
+        "stores_requested_bytes": 3170459648
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 7399599,
+        "SetsAfterFlush": 28600401,
+        "accessesAfterFlush": 36000000,
+        "compulsoryMisses": 593093,
+        "hits": 5903539,
+        "hitsSize": 24180895744,
+        "misses": 1496060,
+        "missesSize": 6127861760,
+        "totalAccesses": 36000000,
+        "totalGets": 7399599,
+        "totalSets": 28600401,
+        "uniqueBytes": 13310627840,
+        "updateCount": 23778637,
+        "updateSize": 97397297152
+    },
+    "log": {
+        "bytes_written": 123275104256,
+        "current_size": 2928394240,
+        "hits": 5903539,
+        "logCapacity": 10468982784,
+        "misses": 1496060,
+        "numEvictions": 5602884,
+        "request_bytes_written": 123275104256,
+        "sizeEvictions": 22949412864,
+        "stores_requested": 30096461,
+        "stores_requested_bytes": 2928394240
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 7615471,
+        "SetsAfterFlush": 29384529,
+        "accessesAfterFlush": 37000000,
+        "compulsoryMisses": 604800,
+        "hits": 6085715,
+        "hitsSize": 24927088640,
+        "misses": 1529756,
+        "missesSize": 6265880576,
+        "totalAccesses": 37000000,
+        "totalGets": 7615471,
+        "totalSets": 29384529,
+        "uniqueBytes": 13523222528,
+        "updateCount": 24442562,
+        "updateSize": 100116733952
+    },
+    "log": {
+        "bytes_written": 126624911360,
+        "current_size": 2634362880,
+        "hits": 6085715,
+        "logCapacity": 10468982784,
+        "misses": 1529756,
+        "numEvictions": 5828568,
+        "request_bytes_written": 126624911360,
+        "sizeEvictions": 23873814528,
+        "stores_requested": 30914285,
+        "stores_requested_bytes": 2634362880
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 7842673,
+        "SetsAfterFlush": 30157327,
+        "accessesAfterFlush": 38000000,
+        "compulsoryMisses": 619564,
+        "hits": 6239770,
+        "hitsSize": 25558097920,
+        "misses": 1602903,
+        "missesSize": 6565490688,
+        "totalAccesses": 38000000,
+        "totalGets": 7842673,
+        "totalSets": 30157327,
+        "uniqueBytes": 13759791104,
+        "updateCount": 25081433,
+        "updateSize": 102733549568
+    },
+    "log": {
+        "bytes_written": 130089897984,
+        "current_size": 2609139712,
+        "hits": 6239770,
+        "logCapacity": 10468982784,
+        "misses": 1602903,
+        "numEvictions": 6041799,
+        "request_bytes_written": 130089897984,
+        "sizeEvictions": 24747208704,
+        "stores_requested": 31760229,
+        "stores_requested_bytes": 2609139712
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 8029164,
+        "SetsAfterFlush": 30970836,
+        "accessesAfterFlush": 39000000,
+        "compulsoryMisses": 624162,
+        "hits": 6401300,
+        "hitsSize": 26219724800,
+        "misses": 1627864,
+        "missesSize": 6667730944,
+        "totalAccesses": 39000000,
+        "totalGets": 8029164,
+        "totalSets": 30970836,
+        "uniqueBytes": 13921247232,
+        "updateCount": 25775463,
+        "updateSize": 105576296448
+    },
+    "log": {
+        "bytes_written": 133524275200,
+        "current_size": 2563219456,
+        "hits": 6401300,
+        "logCapacity": 10468982784,
+        "misses": 1627864,
+        "numEvictions": 6197451,
+        "request_bytes_written": 133524275200,
+        "sizeEvictions": 25384759296,
+        "stores_requested": 32598700,
+        "stores_requested_bytes": 2563219456
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 8210841,
+        "SetsAfterFlush": 31789159,
+        "accessesAfterFlush": 40000000,
+        "compulsoryMisses": 629395,
+        "hits": 6559701,
+        "hitsSize": 26868535296,
+        "misses": 1651140,
+        "missesSize": 6763069440,
+        "totalAccesses": 40000000,
+        "totalGets": 8210841,
+        "totalSets": 31789159,
+        "uniqueBytes": 14081286144,
+        "updateCount": 26471498,
+        "updateSize": 108427255808
+    },
+    "log": {
+        "bytes_written": 136971464704,
+        "current_size": 2566647808,
+        "hits": 6559701,
+        "logCapacity": 10468982784,
+        "misses": 1651140,
+        "numEvictions": 6342178,
+        "request_bytes_written": 136971464704,
+        "sizeEvictions": 25977561088,
+        "stores_requested": 33440299,
+        "stores_requested_bytes": 2566647808
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 8405653,
+        "SetsAfterFlush": 32594347,
+        "accessesAfterFlush": 41000000,
+        "compulsoryMisses": 644339,
+        "hits": 6714073,
+        "hitsSize": 27500843008,
+        "misses": 1691580,
+        "missesSize": 6928711680,
+        "totalAccesses": 41000000,
+        "totalGets": 8405653,
+        "totalSets": 32594347,
+        "uniqueBytes": 14365016064,
+        "updateCount": 27133974,
+        "updateSize": 111140757504
+    },
+    "log": {
+        "bytes_written": 140435156992,
+        "current_size": 2461982720,
+        "hits": 6714073,
+        "logCapacity": 10468982784,
+        "misses": 1691580,
+        "numEvictions": 6550883,
+        "request_bytes_written": 140435156992,
+        "sizeEvictions": 26832416768,
+        "stores_requested": 34285927,
+        "stores_requested_bytes": 2461982720
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 8615931,
+        "SetsAfterFlush": 33384069,
+        "accessesAfterFlush": 42000000,
+        "compulsoryMisses": 653675,
+        "hits": 6843356,
+        "hitsSize": 28030386176,
+        "misses": 1772575,
+        "missesSize": 7260467200,
+        "totalAccesses": 42000000,
+        "totalGets": 8615931,
+        "totalSets": 33384069,
+        "uniqueBytes": 14530215936,
+        "updateCount": 27802462,
+        "updateSize": 113878884352
+    },
+    "log": {
+        "bytes_written": 144001613824,
+        "current_size": 2619064320,
+        "hits": 6843356,
+        "logCapacity": 10468982784,
+        "misses": 1772575,
+        "numEvictions": 6714762,
+        "request_bytes_written": 144001613824,
+        "sizeEvictions": 27503665152,
+        "stores_requested": 35156644,
+        "stores_requested_bytes": 2619064320
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 8812543,
+        "SetsAfterFlush": 34187457,
+        "accessesAfterFlush": 43000000,
+        "compulsoryMisses": 670145,
+        "hits": 7009184,
+        "hitsSize": 28709617664,
+        "misses": 1803359,
+        "missesSize": 7386558464,
+        "totalAccesses": 43000000,
+        "totalGets": 8812543,
+        "totalSets": 34187457,
+        "uniqueBytes": 14792736768,
+        "updateCount": 28472172,
+        "updateSize": 116622016512
+    },
+    "log": {
+        "bytes_written": 147418382336,
+        "current_size": 2667581440,
+        "hits": 7009184,
+        "logCapacity": 10468982784,
+        "misses": 1803359,
+        "numEvictions": 6867379,
+        "request_bytes_written": 147418382336,
+        "sizeEvictions": 28128784384,
+        "stores_requested": 35990816,
+        "stores_requested_bytes": 2667581440
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 9003924,
+        "SetsAfterFlush": 34996076,
+        "accessesAfterFlush": 44000000,
+        "compulsoryMisses": 675314,
+        "hits": 7184188,
+        "hitsSize": 29426434048,
+        "misses": 1819736,
+        "missesSize": 7453638656,
+        "totalAccesses": 44000000,
+        "totalGets": 9003924,
+        "totalSets": 34996076,
+        "uniqueBytes": 14925008896,
+        "updateCount": 29157853,
+        "updateSize": 119430565888
+    },
+    "log": {
+        "bytes_written": 150797565952,
+        "current_size": 2551586816,
+        "hits": 7184188,
+        "logCapacity": 10468982784,
+        "misses": 1819736,
+        "numEvictions": 7035013,
+        "request_bytes_written": 150797565952,
+        "sizeEvictions": 28815413248,
+        "stores_requested": 36815812,
+        "stores_requested_bytes": 2551586816
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 9188362,
+        "SetsAfterFlush": 35811638,
+        "accessesAfterFlush": 45000000,
+        "compulsoryMisses": 682502,
+        "hits": 7338505,
+        "hitsSize": 30058516480,
+        "misses": 1849857,
+        "missesSize": 7577014272,
+        "totalAccesses": 45000000,
+        "totalGets": 9188362,
+        "totalSets": 35811638,
+        "uniqueBytes": 15161597952,
+        "updateCount": 29836047,
+        "updateSize": 122208448512
+    },
+    "log": {
+        "bytes_written": 154261479424,
+        "current_size": 2395283456,
+        "hits": 7338505,
+        "logCapacity": 10468982784,
+        "misses": 1849857,
+        "numEvictions": 7240661,
+        "request_bytes_written": 154261479424,
+        "sizeEvictions": 29657747456,
+        "stores_requested": 37661494,
+        "stores_requested_bytes": 2395283456
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 9446815,
+        "SetsAfterFlush": 36553185,
+        "accessesAfterFlush": 46000000,
+        "compulsoryMisses": 703375,
+        "hits": 7512928,
+        "hitsSize": 30772953088,
+        "misses": 1933887,
+        "missesSize": 7921201152,
+        "totalAccesses": 46000000,
+        "totalGets": 9446815,
+        "totalSets": 36553185,
+        "uniqueBytes": 15448072192,
+        "updateCount": 30445886,
+        "updateSize": 124706349056
+    },
+    "log": {
+        "bytes_written": 157643042816,
+        "current_size": 2620555264,
+        "hits": 7512928,
+        "logCapacity": 10468982784,
+        "misses": 1933887,
+        "numEvictions": 7401401,
+        "request_bytes_written": 157643042816,
+        "sizeEvictions": 30316138496,
+        "stores_requested": 38487071,
+        "stores_requested_bytes": 2620555264
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 9623413,
+        "SetsAfterFlush": 37376587,
+        "accessesAfterFlush": 47000000,
+        "compulsoryMisses": 707304,
+        "hits": 7673943,
+        "hitsSize": 31432470528,
+        "misses": 1949470,
+        "missesSize": 7985029120,
+        "totalAccesses": 47000000,
+        "totalGets": 9623413,
+        "totalSets": 37376587,
+        "uniqueBytes": 15608528896,
+        "updateCount": 31144101,
+        "updateSize": 127566237696
+    },
+    "log": {
+        "bytes_written": 161079529472,
+        "current_size": 2578399232,
+        "hits": 7673943,
+        "logCapacity": 10468982784,
+        "misses": 1949470,
+        "numEvictions": 7552464,
+        "request_bytes_written": 161079529472,
+        "sizeEvictions": 30934892544,
+        "stores_requested": 39326057,
+        "stores_requested_bytes": 2578399232
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 9871776,
+        "SetsAfterFlush": 38128224,
+        "accessesAfterFlush": 48000000,
+        "compulsoryMisses": 728940,
+        "hits": 7879015,
+        "hitsSize": 32272445440,
+        "misses": 1992761,
+        "missesSize": 8162349056,
+        "totalAccesses": 48000000,
+        "totalGets": 9871776,
+        "totalSets": 38128224,
+        "uniqueBytes": 15888003072,
+        "updateCount": 31765870,
+        "updateSize": 130113003520
+    },
+    "log": {
+        "bytes_written": 164335554560,
+        "current_size": 2677665792,
+        "hits": 7879015,
+        "logCapacity": 10468982784,
+        "misses": 1992761,
+        "numEvictions": 7701388,
+        "request_bytes_written": 164335554560,
+        "sizeEvictions": 31544885248,
+        "stores_requested": 40120985,
+        "stores_requested_bytes": 2677665792
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 10077644,
+        "SetsAfterFlush": 38922356,
+        "accessesAfterFlush": 49000000,
+        "compulsoryMisses": 729288,
+        "hits": 8065955,
+        "hitsSize": 33038151680,
+        "misses": 2011689,
+        "missesSize": 8239878144,
+        "totalAccesses": 49000000,
+        "totalGets": 10077644,
+        "totalSets": 38922356,
+        "uniqueBytes": 15974850560,
+        "updateCount": 32432197,
+        "updateSize": 132842278912
+    },
+    "log": {
+        "bytes_written": 167665848320,
+        "current_size": 2424070144,
+        "hits": 8065955,
+        "logCapacity": 10468982784,
+        "misses": 2011689,
+        "numEvictions": 7910034,
+        "request_bytes_written": 167665848320,
+        "sizeEvictions": 32399499264,
+        "stores_requested": 40934045,
+        "stores_requested_bytes": 2424070144
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 10373721,
+        "SetsAfterFlush": 39626279,
+        "accessesAfterFlush": 50000000,
+        "compulsoryMisses": 739191,
+        "hits": 8284833,
+        "hitsSize": 33934675968,
+        "misses": 2088888,
+        "missesSize": 8556085248,
+        "totalAccesses": 50000000,
+        "totalGets": 10373721,
+        "totalSets": 39626279,
+        "uniqueBytes": 16199835648,
+        "updateCount": 33010407,
+        "updateSize": 135210627072
+    },
+    "log": {
+        "bytes_written": 170865319936,
+        "current_size": 2686681088,
+        "hits": 8284833,
+        "logCapacity": 10468982784,
+        "misses": 2088888,
+        "numEvictions": 8048831,
+        "request_bytes_written": 170865319936,
+        "sizeEvictions": 32968011776,
+        "stores_requested": 41715166,
+        "stores_requested_bytes": 2686681088
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 10627075,
+        "SetsAfterFlush": 40372925,
+        "accessesAfterFlush": 51000000,
+        "compulsoryMisses": 747511,
+        "hits": 8510332,
+        "hitsSize": 34858319872,
+        "misses": 2116743,
+        "missesSize": 8670179328,
+        "totalAccesses": 51000000,
+        "totalGets": 10627075,
+        "totalSets": 40372925,
+        "uniqueBytes": 16329420800,
+        "updateCount": 33649018,
+        "updateSize": 137826377728
+    },
+    "log": {
+        "bytes_written": 174037676032,
+        "current_size": 2623344640,
+        "hits": 8510332,
+        "logCapacity": 10468982784,
+        "misses": 2116743,
+        "numEvictions": 8200184,
+        "request_bytes_written": 174037676032,
+        "sizeEvictions": 33587953664,
+        "stores_requested": 42489667,
+        "stores_requested_bytes": 2623344640
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 10899440,
+        "SetsAfterFlush": 41100560,
+        "accessesAfterFlush": 52000000,
+        "compulsoryMisses": 761847,
+        "hits": 8751231,
+        "hitsSize": 35845042176,
+        "misses": 2148209,
+        "missesSize": 8799064064,
+        "totalAccesses": 52000000,
+        "totalGets": 10899440,
+        "totalSets": 41100560,
+        "uniqueBytes": 16605724672,
+        "updateCount": 34246264,
+        "updateSize": 140272697344
+    },
+    "log": {
+        "bytes_written": 177146957824,
+        "current_size": 2669391872,
+        "hits": 8751231,
+        "logCapacity": 10468982784,
+        "misses": 2148209,
+        "numEvictions": 8350798,
+        "request_bytes_written": 177146957824,
+        "sizeEvictions": 34204868608,
+        "stores_requested": 43248769,
+        "stores_requested_bytes": 2669391872
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 11155711,
+        "SetsAfterFlush": 41844289,
+        "accessesAfterFlush": 53000000,
+        "compulsoryMisses": 765319,
+        "hits": 8943339,
+        "hitsSize": 36631916544,
+        "misses": 2212372,
+        "missesSize": 9061875712,
+        "totalAccesses": 53000000,
+        "totalGets": 11155711,
+        "totalSets": 41844289,
+        "uniqueBytes": 16764887040,
+        "updateCount": 34857734,
+        "updateSize": 142777278464
+    },
+    "log": {
+        "bytes_written": 180456079360,
+        "current_size": 2639777792,
+        "hits": 8943339,
+        "logCapacity": 10468982784,
+        "misses": 2212372,
+        "numEvictions": 8554449,
+        "request_bytes_written": 180456079360,
+        "sizeEvictions": 35039023104,
+        "stores_requested": 44056660,
+        "stores_requested_bytes": 2639777792
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 11340849,
+        "SetsAfterFlush": 42659151,
+        "accessesAfterFlush": 54000000,
+        "compulsoryMisses": 775015,
+        "hits": 9092736,
+        "hitsSize": 37243846656,
+        "misses": 2248113,
+        "missesSize": 9208270848,
+        "totalAccesses": 54000000,
+        "totalGets": 11340849,
+        "totalSets": 42659151,
+        "uniqueBytes": 16957313024,
+        "updateCount": 35537774,
+        "updateSize": 145562722304
+    },
+    "log": {
+        "bytes_written": 183940153344,
+        "current_size": 2623512576,
+        "hits": 9092736,
+        "logCapacity": 10468982784,
+        "misses": 2248113,
+        "numEvictions": 8728984,
+        "request_bytes_written": 183940153344,
+        "sizeEvictions": 35753918464,
+        "stores_requested": 44907264,
+        "stores_requested_bytes": 2623512576
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 11546249,
+        "SetsAfterFlush": 43453751,
+        "accessesAfterFlush": 55000000,
+        "compulsoryMisses": 794068,
+        "hits": 9267332,
+        "hitsSize": 37958991872,
+        "misses": 2278917,
+        "missesSize": 9334444032,
+        "totalAccesses": 55000000,
+        "totalGets": 11546249,
+        "totalSets": 43453751,
+        "uniqueBytes": 17212780544,
+        "updateCount": 36196274,
+        "updateSize": 148259938304
+    },
+    "log": {
+        "bytes_written": 187321008128,
+        "current_size": 2721624064,
+        "hits": 9267332,
+        "logCapacity": 10468982784,
+        "misses": 2278917,
+        "numEvictions": 8871935,
+        "request_bytes_written": 187321008128,
+        "sizeEvictions": 36339445760,
+        "stores_requested": 45732668,
+        "stores_requested_bytes": 2721624064
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 11725707,
+        "SetsAfterFlush": 44274293,
+        "accessesAfterFlush": 56000000,
+        "compulsoryMisses": 799349,
+        "hits": 9422230,
+        "hitsSize": 38593454080,
+        "misses": 2303477,
+        "missesSize": 9435041792,
+        "totalAccesses": 56000000,
+        "totalGets": 11725707,
+        "totalSets": 44274293,
+        "uniqueBytes": 17394315264,
+        "updateCount": 36883234,
+        "updateSize": 151073726464
+    },
+    "log": {
+        "bytes_written": 190782545920,
+        "current_size": 2506764288,
+        "hits": 9422230,
+        "logCapacity": 10468982784,
+        "misses": 2303477,
+        "numEvictions": 9082533,
+        "request_bytes_written": 190782545920,
+        "sizeEvictions": 37202055168,
+        "stores_requested": 46577770,
+        "stores_requested_bytes": 2506764288
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 11934118,
+        "SetsAfterFlush": 45065882,
+        "accessesAfterFlush": 57000000,
+        "compulsoryMisses": 806734,
+        "hits": 9568141,
+        "hitsSize": 39191105536,
+        "misses": 2365977,
+        "missesSize": 9691041792,
+        "totalAccesses": 57000000,
+        "totalGets": 11934118,
+        "totalSets": 45065882,
+        "uniqueBytes": 17528254464,
+        "updateCount": 37549072,
+        "updateSize": 153800998912
+    },
+    "log": {
+        "bytes_written": 194280894464,
+        "current_size": 2545205248,
+        "hits": 9568141,
+        "logCapacity": 10468982784,
+        "misses": 2365977,
+        "numEvictions": 9261399,
+        "request_bytes_written": 194280894464,
+        "sizeEvictions": 37934690304,
+        "stores_requested": 47431859,
+        "stores_requested_bytes": 2545205248
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 12102133,
+        "SetsAfterFlush": 45897867,
+        "accessesAfterFlush": 58000000,
+        "compulsoryMisses": 812167,
+        "hits": 9709520,
+        "hitsSize": 39770193920,
+        "misses": 2392613,
+        "missesSize": 9800142848,
+        "totalAccesses": 58000000,
+        "totalGets": 12102133,
+        "totalSets": 45897867,
+        "uniqueBytes": 17657909248,
+        "updateCount": 38244006,
+        "updateSize": 156647448576
+    },
+    "log": {
+        "bytes_written": 197797801984,
+        "current_size": 2534092800,
+        "hits": 9709520,
+        "logCapacity": 10468982784,
+        "misses": 2392613,
+        "numEvictions": 9427798,
+        "request_bytes_written": 197797801984,
+        "sizeEvictions": 38616260608,
+        "stores_requested": 48290479,
+        "stores_requested_bytes": 2534092800
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 12320326,
+        "SetsAfterFlush": 46679674,
+        "accessesAfterFlush": 59000000,
+        "compulsoryMisses": 824457,
+        "hits": 9884351,
+        "hitsSize": 40486301696,
+        "misses": 2435975,
+        "missesSize": 9977753600,
+        "totalAccesses": 59000000,
+        "totalGets": 12320326,
+        "totalSets": 46679674,
+        "uniqueBytes": 17846878208,
+        "updateCount": 38895235,
+        "updateSize": 159314882560
+    },
+    "log": {
+        "bytes_written": 201177698304,
+        "current_size": 2614272000,
+        "hits": 9884351,
+        "logCapacity": 10468982784,
+        "misses": 2435975,
+        "numEvictions": 9582164,
+        "request_bytes_written": 201177698304,
+        "sizeEvictions": 39248543744,
+        "stores_requested": 49115649,
+        "stores_requested_bytes": 2614272000
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 12504457,
+        "SetsAfterFlush": 47495543,
+        "accessesAfterFlush": 60000000,
+        "compulsoryMisses": 825779,
+        "hits": 10044345,
+        "hitsSize": 41141637120,
+        "misses": 2460112,
+        "missesSize": 10076618752,
+        "totalAccesses": 60000000,
+        "totalGets": 12504457,
+        "totalSets": 47495543,
+        "uniqueBytes": 17970872320,
+        "updateCount": 39588713,
+        "updateSize": 162155368448
+    },
+    "log": {
+        "bytes_written": 204618358784,
+        "current_size": 2461409280,
+        "hits": 10044345,
+        "logCapacity": 10468982784,
+        "misses": 2460112,
+        "numEvictions": 9766011,
+        "request_bytes_written": 204618358784,
+        "sizeEvictions": 40001581056,
+        "stores_requested": 49955654,
+        "stores_requested_bytes": 2461409280
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 12762425,
+        "SetsAfterFlush": 48237575,
+        "accessesAfterFlush": 61000000,
+        "compulsoryMisses": 833614,
+        "hits": 10203852,
+        "hitsSize": 41794977792,
+        "misses": 2558573,
+        "missesSize": 10479915008,
+        "totalAccesses": 61000000,
+        "totalGets": 12762425,
+        "totalSets": 48237575,
+        "uniqueBytes": 18107052032,
+        "updateCount": 40216365,
+        "updateSize": 164726231040
+    },
+    "log": {
+        "bytes_written": 208061022208,
+        "current_size": 2649239552,
+        "hits": 10203852,
+        "logCapacity": 10468982784,
+        "misses": 2558573,
+        "numEvictions": 9932996,
+        "request_bytes_written": 208061022208,
+        "sizeEvictions": 40685551616,
+        "stores_requested": 50796148,
+        "stores_requested_bytes": 2649239552
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 12953502,
+        "SetsAfterFlush": 49046498,
+        "accessesAfterFlush": 62000000,
+        "compulsoryMisses": 844365,
+        "hits": 10366142,
+        "hitsSize": 42459717632,
+        "misses": 2587360,
+        "missesSize": 10597826560,
+        "totalAccesses": 62000000,
+        "totalGets": 12953502,
+        "totalSets": 49046498,
+        "uniqueBytes": 18334556160,
+        "updateCount": 40892335,
+        "updateSize": 167495004160
+    },
+    "log": {
+        "bytes_written": 211492282368,
+        "current_size": 2632548352,
+        "hits": 10366142,
+        "logCapacity": 10468982784,
+        "misses": 2587360,
+        "numEvictions": 10098811,
+        "request_bytes_written": 211492282368,
+        "sizeEvictions": 41364729856,
+        "stores_requested": 51633858,
+        "stores_requested_bytes": 2632548352
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 13163181,
+        "SetsAfterFlush": 49836819,
+        "accessesAfterFlush": 63000000,
+        "compulsoryMisses": 855702,
+        "hits": 10540781,
+        "hitsSize": 43175038976,
+        "misses": 2622400,
+        "missesSize": 10741350400,
+        "totalAccesses": 63000000,
+        "totalGets": 13163181,
+        "totalSets": 49836819,
+        "uniqueBytes": 18582855680,
+        "updateCount": 41543172,
+        "updateSize": 170160832512
+    },
+    "log": {
+        "bytes_written": 214872961024,
+        "current_size": 2702938112,
+        "hits": 10540781,
+        "logCapacity": 10468982784,
+        "misses": 2622400,
+        "numEvictions": 10256150,
+        "request_bytes_written": 214872961024,
+        "sizeEvictions": 42009190400,
+        "stores_requested": 52459219,
+        "stores_requested_bytes": 2702938112
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 13470719,
+        "SetsAfterFlush": 50529281,
+        "accessesAfterFlush": 64000000,
+        "compulsoryMisses": 916971,
+        "hits": 10733644,
+        "hitsSize": 43965005824,
+        "misses": 2737075,
+        "missesSize": 11211059200,
+        "totalAccesses": 64000000,
+        "totalGets": 13470719,
+        "totalSets": 50529281,
+        "uniqueBytes": 19406766080,
+        "updateCount": 42013901,
+        "updateSize": 172088938496
+    },
+    "log": {
+        "bytes_written": 218178994176,
+        "current_size": 3189878784,
+        "hits": 10733644,
+        "logCapacity": 10468982784,
+        "misses": 2737075,
+        "numEvictions": 10473676,
+        "request_bytes_written": 218178994176,
+        "sizeEvictions": 42900176896,
+        "stores_requested": 53266356,
+        "stores_requested_bytes": 3189878784
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 13923966,
+        "SetsAfterFlush": 51076034,
+        "accessesAfterFlush": 65000000,
+        "compulsoryMisses": 937462,
+        "hits": 11127741,
+        "hitsSize": 45579227136,
+        "misses": 2796225,
+        "missesSize": 11453337600,
+        "totalAccesses": 65000000,
+        "totalGets": 13923966,
+        "totalSets": 51076034,
+        "uniqueBytes": 19680206848,
+        "updateCount": 42451969,
+        "updateSize": 173883265024
+    },
+    "log": {
+        "bytes_written": 220660772864,
+        "current_size": 3407413248,
+        "hits": 11127741,
+        "logCapacity": 10468982784,
+        "misses": 2796225,
+        "numEvictions": 10588402,
+        "request_bytes_written": 220660772864,
+        "sizeEvictions": 43370094592,
+        "stores_requested": 53872259,
+        "stores_requested_bytes": 3407413248
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 14357549,
+        "SetsAfterFlush": 51642451,
+        "accessesAfterFlush": 66000000,
+        "compulsoryMisses": 945929,
+        "hits": 11544599,
+        "hitsSize": 47286677504,
+        "misses": 2812950,
+        "missesSize": 11521843200,
+        "totalAccesses": 66000000,
+        "totalGets": 14357549,
+        "totalSets": 51642451,
+        "uniqueBytes": 19844108288,
+        "updateCount": 42919745,
+        "updateSize": 175799275520
+    },
+    "log": {
+        "bytes_written": 223049322496,
+        "current_size": 3389624320,
+        "hits": 11544599,
+        "logCapacity": 10468982784,
+        "misses": 2812950,
+        "numEvictions": 10708111,
+        "request_bytes_written": 223049322496,
+        "sizeEvictions": 43860422656,
+        "stores_requested": 54455401,
+        "stores_requested_bytes": 3389624320
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 14768818,
+        "SetsAfterFlush": 52231182,
+        "accessesAfterFlush": 67000000,
+        "compulsoryMisses": 950204,
+        "hits": 11939049,
+        "hitsSize": 48902344704,
+        "misses": 2829769,
+        "missesSize": 11590733824,
+        "totalAccesses": 67000000,
+        "totalGets": 14768818,
+        "totalSets": 52231182,
+        "uniqueBytes": 19975020544,
+        "updateCount": 43410862,
+        "updateSize": 177810890752
+    },
+    "log": {
+        "bytes_written": 225529655296,
+        "current_size": 3256119296,
+        "hits": 11939049,
+        "logCapacity": 10468982784,
+        "misses": 2829769,
+        "numEvictions": 10855138,
+        "request_bytes_written": 225529655296,
+        "sizeEvictions": 44462645248,
+        "stores_requested": 55060951,
+        "stores_requested_bytes": 3256119296
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 15228222,
+        "SetsAfterFlush": 52771778,
+        "accessesAfterFlush": 68000000,
+        "compulsoryMisses": 961513,
+        "hits": 12376801,
+        "hitsSize": 50695376896,
+        "misses": 2851421,
+        "missesSize": 11679420416,
+        "totalAccesses": 68000000,
+        "totalGets": 15228222,
+        "totalSets": 52771778,
+        "uniqueBytes": 20132765696,
+        "updateCount": 43855200,
+        "updateSize": 179630899200
+    },
+    "log": {
+        "bytes_written": 227832623104,
+        "current_size": 2568560640,
+        "hits": 12376801,
+        "logCapacity": 10468982784,
+        "misses": 2851421,
+        "numEvictions": 11140909,
+        "request_bytes_written": 227832623104,
+        "sizeEvictions": 45633163264,
+        "stores_requested": 55623199,
+        "stores_requested_bytes": 2568560640
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 15574222,
+        "SetsAfterFlush": 53425778,
+        "accessesAfterFlush": 69000000,
+        "compulsoryMisses": 972248,
+        "hits": 12687847,
+        "hitsSize": 51969421312,
+        "misses": 2886375,
+        "missesSize": 11822592000,
+        "totalAccesses": 69000000,
+        "totalGets": 15574222,
+        "totalSets": 53425778,
+        "uniqueBytes": 20279607296,
+        "updateCount": 44400770,
+        "updateSize": 181865553920
+    },
+    "log": {
+        "bytes_written": 230654578688,
+        "current_size": 2500071424,
+        "hits": 12687847,
+        "logCapacity": 10468982784,
+        "misses": 2886375,
+        "numEvictions": 11301014,
+        "request_bytes_written": 230654578688,
+        "sizeEvictions": 46288953344,
+        "stores_requested": 56312153,
+        "stores_requested_bytes": 2500071424
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 15984281,
+        "SetsAfterFlush": 54015719,
+        "accessesAfterFlush": 70000000,
+        "compulsoryMisses": 983841,
+        "hits": 13022732,
+        "hitsSize": 53341110272,
+        "misses": 2961549,
+        "missesSize": 12130504704,
+        "totalAccesses": 70000000,
+        "totalGets": 15984281,
+        "totalSets": 54015719,
+        "uniqueBytes": 20429983744,
+        "updateCount": 44894191,
+        "updateSize": 183886606336
+    },
+    "log": {
+        "bytes_written": 233378889728,
+        "current_size": 2641027072,
+        "hits": 13022732,
+        "logCapacity": 10468982784,
+        "misses": 2961549,
+        "numEvictions": 11438295,
+        "request_bytes_written": 233378889728,
+        "sizeEvictions": 46851256320,
+        "stores_requested": 56977268,
+        "stores_requested_bytes": 2641027072
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 16360682,
+        "SetsAfterFlush": 54639318,
+        "accessesAfterFlush": 71000000,
+        "compulsoryMisses": 992133,
+        "hits": 13372513,
+        "hitsSize": 54773813248,
+        "misses": 2988169,
+        "missesSize": 12239540224,
+        "totalAccesses": 71000000,
+        "totalGets": 16360682,
+        "totalSets": 54639318,
+        "uniqueBytes": 20597395456,
+        "updateCount": 45401593,
+        "updateSize": 185964924928
+    },
+    "log": {
+        "bytes_written": 236042186752,
+        "current_size": 2754502656,
+        "hits": 13372513,
+        "logCapacity": 10468982784,
+        "misses": 2988169,
+        "numEvictions": 11553408,
+        "request_bytes_written": 236042186752,
+        "sizeEvictions": 47322759168,
+        "stores_requested": 57627487,
+        "stores_requested_bytes": 2754502656
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 16769542,
+        "SetsAfterFlush": 55230458,
+        "accessesAfterFlush": 72000000,
+        "compulsoryMisses": 995016,
+        "hits": 13761147,
+        "hitsSize": 56365658112,
+        "misses": 3008395,
+        "missesSize": 12322385920,
+        "totalAccesses": 72000000,
+        "totalGets": 16769542,
+        "totalSets": 55230458,
+        "uniqueBytes": 20677107712,
+        "updateCount": 45890317,
+        "updateSize": 187966738432
+    },
+    "log": {
+        "bytes_written": 238546337792,
+        "current_size": 2754686976,
+        "hits": 13761147,
+        "logCapacity": 10468982784,
+        "misses": 3008395,
+        "numEvictions": 11676004,
+        "request_bytes_written": 238546337792,
+        "sizeEvictions": 47824912384,
+        "stores_requested": 58238852,
+        "stores_requested_bytes": 2754686976
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 17180966,
+        "SetsAfterFlush": 55819034,
+        "accessesAfterFlush": 73000000,
+        "compulsoryMisses": 995928,
+        "hits": 14152394,
+        "hitsSize": 57968205824,
+        "misses": 3028572,
+        "missesSize": 12405030912,
+        "totalAccesses": 73000000,
+        "totalGets": 17180966,
+        "totalSets": 55819034,
+        "uniqueBytes": 20781350912,
+        "updateCount": 46377482,
+        "updateSize": 189962166272
+    },
+    "log": {
+        "bytes_written": 241039794176,
+        "current_size": 2707996672,
+        "hits": 14152394,
+        "logCapacity": 10468982784,
+        "misses": 3028572,
+        "numEvictions": 11808992,
+        "request_bytes_written": 241039794176,
+        "sizeEvictions": 48369631232,
+        "stores_requested": 58847606,
+        "stores_requested_bytes": 2707996672
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 17555717,
+        "SetsAfterFlush": 56444283,
+        "accessesAfterFlush": 74000000,
+        "compulsoryMisses": 1000349,
+        "hits": 14501381,
+        "hitsSize": 59397656576,
+        "misses": 3054336,
+        "missesSize": 12510560256,
+        "totalAccesses": 74000000,
+        "totalGets": 17555717,
+        "totalSets": 56444283,
+        "uniqueBytes": 20889858048,
+        "updateCount": 46899073,
+        "updateSize": 192098603008
+    },
+    "log": {
+        "bytes_written": 243706343424,
+        "current_size": 2511507456,
+        "hits": 14501381,
+        "logCapacity": 10468982784,
+        "misses": 3054336,
+        "numEvictions": 11986385,
+        "request_bytes_written": 243706343424,
+        "sizeEvictions": 49096232960,
+        "stores_requested": 59498619,
+        "stores_requested_bytes": 2511507456
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 17960271,
+        "SetsAfterFlush": 57039729,
+        "accessesAfterFlush": 75000000,
+        "compulsoryMisses": 1005241,
+        "hits": 14846548,
+        "hitsSize": 60811460608,
+        "misses": 3113723,
+        "missesSize": 12753809408,
+        "totalAccesses": 75000000,
+        "totalGets": 17960271,
+        "totalSets": 57039729,
+        "uniqueBytes": 20989333504,
+        "updateCount": 47395777,
+        "updateSize": 194133102592
+    },
+    "log": {
+        "bytes_written": 246388539392,
+        "current_size": 2633605120,
+        "hits": 14846548,
+        "logCapacity": 10468982784,
+        "misses": 3113723,
+        "numEvictions": 12114705,
+        "request_bytes_written": 246388539392,
+        "sizeEvictions": 49621831680,
+        "stores_requested": 60153452,
+        "stores_requested_bytes": 2633605120
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 18312260,
+        "SetsAfterFlush": 57687740,
+        "accessesAfterFlush": 76000000,
+        "compulsoryMisses": 1006363,
+        "hits": 15184767,
+        "hitsSize": 62196805632,
+        "misses": 3127493,
+        "missesSize": 12810211328,
+        "totalAccesses": 76000000,
+        "totalGets": 18312260,
+        "totalSets": 57687740,
+        "uniqueBytes": 21089746944,
+        "updateCount": 47938282,
+        "updateSize": 196355203072
+    },
+    "log": {
+        "bytes_written": 249099194368,
+        "current_size": 2551709696,
+        "hits": 15184767,
+        "logCapacity": 10468982784,
+        "misses": 3127493,
+        "numEvictions": 12253975,
+        "request_bytes_written": 249099194368,
+        "sizeEvictions": 50192281600,
+        "stores_requested": 60815233,
+        "stores_requested_bytes": 2551709696
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 18743824,
+        "SetsAfterFlush": 58256176,
+        "accessesAfterFlush": 77000000,
+        "compulsoryMisses": 1020304,
+        "hits": 15580293,
+        "hitsSize": 63816880128,
+        "misses": 3163531,
+        "missesSize": 12957822976,
+        "totalAccesses": 77000000,
+        "totalGets": 18743824,
+        "totalSets": 58256176,
+        "uniqueBytes": 21326438400,
+        "updateCount": 48402758,
+        "updateSize": 198257696768
+    },
+    "log": {
+        "bytes_written": 251575119872,
+        "current_size": 2631897088,
+        "hits": 15580293,
+        "logCapacity": 10468982784,
+        "misses": 3163531,
+        "numEvictions": 12374396,
+        "request_bytes_written": 251575119872,
+        "sizeEvictions": 50685526016,
+        "stores_requested": 61419707,
+        "stores_requested_bytes": 2631897088
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 19218176,
+        "SetsAfterFlush": 58781824,
+        "accessesAfterFlush": 78000000,
+        "compulsoryMisses": 1028920,
+        "hits": 16025008,
+        "hitsSize": 65638432768,
+        "misses": 3193168,
+        "missesSize": 13079216128,
+        "totalAccesses": 78000000,
+        "totalGets": 19218176,
+        "totalSets": 58781824,
+        "uniqueBytes": 21449302016,
+        "updateCount": 48840800,
+        "updateSize": 200051916800
+    },
+    "log": {
+        "bytes_written": 253849567232,
+        "current_size": 2679795712,
+        "hits": 16025008,
+        "logCapacity": 10468982784,
+        "misses": 3193168,
+        "numEvictions": 12479945,
+        "request_bytes_written": 253849567232,
+        "sizeEvictions": 51117854720,
+        "stores_requested": 61974992,
+        "stores_requested_bytes": 2679795712
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 19500401,
+        "SetsAfterFlush": 59499599,
+        "accessesAfterFlush": 79000000,
+        "compulsoryMisses": 1046409,
+        "hits": 16271492,
+        "hitsSize": 66648031232,
+        "misses": 3228909,
+        "missesSize": 13225611264,
+        "totalAccesses": 79000000,
+        "totalGets": 19500401,
+        "totalSets": 59499599,
+        "uniqueBytes": 21741850624,
+        "updateCount": 49426982,
+        "updateSize": 202452918272
+    },
+    "log": {
+        "bytes_written": 256935968768,
+        "current_size": 2602561536,
+        "hits": 16271492,
+        "logCapacity": 10468982784,
+        "misses": 3228909,
+        "numEvictions": 12666135,
+        "request_bytes_written": 256935968768,
+        "sizeEvictions": 51880488960,
+        "stores_requested": 62728508,
+        "stores_requested_bytes": 2602561536
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 19789926,
+        "SetsAfterFlush": 60210074,
+        "accessesAfterFlush": 80000000,
+        "compulsoryMisses": 1058527,
+        "hits": 16503609,
+        "hitsSize": 67598782464,
+        "misses": 3286317,
+        "missesSize": 13460754432,
+        "totalAccesses": 80000000,
+        "totalGets": 19789926,
+        "totalSets": 60210074,
+        "uniqueBytes": 21980729344,
+        "updateCount": 50007556,
+        "updateSize": 204830949376
+    },
+    "log": {
+        "bytes_written": 260081217536,
+        "current_size": 2734456832,
+        "hits": 16503609,
+        "logCapacity": 10468982784,
+        "misses": 3286317,
+        "numEvictions": 12821243,
+        "request_bytes_written": 260081217536,
+        "sizeEvictions": 52515811328,
+        "stores_requested": 63496391,
+        "stores_requested_bytes": 2734456832
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 20122490,
+        "SetsAfterFlush": 60877510,
+        "accessesAfterFlush": 81000000,
+        "compulsoryMisses": 1065170,
+        "hits": 16799938,
+        "hitsSize": 68812546048,
+        "misses": 3322552,
+        "missesSize": 13609172992,
+        "totalAccesses": 81000000,
+        "totalGets": 20122490,
+        "totalSets": 60877510,
+        "uniqueBytes": 22156283904,
+        "updateCount": 50561121,
+        "updateSize": 207098351616
+    },
+    "log": {
+        "bytes_written": 262963453952,
+        "current_size": 2724532224,
+        "hits": 16799938,
+        "logCapacity": 10468982784,
+        "misses": 3322552,
+        "numEvictions": 12973772,
+        "request_bytes_written": 262963453952,
+        "sizeEvictions": 53140570112,
+        "stores_requested": 64200062,
+        "stores_requested_bytes": 2724532224
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 20411461,
+        "SetsAfterFlush": 61588539,
+        "accessesAfterFlush": 82000000,
+        "compulsoryMisses": 1080323,
+        "hits": 17066030,
+        "hitsSize": 69902458880,
+        "misses": 3345431,
+        "missesSize": 13702885376,
+        "totalAccesses": 82000000,
+        "totalGets": 20411461,
+        "totalSets": 61588539,
+        "uniqueBytes": 22412632064,
+        "updateCount": 51144360,
+        "updateSize": 209487298560
+    },
+    "log": {
+        "bytes_written": 265969541120,
+        "current_size": 2633465856,
+        "hits": 17066030,
+        "logCapacity": 10468982784,
+        "misses": 3345431,
+        "numEvictions": 13146674,
+        "request_bytes_written": 265969541120,
+        "sizeEvictions": 53848776704,
+        "stores_requested": 64933970,
+        "stores_requested_bytes": 2633465856
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 20666717,
+        "SetsAfterFlush": 62333283,
+        "accessesAfterFlush": 83000000,
+        "compulsoryMisses": 1095475,
+        "hits": 17274595,
+        "hitsSize": 70756741120,
+        "misses": 3392122,
+        "missesSize": 13894131712,
+        "totalAccesses": 83000000,
+        "totalGets": 20666717,
+        "totalSets": 62333283,
+        "uniqueBytes": 22637883392,
+        "updateCount": 51753522,
+        "updateSize": 211982426112
+    },
+    "log": {
+        "bytes_written": 269211258880,
+        "current_size": 2621566976,
+        "hits": 17274595,
+        "logCapacity": 10468982784,
+        "misses": 3392122,
+        "numEvictions": 13331852,
+        "request_bytes_written": 269211258880,
+        "sizeEvictions": 54607265792,
+        "stores_requested": 65725405,
+        "stores_requested_bytes": 2621566976
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 20878520,
+        "SetsAfterFlush": 63121480,
+        "accessesAfterFlush": 84000000,
+        "compulsoryMisses": 1107464,
+        "hits": 17425138,
+        "hitsSize": 71373365248,
+        "misses": 3453382,
+        "missesSize": 14145052672,
+        "totalAccesses": 84000000,
+        "totalGets": 20878520,
+        "totalSets": 63121480,
+        "uniqueBytes": 22816944128,
+        "updateCount": 52418733,
+        "updateSize": 214707130368
+    },
+    "log": {
+        "bytes_written": 272690634752,
+        "current_size": 2692812800,
+        "hits": 17425138,
+        "logCapacity": 10468982784,
+        "misses": 3453382,
+        "numEvictions": 13498704,
+        "request_bytes_written": 272690634752,
+        "sizeEvictions": 55290691584,
+        "stores_requested": 66574862,
+        "stores_requested_bytes": 2692812800
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 21067656,
+        "SetsAfterFlush": 63932344,
+        "accessesAfterFlush": 85000000,
+        "compulsoryMisses": 1117889,
+        "hits": 17589385,
+        "hitsSize": 72046120960,
+        "misses": 3478271,
+        "missesSize": 14246998016,
+        "totalAccesses": 85000000,
+        "totalGets": 21067656,
+        "totalSets": 63932344,
+        "uniqueBytes": 23006367744,
+        "updateCount": 53100148,
+        "updateSize": 217498206208
+    },
+    "log": {
+        "bytes_written": 276113879040,
+        "current_size": 2672316416,
+        "hits": 17589385,
+        "logCapacity": 10468982784,
+        "misses": 3478271,
+        "numEvictions": 13658046,
+        "request_bytes_written": 276113879040,
+        "sizeEvictions": 55943356416,
+        "stores_requested": 67410615,
+        "stores_requested_bytes": 2672316416
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 21286210,
+        "SetsAfterFlush": 64713790,
+        "accessesAfterFlush": 86000000,
+        "compulsoryMisses": 1127389,
+        "hits": 17787211,
+        "hitsSize": 72856416256,
+        "misses": 3498999,
+        "missesSize": 14331899904,
+        "totalAccesses": 86000000,
+        "totalGets": 21286210,
+        "totalSets": 64713790,
+        "uniqueBytes": 23224811520,
+        "updateCount": 53758500,
+        "updateSize": 220194816000
+    },
+    "log": {
+        "bytes_written": 279399583744,
+        "current_size": 2446643200,
+        "hits": 17787211,
+        "logCapacity": 10468982784,
+        "misses": 3498999,
+        "numEvictions": 13856964,
+        "request_bytes_written": 279399583744,
+        "sizeEvictions": 56758124544,
+        "stores_requested": 68212789,
+        "stores_requested_bytes": 2446643200
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 21538856,
+        "SetsAfterFlush": 65461144,
+        "accessesAfterFlush": 87000000,
+        "compulsoryMisses": 1138302,
+        "hits": 17984405,
+        "hitsSize": 73664122880,
+        "misses": 3554451,
+        "missesSize": 14559031296,
+        "totalAccesses": 87000000,
+        "totalGets": 21538856,
+        "totalSets": 65461144,
+        "uniqueBytes": 23443914752,
+        "updateCount": 54368588,
+        "updateSize": 222693736448
+    },
+    "log": {
+        "bytes_written": 282687877120,
+        "current_size": 2477162496,
+        "hits": 17984405,
+        "logCapacity": 10468982784,
+        "misses": 3554451,
+        "numEvictions": 14042231,
+        "request_bytes_written": 282687877120,
+        "sizeEvictions": 57516978176,
+        "stores_requested": 69015595,
+        "stores_requested_bytes": 2477162496
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 21810520,
+        "SetsAfterFlush": 66189480,
+        "accessesAfterFlush": 88000000,
+        "compulsoryMisses": 1147234,
+        "hits": 18198180,
+        "hitsSize": 74539745280,
+        "misses": 3612340,
+        "missesSize": 14796144640,
+        "totalAccesses": 88000000,
+        "totalGets": 21810520,
+        "totalSets": 66189480,
+        "uniqueBytes": 23596355584,
+        "updateCount": 54965273,
+        "updateSize": 225137758208
+    },
+    "log": {
+        "bytes_written": 285908254720,
+        "current_size": 2668363776,
+        "hits": 18198180,
+        "logCapacity": 10468982784,
+        "misses": 3612340,
+        "numEvictions": 14185091,
+        "request_bytes_written": 285908254720,
+        "sizeEvictions": 58102132736,
+        "stores_requested": 69801820,
+        "stores_requested_bytes": 2668363776
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 22052547,
+        "SetsAfterFlush": 66947453,
+        "accessesAfterFlush": 89000000,
+        "compulsoryMisses": 1152289,
+        "hits": 18424935,
+        "hitsSize": 75468533760,
+        "misses": 3627612,
+        "missesSize": 14858698752,
+        "totalAccesses": 89000000,
+        "totalGets": 22052547,
+        "totalSets": 66947453,
+        "uniqueBytes": 23764230144,
+        "updateCount": 55601995,
+        "updateSize": 227745771520
+    },
+    "log": {
+        "bytes_written": 289075466240,
+        "current_size": 2667040768,
+        "hits": 18424935,
+        "logCapacity": 10468982784,
+        "misses": 3627612,
+        "numEvictions": 14321937,
+        "request_bytes_written": 289075466240,
+        "sizeEvictions": 58662653952,
+        "stores_requested": 70575065,
+        "stores_requested_bytes": 2667040768
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 22334576,
+        "SetsAfterFlush": 67665424,
+        "accessesAfterFlush": 90000000,
+        "compulsoryMisses": 1155559,
+        "hits": 18691640,
+        "hitsSize": 76560957440,
+        "misses": 3642936,
+        "missesSize": 14921465856,
+        "totalAccesses": 90000000,
+        "totalGets": 22334576,
+        "totalSets": 67665424,
+        "uniqueBytes": 23901495296,
+        "updateCount": 56203907,
+        "updateSize": 230211203072
+    },
+    "log": {
+        "bytes_written": 292079038464,
+        "current_size": 2557644800,
+        "hits": 18691640,
+        "logCapacity": 10468982784,
+        "misses": 3642936,
+        "numEvictions": 14480027,
+        "request_bytes_written": 292079038464,
+        "sizeEvictions": 59310190592,
+        "stores_requested": 71308359,
+        "stores_requested_bytes": 2557644800
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 22578972,
+        "SetsAfterFlush": 68421028,
+        "accessesAfterFlush": 91000000,
+        "compulsoryMisses": 1173570,
+        "hits": 18890010,
+        "hitsSize": 77373480960,
+        "misses": 3688962,
+        "missesSize": 15109988352,
+        "totalAccesses": 91000000,
+        "totalGets": 22578972,
+        "totalSets": 68421028,
+        "uniqueBytes": 24241438720,
+        "updateCount": 56808020,
+        "updateSize": 232685649920
+    },
+    "log": {
+        "bytes_written": 295362519040,
+        "current_size": 2478772224,
+        "hits": 18890010,
+        "logCapacity": 10468982784,
+        "misses": 3688962,
+        "numEvictions": 14696801,
+        "request_bytes_written": 295362519040,
+        "sizeEvictions": 60198096896,
+        "stores_requested": 72109990,
+        "stores_requested_bytes": 2478772224
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 22868446,
+        "SetsAfterFlush": 69131554,
+        "accessesAfterFlush": 92000000,
+        "compulsoryMisses": 1195388,
+        "hits": 19108973,
+        "hitsSize": 78270353408,
+        "misses": 3759473,
+        "missesSize": 15398801408,
+        "totalAccesses": 92000000,
+        "totalGets": 22868446,
+        "totalSets": 69131554,
+        "uniqueBytes": 24443478016,
+        "updateCount": 57405470,
+        "updateSize": 235132805120
+    },
+    "log": {
+        "bytes_written": 298561646592,
+        "current_size": 2685718528,
+        "hits": 19108973,
+        "logCapacity": 10468982784,
+        "misses": 3759473,
+        "numEvictions": 14829864,
+        "request_bytes_written": 298561646592,
+        "sizeEvictions": 60743122944,
+        "stores_requested": 72891027,
+        "stores_requested_bytes": 2685718528
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 23169957,
+        "SetsAfterFlush": 69830043,
+        "accessesAfterFlush": 93000000,
+        "compulsoryMisses": 1217687,
+        "hits": 19368115,
+        "hitsSize": 79331799040,
+        "misses": 3801842,
+        "missesSize": 15572344832,
+        "totalAccesses": 93000000,
+        "totalGets": 23169957,
+        "totalSets": 69830043,
+        "uniqueBytes": 24660074496,
+        "updateCount": 57988471,
+        "updateSize": 237520777216
+    },
+    "log": {
+        "bytes_written": 301596200960,
+        "current_size": 2729533440,
+        "hits": 19368115,
+        "logCapacity": 10468982784,
+        "misses": 3801842,
+        "numEvictions": 14977024,
+        "request_bytes_written": 301596200960,
+        "sizeEvictions": 61345890304,
+        "stores_requested": 73631885,
+        "stores_requested_bytes": 2729533440
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 23429699,
+        "SetsAfterFlush": 70570301,
+        "accessesAfterFlush": 94000000,
+        "compulsoryMisses": 1222736,
+        "hits": 19611777,
+        "hitsSize": 80329838592,
+        "misses": 3817922,
+        "missesSize": 15638208512,
+        "totalAccesses": 94000000,
+        "totalGets": 23429699,
+        "totalSets": 70570301,
+        "uniqueBytes": 24783052800,
+        "updateCount": 58619107,
+        "updateSize": 240103862272
+    },
+    "log": {
+        "bytes_written": 304694161408,
+        "current_size": 2654175232,
+        "hits": 19611777,
+        "logCapacity": 10468982784,
+        "misses": 3817922,
+        "numEvictions": 15121124,
+        "request_bytes_written": 304694161408,
+        "sizeEvictions": 61936123904,
+        "stores_requested": 74388223,
+        "stores_requested_bytes": 2654175232
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 23694898,
+        "SetsAfterFlush": 71305102,
+        "accessesAfterFlush": 95000000,
+        "compulsoryMisses": 1228644,
+        "hits": 19838014,
+        "hitsSize": 81256505344,
+        "misses": 3856884,
+        "missesSize": 15797796864,
+        "totalAccesses": 95000000,
+        "totalGets": 23694898,
+        "totalSets": 71305102,
+        "uniqueBytes": 24948334592,
+        "updateCount": 59235474,
+        "updateSize": 242628501504
+    },
+    "log": {
+        "bytes_written": 307863494656,
+        "current_size": 2515562496,
+        "hits": 19838014,
+        "logCapacity": 10468982784,
+        "misses": 3856884,
+        "numEvictions": 15312361,
+        "request_bytes_written": 307863494656,
+        "sizeEvictions": 62719430656,
+        "stores_requested": 75161986,
+        "stores_requested_bytes": 2515562496
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 24046331,
+        "SetsAfterFlush": 71953669,
+        "accessesAfterFlush": 96000000,
+        "compulsoryMisses": 1232143,
+        "hits": 20125526,
+        "hitsSize": 82434154496,
+        "misses": 3920805,
+        "missesSize": 16059617280,
+        "totalAccesses": 96000000,
+        "totalGets": 24046331,
+        "totalSets": 71953669,
+        "uniqueBytes": 25048137728,
+        "updateCount": 59785311,
+        "updateSize": 244880633856
+    },
+    "log": {
+        "bytes_written": 310781845504,
+        "current_size": 2550067200,
+        "hits": 20125526,
+        "logCapacity": 10468982784,
+        "misses": 3920805,
+        "numEvictions": 15466588,
+        "request_bytes_written": 310781845504,
+        "sizeEvictions": 63351144448,
+        "stores_requested": 75874474,
+        "stores_requested_bytes": 2550067200
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 24317081,
+        "SetsAfterFlush": 72682919,
+        "accessesAfterFlush": 97000000,
+        "compulsoryMisses": 1239296,
+        "hits": 20379696,
+        "hitsSize": 83475234816,
+        "misses": 3937385,
+        "missesSize": 16127528960,
+        "totalAccesses": 97000000,
+        "totalGets": 24317081,
+        "totalSets": 72682919,
+        "uniqueBytes": 25220685824,
+        "updateCount": 60400641,
+        "updateSize": 247401025536
+    },
+    "log": {
+        "bytes_written": 313836765184,
+        "current_size": 2510589952,
+        "hits": 20379696,
+        "logCapacity": 10468982784,
+        "misses": 3937385,
+        "numEvictions": 15606726,
+        "request_bytes_written": 313836765184,
+        "sizeEvictions": 63925149696,
+        "stores_requested": 76620304,
+        "stores_requested_bytes": 2510589952
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 24667533,
+        "SetsAfterFlush": 73332467,
+        "accessesAfterFlush": 98000000,
+        "compulsoryMisses": 1255173,
+        "hits": 20693751,
+        "hitsSize": 84761604096,
+        "misses": 3973782,
+        "missesSize": 16276611072,
+        "totalAccesses": 98000000,
+        "totalGets": 24667533,
+        "totalSets": 73332467,
+        "uniqueBytes": 25403588608,
+        "updateCount": 60943352,
+        "updateSize": 249623969792
+    },
+    "log": {
+        "bytes_written": 316646395904,
+        "current_size": 2553606144,
+        "hits": 20693751,
+        "logCapacity": 10468982784,
+        "misses": 3973782,
+        "numEvictions": 15739458,
+        "request_bytes_written": 316646395904,
+        "sizeEvictions": 64468819968,
+        "stores_requested": 77306249,
+        "stores_requested_bytes": 2553606144
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 24956785,
+        "SetsAfterFlush": 74043215,
+        "accessesAfterFlush": 99000000,
+        "compulsoryMisses": 1271805,
+        "hits": 20954806,
+        "hitsSize": 85830885376,
+        "misses": 4001979,
+        "missesSize": 16392105984,
+        "totalAccesses": 99000000,
+        "totalGets": 24956785,
+        "totalSets": 74043215,
+        "uniqueBytes": 25664151552,
+        "updateCount": 61526107,
+        "updateSize": 252010934272
+    },
+    "log": {
+        "bytes_written": 319673110528,
+        "current_size": 2407657472,
+        "hits": 20954806,
+        "logCapacity": 10468982784,
+        "misses": 4001979,
+        "numEvictions": 15931279,
+        "request_bytes_written": 319673110528,
+        "sizeEvictions": 65254518784,
+        "stores_requested": 78045193,
+        "stores_requested_bytes": 2407657472
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 25303215,
+        "SetsAfterFlush": 74696785,
+        "accessesAfterFlush": 100000000,
+        "compulsoryMisses": 1281614,
+        "hits": 21227370,
+        "hitsSize": 86947307520,
+        "misses": 4075845,
+        "missesSize": 16694661120,
+        "totalAccesses": 100000000,
+        "totalGets": 25303215,
+        "totalSets": 74696785,
+        "uniqueBytes": 25815363584,
+        "updateCount": 62072524,
+        "updateSize": 254249058304
+    },
+    "log": {
+        "bytes_written": 322652692480,
+        "current_size": 2667147264,
+        "hits": 21227370,
+        "logCapacity": 10468982784,
+        "misses": 4075845,
+        "numEvictions": 16048947,
+        "request_bytes_written": 322652692480,
+        "sizeEvictions": 65736486912,
+        "stores_requested": 78772630,
+        "stores_requested_bytes": 2667147264
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 25573663,
+        "SetsAfterFlush": 75426337,
+        "accessesAfterFlush": 101000000,
+        "compulsoryMisses": 1287913,
+        "hits": 21480740,
+        "hitsSize": 87985111040,
+        "misses": 4092923,
+        "missesSize": 16764612608,
+        "totalAccesses": 101000000,
+        "totalGets": 25573663,
+        "totalSets": 75426337,
+        "uniqueBytes": 25948643328,
+        "updateCount": 62673193,
+        "updateSize": 256709398528
+    },
+    "log": {
+        "bytes_written": 325710888960,
+        "current_size": 2725388288,
+        "hits": 21480740,
+        "logCapacity": 10468982784,
+        "misses": 4092923,
+        "numEvictions": 16180689,
+        "request_bytes_written": 325710888960,
+        "sizeEvictions": 66276102144,
+        "stores_requested": 79519260,
+        "stores_requested_bytes": 2725388288
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 25890267,
+        "SetsAfterFlush": 76109733,
+        "accessesAfterFlush": 102000000,
+        "compulsoryMisses": 1294695,
+        "hits": 21779178,
+        "hitsSize": 89207513088,
+        "misses": 4111089,
+        "missesSize": 16839020544,
+        "totalAccesses": 102000000,
+        "totalGets": 25890267,
+        "totalSets": 76109733,
+        "uniqueBytes": 26087231488,
+        "updateCount": 63252116,
+        "updateSize": 259080667136
+    },
+    "log": {
+        "bytes_written": 328584486912,
+        "current_size": 2629017600,
+        "hits": 21779178,
+        "logCapacity": 10468982784,
+        "misses": 4111089,
+        "numEvictions": 16326856,
+        "request_bytes_written": 328584486912,
+        "sizeEvictions": 66874802176,
+        "stores_requested": 80220822,
+        "stores_requested_bytes": 2629017600
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 26211901,
+        "SetsAfterFlush": 76788099,
+        "accessesAfterFlush": 103000000,
+        "compulsoryMisses": 1310032,
+        "hits": 22060239,
+        "hitsSize": 90358738944,
+        "misses": 4151662,
+        "missesSize": 17005207552,
+        "totalAccesses": 103000000,
+        "totalGets": 26211901,
+        "totalSets": 76788099,
+        "uniqueBytes": 26352111616,
+        "updateCount": 63802990,
+        "updateSize": 261337047040
+    },
+    "log": {
+        "bytes_written": 331529261056,
+        "current_size": 2662330368,
+        "hits": 22060239,
+        "logCapacity": 10468982784,
+        "misses": 4151662,
+        "numEvictions": 16486788,
+        "request_bytes_written": 331529261056,
+        "sizeEvictions": 67529883648,
+        "stores_requested": 80939761,
+        "stores_requested_bytes": 2662330368
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 26515922,
+        "SetsAfterFlush": 77484078,
+        "accessesAfterFlush": 104000000,
+        "compulsoryMisses": 1320718,
+        "hits": 22280945,
+        "hitsSize": 91262750720,
+        "misses": 4234977,
+        "missesSize": 17346465792,
+        "totalAccesses": 104000000,
+        "totalGets": 26515922,
+        "totalSets": 77484078,
+        "uniqueBytes": 26528952320,
+        "updateCount": 64374069,
+        "updateSize": 263676186624
+    },
+    "log": {
+        "bytes_written": 334721249280,
+        "current_size": 2748067840,
+        "hits": 22280945,
+        "logCapacity": 10468982784,
+        "misses": 4234977,
+        "numEvictions": 16674071,
+        "request_bytes_written": 334721249280,
+        "sizeEvictions": 68296994816,
+        "stores_requested": 81719055,
+        "stores_requested_bytes": 2748067840
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 26774090,
+        "SetsAfterFlush": 78225910,
+        "accessesAfterFlush": 105000000,
+        "compulsoryMisses": 1323552,
+        "hits": 22517367,
+        "hitsSize": 92231135232,
+        "misses": 4256723,
+        "missesSize": 17435537408,
+        "totalAccesses": 105000000,
+        "totalGets": 26774090,
+        "totalSets": 78225910,
+        "uniqueBytes": 26595110912,
+        "updateCount": 65008663,
+        "updateSize": 266275483648
+    },
+    "log": {
+        "bytes_written": 337848864768,
+        "current_size": 2682646528,
+        "hits": 22517367,
+        "logCapacity": 10468982784,
+        "misses": 4256723,
+        "numEvictions": 16819027,
+        "request_bytes_written": 337848864768,
+        "sizeEvictions": 68890734592,
+        "stores_requested": 82482633,
+        "stores_requested_bytes": 2682646528
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 27057923,
+        "SetsAfterFlush": 78942077,
+        "accessesAfterFlush": 106000000,
+        "compulsoryMisses": 1330237,
+        "hits": 22783581,
+        "hitsSize": 93321547776,
+        "misses": 4274342,
+        "missesSize": 17507704832,
+        "totalAccesses": 106000000,
+        "totalGets": 27057923,
+        "totalSets": 78942077,
+        "uniqueBytes": 26711826432,
+        "updateCount": 65614638,
+        "updateSize": 268757557248
+    },
+    "log": {
+        "bytes_written": 340854452224,
+        "current_size": 2620239872,
+        "hits": 22783581,
+        "logCapacity": 10468982784,
+        "misses": 4274342,
+        "numEvictions": 16962074,
+        "request_bytes_written": 340854452224,
+        "sizeEvictions": 69476655104,
+        "stores_requested": 83216419,
+        "stores_requested_bytes": 2620239872
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 27344772,
+        "SetsAfterFlush": 79655228,
+        "accessesAfterFlush": 107000000,
+        "compulsoryMisses": 1344001,
+        "hits": 23035340,
+        "hitsSize": 94352752640,
+        "misses": 4309432,
+        "missesSize": 17651433472,
+        "totalAccesses": 107000000,
+        "totalGets": 27344772,
+        "totalSets": 79655228,
+        "uniqueBytes": 26902147072,
+        "updateCount": 66205922,
+        "updateSize": 271179456512
+    },
+    "log": {
+        "bytes_written": 343919247360,
+        "current_size": 2588803072,
+        "hits": 23035340,
+        "logCapacity": 10468982784,
+        "misses": 4309432,
+        "numEvictions": 17126706,
+        "request_bytes_written": 343919247360,
+        "sizeEvictions": 70150987776,
+        "stores_requested": 83964660,
+        "stores_requested_bytes": 2588803072
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 27567403,
+        "SetsAfterFlush": 80432597,
+        "accessesAfterFlush": 108000000,
+        "compulsoryMisses": 1352353,
+        "hits": 23192061,
+        "hitsSize": 94994681856,
+        "misses": 4375342,
+        "missesSize": 17921400832,
+        "totalAccesses": 108000000,
+        "totalGets": 27567403,
+        "totalSets": 80432597,
+        "uniqueBytes": 27031748608,
+        "updateCount": 66863947,
+        "updateSize": 273874726912
+    },
+    "log": {
+        "bytes_written": 347373318144,
+        "current_size": 2502008832,
+        "hits": 23192061,
+        "logCapacity": 10468982784,
+        "misses": 4375342,
+        "numEvictions": 17333150,
+        "request_bytes_written": 347373318144,
+        "sizeEvictions": 70996582400,
+        "stores_requested": 84807939,
+        "stores_requested_bytes": 2502008832
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 27759508,
+        "SetsAfterFlush": 81240492,
+        "accessesAfterFlush": 109000000,
+        "compulsoryMisses": 1358317,
+        "hits": 23356956,
+        "hitsSize": 95670091776,
+        "misses": 4402552,
+        "missesSize": 18032852992,
+        "totalAccesses": 109000000,
+        "totalGets": 27759508,
+        "totalSets": 81240492,
+        "uniqueBytes": 27122700288,
+        "updateCount": 67545444,
+        "updateSize": 276666138624
+    },
+    "log": {
+        "bytes_written": 350793908224,
+        "current_size": 2546827264,
+        "hits": 23356956,
+        "logCapacity": 10468982784,
+        "misses": 4402552,
+        "numEvictions": 17475816,
+        "request_bytes_written": 350793908224,
+        "sizeEvictions": 71580942336,
+        "stores_requested": 85643044,
+        "stores_requested_bytes": 2546827264
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 27959397,
+        "SetsAfterFlush": 82040603,
+        "accessesAfterFlush": 110000000,
+        "compulsoryMisses": 1363213,
+        "hits": 23536332,
+        "hitsSize": 96404815872,
+        "misses": 4423065,
+        "missesSize": 18116874240,
+        "totalAccesses": 110000000,
+        "totalGets": 27959397,
+        "totalSets": 82040603,
+        "uniqueBytes": 27228372992,
+        "updateCount": 68230430,
+        "updateSize": 279471841280
+    },
+    "log": {
+        "bytes_written": 354155184128,
+        "current_size": 2501062656,
+        "hits": 23536332,
+        "logCapacity": 10468982784,
+        "misses": 4423065,
+        "numEvictions": 17622627,
+        "request_bytes_written": 354155184128,
+        "sizeEvictions": 72182280192,
+        "stores_requested": 86463668,
+        "stores_requested_bytes": 2501062656
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 28173595,
+        "SetsAfterFlush": 82826405,
+        "accessesAfterFlush": 111000000,
+        "compulsoryMisses": 1376309,
+        "hits": 23711305,
+        "hitsSize": 97121505280,
+        "misses": 4462290,
+        "missesSize": 18277539840,
+        "totalAccesses": 111000000,
+        "totalGets": 28173595,
+        "totalSets": 82826405,
+        "uniqueBytes": 27485331456,
+        "updateCount": 68880722,
+        "updateSize": 282135437312
+    },
+    "log": {
+        "bytes_written": 357534494720,
+        "current_size": 2431426560,
+        "hits": 23711305,
+        "logCapacity": 10468982784,
+        "misses": 4462290,
+        "numEvictions": 17814363,
+        "request_bytes_written": 357534494720,
+        "sizeEvictions": 72967630848,
+        "stores_requested": 87288695,
+        "stores_requested_bytes": 2431426560
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 28407516,
+        "SetsAfterFlush": 83592484,
+        "accessesAfterFlush": 112000000,
+        "compulsoryMisses": 1390089,
+        "hits": 23875185,
+        "hitsSize": 97792757760,
+        "misses": 4532331,
+        "missesSize": 18564427776,
+        "totalAccesses": 112000000,
+        "totalGets": 28407516,
+        "totalSets": 83592484,
+        "uniqueBytes": 27694792704,
+        "updateCount": 69514947,
+        "updateSize": 284733222912
+    },
+    "log": {
+        "bytes_written": 360959242240,
+        "current_size": 2587848704,
+        "hits": 23875185,
+        "logCapacity": 10468982784,
+        "misses": 4532331,
+        "numEvictions": 17978069,
+        "request_bytes_written": 360959242240,
+        "sizeEvictions": 73638170624,
+        "stores_requested": 88124815,
+        "stores_requested_bytes": 2587848704
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 28591193,
+        "SetsAfterFlush": 84408807,
+        "accessesAfterFlush": 113000000,
+        "compulsoryMisses": 1394958,
+        "hits": 24036993,
+        "hitsSize": 98455523328,
+        "misses": 4554200,
+        "missesSize": 18654003200,
+        "totalAccesses": 113000000,
+        "totalGets": 28591193,
+        "totalSets": 84408807,
+        "uniqueBytes": 27818790912,
+        "updateCount": 70206085,
+        "updateSize": 287564124160
+    },
+    "log": {
+        "bytes_written": 364392476672,
+        "current_size": 2536996864,
+        "hits": 24036993,
+        "logCapacity": 10468982784,
+        "misses": 4554200,
+        "numEvictions": 18137538,
+        "request_bytes_written": 364392476672,
+        "sizeEvictions": 74291355648,
+        "stores_requested": 88963007,
+        "stores_requested_bytes": 2536996864
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 28828069,
+        "SetsAfterFlush": 85171931,
+        "accessesAfterFlush": 114000000,
+        "compulsoryMisses": 1397858,
+        "hits": 24238234,
+        "hitsSize": 99279806464,
+        "misses": 4589835,
+        "missesSize": 18799964160,
+        "totalAccesses": 114000000,
+        "totalGets": 28828069,
+        "totalSets": 85171931,
+        "uniqueBytes": 27882012672,
+        "updateCount": 70851172,
+        "updateSize": 290206400512
+    },
+    "log": {
+        "bytes_written": 367664193536,
+        "current_size": 2538000384,
+        "hits": 24238234,
+        "logCapacity": 10468982784,
+        "misses": 4589835,
+        "numEvictions": 18290965,
+        "request_bytes_written": 367664193536,
+        "sizeEvictions": 74919792640,
+        "stores_requested": 89761766,
+        "stores_requested_bytes": 2538000384
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 29018626,
+        "SetsAfterFlush": 85981374,
+        "accessesAfterFlush": 115000000,
+        "compulsoryMisses": 1405563,
+        "hits": 24407127,
+        "hitsSize": 99971592192,
+        "misses": 4611499,
+        "missesSize": 18888699904,
+        "totalAccesses": 115000000,
+        "totalGets": 29018626,
+        "totalSets": 85981374,
+        "uniqueBytes": 28031782912,
+        "updateCount": 71528091,
+        "updateSize": 292979060736
+    },
+    "log": {
+        "bytes_written": 371068407808,
+        "current_size": 2373103616,
+        "hits": 24407127,
+        "logCapacity": 10468982784,
+        "misses": 4611499,
+        "numEvictions": 18485411,
+        "request_bytes_written": 371068407808,
+        "sizeEvictions": 75716243456,
+        "stores_requested": 90592873,
+        "stores_requested_bytes": 2373103616
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 29300668,
+        "SetsAfterFlush": 86699332,
+        "accessesAfterFlush": 116000000,
+        "compulsoryMisses": 1415315,
+        "hits": 24607284,
+        "hitsSize": 100791435264,
+        "misses": 4693384,
+        "missesSize": 19224100864,
+        "totalAccesses": 116000000,
+        "totalGets": 29300668,
+        "totalSets": 86699332,
+        "uniqueBytes": 28178259968,
+        "updateCount": 72121362,
+        "updateSize": 295409098752
+    },
+    "log": {
+        "bytes_written": 374344564736,
+        "current_size": 2649001984,
+        "hits": 24607284,
+        "logCapacity": 10468982784,
+        "misses": 4693384,
+        "numEvictions": 18624625,
+        "request_bytes_written": 374344564736,
+        "sizeEvictions": 76286464000,
+        "stores_requested": 91392716,
+        "stores_requested_bytes": 2649001984
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 29507714,
+        "SetsAfterFlush": 87492286,
+        "accessesAfterFlush": 117000000,
+        "compulsoryMisses": 1415819,
+        "hits": 24798383,
+        "hitsSize": 101574176768,
+        "misses": 4709331,
+        "missesSize": 19289419776,
+        "totalAccesses": 117000000,
+        "totalGets": 29507714,
+        "totalSets": 87492286,
+        "uniqueBytes": 28284018688,
+        "updateCount": 72793847,
+        "updateSize": 298163597312
+    },
+    "log": {
+        "bytes_written": 377657823232,
+        "current_size": 2546405376,
+        "hits": 24798383,
+        "logCapacity": 10468982784,
+        "misses": 4709331,
+        "numEvictions": 18786089,
+        "request_bytes_written": 377657823232,
+        "sizeEvictions": 76947820544,
+        "stores_requested": 92201617,
+        "stores_requested_bytes": 2546405376
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 29754214,
+        "SetsAfterFlush": 88245786,
+        "accessesAfterFlush": 118000000,
+        "compulsoryMisses": 1427266,
+        "hits": 25023603,
+        "hitsSize": 102496677888,
+        "misses": 4730611,
+        "missesSize": 19376582656,
+        "totalAccesses": 118000000,
+        "totalGets": 29754214,
+        "totalSets": 88245786,
+        "uniqueBytes": 28458905600,
+        "updateCount": 73428956,
+        "updateSize": 300765003776
+    },
+    "log": {
+        "bytes_written": 380831322112,
+        "current_size": 2493751296,
+        "hits": 25023603,
+        "logCapacity": 10468982784,
+        "misses": 4730611,
+        "numEvictions": 18938615,
+        "request_bytes_written": 380831322112,
+        "sizeEvictions": 77572567040,
+        "stores_requested": 92976397,
+        "stores_requested_bytes": 2493751296
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 29981548,
+        "SetsAfterFlush": 89018452,
+        "accessesAfterFlush": 119000000,
+        "compulsoryMisses": 1435537,
+        "hits": 25196125,
+        "hitsSize": 103203328000,
+        "misses": 4785423,
+        "missesSize": 19601092608,
+        "totalAccesses": 119000000,
+        "totalGets": 29981548,
+        "totalSets": 89018452,
+        "uniqueBytes": 28586643456,
+        "updateCount": 74069645,
+        "updateSize": 303389265920
+    },
+    "log": {
+        "bytes_written": 384220667904,
+        "current_size": 2466357248,
+        "hits": 25196125,
+        "logCapacity": 10468982784,
+        "misses": 4785423,
+        "numEvictions": 19132091,
+        "request_bytes_written": 384220667904,
+        "sizeEvictions": 78365044736,
+        "stores_requested": 93803874,
+        "stores_requested_bytes": 2466357248
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 30220349,
+        "SetsAfterFlush": 89779651,
+        "accessesAfterFlush": 120000000,
+        "compulsoryMisses": 1436695,
+        "hits": 25382919,
+        "hitsSize": 103968436224,
+        "misses": 4837430,
+        "missesSize": 19814113280,
+        "totalAccesses": 120000000,
+        "totalGets": 30220349,
+        "totalSets": 89779651,
+        "uniqueBytes": 28669636608,
+        "updateCount": 74714900,
+        "updateSize": 306032230400
+    },
+    "log": {
+        "bytes_written": 387551563776,
+        "current_size": 2587287552,
+        "hits": 25382919,
+        "logCapacity": 10468982784,
+        "misses": 4837430,
+        "numEvictions": 19270519,
+        "request_bytes_written": 387551563776,
+        "sizeEvictions": 78932045824,
+        "stores_requested": 94617081,
+        "stores_requested_bytes": 2587287552
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 30412353,
+        "SetsAfterFlush": 90587647,
+        "accessesAfterFlush": 121000000,
+        "compulsoryMisses": 1436961,
+        "hits": 25559658,
+        "hitsSize": 104692359168,
+        "misses": 4852695,
+        "missesSize": 19876638720,
+        "totalAccesses": 121000000,
+        "totalGets": 30412353,
+        "totalSets": 90587647,
+        "uniqueBytes": 28750118912,
+        "updateCount": 75407832,
+        "updateSize": 308870479872
+    },
+    "log": {
+        "bytes_written": 390923636736,
+        "current_size": 2532433920,
+        "hits": 25559658,
+        "logCapacity": 10468982784,
+        "misses": 4852695,
+        "numEvictions": 19414239,
+        "request_bytes_written": 390923636736,
+        "sizeEvictions": 79520722944,
+        "stores_requested": 95440341,
+        "stores_requested_bytes": 2532433920
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 30617717,
+        "SetsAfterFlush": 91382283,
+        "accessesAfterFlush": 122000000,
+        "compulsoryMisses": 1445955,
+        "hits": 25734757,
+        "hitsSize": 105409564672,
+        "misses": 4882960,
+        "missesSize": 20000604160,
+        "totalAccesses": 122000000,
+        "totalGets": 30617717,
+        "totalSets": 91382283,
+        "uniqueBytes": 28952735744,
+        "updateCount": 76071963,
+        "updateSize": 311590760448
+    },
+    "log": {
+        "bytes_written": 394302435328,
+        "current_size": 2429214720,
+        "hits": 25734757,
+        "logCapacity": 10468982784,
+        "misses": 4882960,
+        "numEvictions": 19600210,
+        "request_bytes_written": 394302435328,
+        "sizeEvictions": 80282460160,
+        "stores_requested": 96265243,
+        "stores_requested_bytes": 2429214720
+    }
+}
+{
+    "global": {
+        "GetsAfterFlush": 30677834,
+        "SetsAfterFlush": 91624194,
+        "accessesAfterFlush": 122302028,
+        "compulsoryMisses": 1454879,
+        "hits": 25780853,
+        "hitsSize": 105598373888,
+        "misses": 4896981,
+        "missesSize": 20058034176,
+        "totalAccesses": 122302028,
+        "totalGets": 30677834,
+        "totalSets": 91624194,
+        "uniqueBytes": 29055709184,
+        "updateCount": 76271127,
+        "updateSize": 312406536192
+    },
+    "log": {
+        "bytes_written": 395350732800,
+        "current_size": 2381234176,
+        "hits": 25780853,
+        "logCapacity": 10468982784,
+        "misses": 4896981,
+        "numEvictions": 19668692,
+        "request_bytes_written": 395350732800,
+        "sizeEvictions": 80562962432,
+        "stores_requested": 96521175,
+        "stores_requested_bytes": 2381234176
+    }
+}

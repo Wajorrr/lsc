@@ -12,7 +12,7 @@ namespace flashCache
         _log_stats["logCapacity"] = _total_capacity;
         _num_segments = _log_capacity / Segment::_capacity; // 包含的段数量
 
-        Segment::_capacity = Segment::_capacity;
+        // Segment::_capacity = Segment::_capacity;
         Segment template_segment = Segment();
 
         _segments.resize(_num_segments, template_segment); // 根据段的数量和大小来分配段数组空间
@@ -22,11 +22,17 @@ namespace flashCache
         }
 
         // allow last segment to be smaller than the others
+        // GC模式下，对齐到段大小，多出来的空间舍弃
         if (_log_capacity % Segment::_capacity) // 剩余空间少于一个标准段大小
         {
-            _num_segments++;
-            template_segment._capacity = _log_capacity % Segment::_capacity; // 创建一个单独的段
-            _segments.push_back(template_segment);
+            _total_capacity -= _log_capacity % Segment::_capacity;
+            _log_stats["logCapacity"] = _total_capacity;
+            WARN("totCapacity:%ld, segment num:%d, rest capacity:%ld, align to %ld\n",
+                 _log_capacity, _num_segments, _log_capacity % Segment::_capacity, _total_capacity);
+
+            // _num_segments++;
+            // template_segment._capacity = _log_capacity % Segment::_capacity; // 创建一个单独的段
+            // _segments.push_back(template_segment);
         }
 
         // 初始化_sealed_segments为空
@@ -47,6 +53,8 @@ namespace flashCache
 
     uint32_t BlockGC::_victim_select()
     {
+        // INFO("_free_segments.size():%lu\n", _free_segments.size());
+        // INFO("_sealed_segments.size():%lu\n", _sealed_segments.size());
         auto min_it = std::min_element(_sealed_segments.begin(), _sealed_segments.end(),
                                        [this](const uint32_t &a, const uint32_t &b)
                                        {

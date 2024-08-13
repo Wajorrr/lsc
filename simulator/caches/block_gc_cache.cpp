@@ -97,8 +97,10 @@ namespace cache
     bool BlockGCCache::find(const parser::Request *req)
     {
         // 分别查找内存缓存和flash日志缓存
-        bool logic_find = _cache_algo->get(req, false);
-        bool physic_find = _log->find(Block::make(*req));
+        bool logic_find = _cache_algo->get(req,
+                                           req->type == parser::OP_GET ? true : false);
+        bool physic_find = _log->find(req->id,
+                                      req->type == parser::OP_GET ? true : false);
         if (logic_find && physic_find)
         {
             return true;

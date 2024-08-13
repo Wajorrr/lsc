@@ -65,7 +65,10 @@ namespace cache
     bool BlockLogCache::find(const parser::Request *req)
     {
         // 分别查找内存缓存和flash日志缓存
-        if (_log->find(Block::make(*req)))
+        bool updateStats = false;
+        if (req->type == parser::OP_GET)
+            updateStats = true;
+        if (_log->find(req->id, updateStats))
         {
             return true;
         }

@@ -20,8 +20,10 @@ namespace cache
         uint64_t block_size = (uint64_t)cfg.read<int>("log.blockSize", 4096);
         Block::_capacity = block_size;
 
-        uint64_t segment_size = 1024 * 1024 * (uint64_t)cfg.read<int>("log.segmentSizeMB", 2);
+        uint64_t segment_size = (uint64_t)cfg.read<int>("log.segmentSizeMB", 2) * 1024 * 1024;
+
         flashCache::Segment::_capacity = segment_size;
+        DEBUG("segment _capacity: %lu, segment_size: %lu\n", flashCache::Segment::_capacity, segment_size);
 
         // uint64_t readmit = cfg.read<int>("log.readmit", 0);
 
@@ -158,6 +160,7 @@ namespace cache
 
     void BlockCache::dumpStats() // 打印统计信息，并输出到outputfile
     {
+
         double missRate = calcMissRate();
         double flashWriteAmp = calcFlashWriteAmp();
         double capacityUtilization = calcCapacityUtilization();
@@ -165,6 +168,7 @@ namespace cache
         // INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
         // INFO("Miss Rate: %lf, Flash Write Amp: %lf, Capacity utilization: %lf\n",
         //      missRate, flashWriteAmp, capacityUtilization);
+        // printSegment();
 
         // globalStats["missRate"] = missRate;
         // globalStats["flashWriteAmp"] = flashWriteAmp;
@@ -263,6 +267,11 @@ namespace cache
         globalStats["SetsAfterFlush"] = 0;
         globalStats["compulsoryMisses"] = 0;
         globalStats["numStatFlushes"]++;
+    }
+
+    void BlockCache::printSegment()
+    {
+        _log->printSegment();
     }
 
 } // namespace BlockCache

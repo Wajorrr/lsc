@@ -6,20 +6,28 @@
 namespace flashCache
 {
 
-    BlockLog::BlockLog(uint64_t log_capacity, stats::LocalStatsCollector &log_stats)
-        : BlockLogAbstract(log_capacity, log_stats)
+    BlockLog::BlockLog(uint64_t _log_capacity, stats::LocalStatsCollector &log_stats)
+        : BlockLogAbstract(_log_capacity, log_stats)
     {
         _log_stats["logCapacity"] = _total_capacity;
-        _num_segments = log_capacity / Segment::_capacity; // 包含的擦除块数量
+        _num_segments = _log_capacity / Segment::_capacity; // 包含的擦除块数量
 
         Segment template_segment = Segment();
         _segments.resize(_num_segments, template_segment); // 根据擦除块的数量和大小来分配擦除块数组空间
+
         // allow last segment to be smaller than the others
-        if (log_capacity % Segment::_capacity) // 剩余空间少于一个标准擦除块大小
+        // 对齐到段大小，多出来的空间舍弃
+        if (_log_capacity % Segment::_capacity) // 剩余空间少于一个标准段大小
         {
-            _num_segments++;
-            template_segment._capacity = log_capacity % Segment::_capacity; // 创建一个单独的擦除块
-            _segments.push_back(template_segment);
+            _total_capacity -= _log_capacity % Segment::_capacity;
+            _log_stats["logCapacity"] = _total_capacity;
+            WARN("totCapacity:%ld, segment num:%d, rest capacity:%ld, align to %ld\n",
+                 _log_capacity, _num_segments, _log_capacity % Segment::_capacity, _total_capacity);
+
+            // _num_segments++;
+            // // 这里_capacity是static变量，不对齐时修改了会出问题
+            // template_segment._capacity = _log_capacity % Segment::_capacity; // 创建一个单独的擦除块
+            // _segments.push_back(template_segment);
         }
 
         DEBUG("Log capacity: %ld, Num Segments: %ld, Segment Capacity: %ld\n",
@@ -39,7 +47,7 @@ namespace flashCache
         {
             // 将当前擦除块中的有效对象加入驱逐列表
             evicted.reserve(current_segment._items.size());
-            for (auto [id, item] : current_segment._items)
+            for (auto &[id, item] : current_segment._items)
             {
                 if (_item_active.find(item._lba) != _item_active.end())
                 {

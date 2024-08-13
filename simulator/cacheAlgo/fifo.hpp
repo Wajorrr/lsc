@@ -3,7 +3,6 @@
 #include "stats/stats.hpp"
 #include "cache_algo_abstract.hpp"
 #include "block.hpp"
-#include "eviction_algo_base.h"
 #include "common/logging.h"
 #include "tags.hpp"
 
@@ -20,7 +19,7 @@ namespace CacheAlgo
             fifo_tail = nullptr;
         }
 
-        bool get(const parser::Request *req, bool set_on_miss)
+        bool get(const parser::Request *req, bool update_stats = false, bool set_on_miss = false)
         {
             req_num += 1;
             bool hit = false;
@@ -28,13 +27,16 @@ namespace CacheAlgo
                 hit = cache_get_base(req);
             else
                 hit = (bool)find(req, true);
-            if (hit)
+            if (update_stats)
             {
-                cache_algo_stats["hits"]++;
-            }
-            else
-            {
-                cache_algo_stats["misses"]++;
+                if (hit)
+                {
+                    cache_algo_stats["hits"]++;
+                }
+                else
+                {
+                    cache_algo_stats["misses"]++;
+                }
             }
             return hit;
         }

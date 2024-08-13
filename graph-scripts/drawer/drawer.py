@@ -4,6 +4,7 @@ import numpy as np
 from scipy.ndimage import gaussian_filter1d
 import matplotlib.ticker as ticker
 from matplotlib.ticker import MaxNLocator
+from mpl_toolkits.mplot3d import Axes3D
 
 # lines（一个包含多条线信息的列表）
 # xlabel 和 ylabel（分别为x轴和y轴的标签）
@@ -149,6 +150,8 @@ def show_line(pic, i, rows, cols, fig, title_fontsize=30, label_fontsize=23, tic
     
     # plt.ylim(ymin=0, ymax=ymax*1.03)
 
+
+    # 调整图表和画布之间的空间
     if 'legend' in pic.keys():
         if i == 0:
             fig.legend()
@@ -163,7 +166,7 @@ def show_line(pic, i, rows, cols, fig, title_fontsize=30, label_fontsize=23, tic
             fig.legend(ncols=6, fontsize=legend_fontsize, loc='upper center',
                     framealpha=False,
                     bbox_to_anchor=(0.5, 1.2),
-                    # bbox_transform=fig.transFigure
+                    bbox_transform=fig.transFigure,
                     )
     
     # 用于控制图表中网格线的显示
@@ -515,6 +518,7 @@ def show_3d(pic, i, rows, cols, fig, title_fontsize=20, label_fontsize=12, ticks
         ax.invert_xaxis()
         ax.invert_yaxis()
 
+
 # pics（一个包含多个图形信息的列表）
 # suptitle（整个画布的标题）
 # draw_type（绘制类型）
@@ -552,10 +556,19 @@ def show_multi_pics(pics, suptitle, draw_type, savepath, legend,
             exit(0)
     # 自动调整子图参数，使之填充整个画布区域而不重叠
     plt.tight_layout()
+
+    # 启用交互模式
+    # plt.ion()
+
+    # 显示图形
+    plt.show()
+
     # plt.show()
     print(f"Save figure at {savepath}/{suptitle}.pdf")
     plt.savefig(f'{savepath}/{suptitle}.pdf', bbox_inches='tight')
-    # plt.savefig(f'{savepath}/{suptitle}.pdf')
+    plt.savefig(f'{savepath}/{suptitle}.svg', bbox_inches='tight')
+
+
 
 
 def draw_one_picture(pic):

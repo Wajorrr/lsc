@@ -161,15 +161,15 @@ def enable_GC(exp, enable_GC):
 def log_dram_ratio(avg_object_size, scaling):
     return overhead / (avg_object_size * scaling)
 
-def zipf(exp, alphas):
+def zipf(exp, alphas, obj_num):
     out = []
     # 对每个alpha值生成一个配置
     for alpha in alphas:
         exp2 = exp.clone()
         exp2.name += f'-zipf{alpha}'
-        exp2.cfg['trace.totalKAccesses'] = 10000
+        # exp2.cfg['trace.totalKAccesses'] = 1000000
         exp2.cfg['trace.alpha'] = alpha
-        exp2.cfg['trace.numKObjects'] = 100
+        exp2.cfg['trace.numKObjects'] = obj_num
         exp2.cfg['trace.format'] = 'Zipf'
         out.append(exp2)
     return out
@@ -246,7 +246,15 @@ def block_binary(exp, formatStrings, pageSize):
         exp2.name += '-BlockBinary'
         exp2.cfg['trace.totalKAccesses'] = numKRequests
         # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/10_BIT_oracle.bin.zst"
-        exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/215_BIT_oracle.bin.zst"
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/215_BIT_oracle.bin.zst" # flash 100MB seg 2MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/220_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/252_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/427_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/49_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/2_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/131_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        # exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/154_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
+        exp2.cfg['trace.filename'] = "/media/wzj/Data/traces/ali_block/oracle_compress_BIT/239_BIT_oracle.bin.zst" # flash 10000MB seg 96MB
         exp2.cfg['trace.pageSize'] = int(pageSize)
         exp2.cfg['trace.format'] = 'BlockBinary'
         exp2.cfg['trace.formatString'] = f'{formatString}'
@@ -293,6 +301,8 @@ def generate_base_exps(args):
 
 def add_log(exps, log_args):
     # new_exps = []
+    # print(log_args)
+    # exit()
     
     if log_args == None:
         log_args={}
@@ -300,7 +310,7 @@ def add_log(exps, log_args):
     if 'block_size' not in log_args:
         log_args['block_size'] = [4096]
     
-    if 'segment_size' not in log_args:
+    if 'segment_sizeMB' not in log_args:
         log_args['segment_sizeMB'] = [2]
         
     if 'log_type' not in log_args:
@@ -323,7 +333,8 @@ def add_traces(exps, trace_args):
     traceClass=''
     
     if 'zipf' in trace_args:# 将zipf负载配置添加到现有配置，组成新的配置，并把新配置添加到新配置列表末尾
-        new_exps.extend(expand(exps, zipf, trace_args['zipf']))
+        obj_num=trace_args['obj_num'][0] if 'obj_num' in trace_args else 100
+        new_exps.extend(expand(exps, zipf, trace_args['zipf'], obj_num))
         traceClass = 'zipf'
 
     if 'scaling' not in trace_args:
@@ -451,6 +462,9 @@ def arg_parser():
     # zipf负载，之后可以指定多个alpha值，默认为0.8
     traces.add_argument('--zipf', dest='traces', action=LayeredAction, 
             const='zipf', default=[0.8], nargs='*', type=float, metavar='alpha', help='defaults to .8')
+    # 限制zipf分布生成多少个不同对象(wss)
+    traces.add_argument('--zipf-objnum', dest='traces', action=LayeredAction, const='obj_num', 
+            nargs=1, default=100, type=int, metavar='numKObjects')
     # binary负载，之后可以指定多个formatString值，默认为'IQQB'
     traces.add_argument('--binary', dest='traces', action=LayeredAction, 
             const='binary', default=['IQQB'], nargs='*', type=str, metavar='formatString', help='defaults to IQQB')

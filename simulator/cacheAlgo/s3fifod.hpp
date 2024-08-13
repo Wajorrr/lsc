@@ -3,7 +3,6 @@
 #include "stats/stats.hpp"
 #include "cache_algo_abstract.hpp"
 #include "block.hpp"
-#include "eviction_algo_base.h"
 #include "common/logging.h"
 #include "stats/stats.hpp"
 #include "tags.hpp"
@@ -218,7 +217,7 @@ namespace CacheAlgo
             main_eviction_hit = 0;
         }
 
-        bool get(const parser::Request *req, bool set_on_miss)
+        bool get(const parser::Request *req, bool update_stats = false, bool set_on_miss = false)
         {
             DEBUG_ASSERT(fifo->get_current_size() + main_cache->get_current_size() <=
                          cache_size);
@@ -231,13 +230,16 @@ namespace CacheAlgo
             }
             else
                 hit = (bool)find(req, true);
-            if (hit)
+            if (update_stats)
             {
-                cache_algo_stats["hits"]++;
-            }
-            else
-            {
-                cache_algo_stats["misses"]++;
+                if (hit)
+                {
+                    cache_algo_stats["hits"]++;
+                }
+                else
+                {
+                    cache_algo_stats["misses"]++;
+                }
             }
             // 每次操作后重置hit_on_ghost
             hit_on_ghost = false;
@@ -353,7 +355,7 @@ namespace CacheAlgo
                 /* insert into the ARC */
                 hit_on_ghost = false;
                 // main cache的容量限制是严格的，因此插入前需要先驱逐
-                main_cache->get(req, true);
+                main_cache->set(req, true);
                 obj = main_cache->find(req, false);
             }
             else
@@ -400,7 +402,7 @@ namespace CacheAlgo
 #endif
                 copy_cache_obj_to_request(req_local, obj);
                 // main中驱逐出的对象，插入到驱逐队列
-                main_cache_eviction->get(req_local, true);
+                main_cache_eviction->set(req_local, true);
                 evict_obj_id = main_cache->evict(req);
                 return evict_obj_id;
             }
@@ -426,7 +428,7 @@ namespace CacheAlgo
                     // evict from main cache
                     obj = main_cache->to_evict(req);
                     copy_cache_obj_to_request(req_local, obj);
-                    main_cache_eviction->get(req_local, true);
+                    main_cache_eviction->set(req_local, true);
                     evict_obj_id = main_cache->evict(req);
                 }
             }
@@ -439,8 +441,8 @@ namespace CacheAlgo
 
                 record_eviction_age(obj, CURR_TIME(*this, req) - obj->create_time);
                 // insert to ghost
-                fifo_ghost->get(req_local, true);
-                fifo_eviction->get(req_local, true);
+                fifo_ghost->set(req_local, true);
+                fifo_eviction->set(req_local, true);
             }
             return evict_obj_id;
 
@@ -462,7 +464,7 @@ namespace CacheAlgo
                     obj = main_cache->to_evict(req);
                     copy_cache_obj_to_request(req_local, obj);
                     // 被驱逐的对象插入到驱逐队列
-                    main_cache_eviction->get(req_local, true);
+                    main_cache_eviction->set(req_local, true);
                     evict_obj_id = main_cache->evict(req);
                 }
             }
@@ -470,8 +472,8 @@ namespace CacheAlgo
             {
                 evict_obj_id = req_local->id;
                 // insert to ghost
-                fifo_ghost->get(req_local, true);
-                fifo_eviction->get(req_local, true);
+                fifo_ghost->set(req_local, true);
+                fifo_eviction->set(req_local, true);
             }
             return evict_obj_id;
 #endif
@@ -491,7 +493,7 @@ namespace CacheAlgo
 #endif
                 copy_cache_obj_to_request(req_local, obj);
                 // main中驱逐出的对象，插入到驱逐队列
-                main_cache_eviction->get(req_local, true);
+                main_cache_eviction->set(req_local, true);
                 evicted.push_back(main_cache->evict(req));
                 return evicted;
             }
@@ -517,7 +519,7 @@ namespace CacheAlgo
                     // evict from main cache
                     obj = main_cache->to_evict(req);
                     copy_cache_obj_to_request(req_local, obj);
-                    main_cache_eviction->get(req_local, true);
+                    main_cache_eviction->set(req_local, true);
                     evicted.push_back(main_cache->evict(req));
                 }
             }
@@ -530,8 +532,8 @@ namespace CacheAlgo
 
                 record_eviction_age(obj, CURR_TIME(*this, req) - obj->create_time);
                 // insert to ghost
-                fifo_ghost->get(req_local, true);
-                fifo_eviction->get(req_local, true);
+                fifo_ghost->set(req_local, true);
+                fifo_eviction->set(req_local, true);
             }
             return evicted;
 
@@ -553,7 +555,7 @@ namespace CacheAlgo
                     obj = main_cache->to_evict(req);
                     copy_cache_obj_to_request(req_local, obj);
                     // 被驱逐的对象插入到驱逐队列
-                    main_cache_eviction->get(req_local, true);
+                    main_cache_eviction->set(req_local, true);
                     evicted.push_back(main_cache->evict(req));
                 }
             }
@@ -561,8 +563,8 @@ namespace CacheAlgo
             {
                 evicted.push_back(req_local->id);
                 // insert to ghost
-                fifo_ghost->get(req_local, true);
-                fifo_eviction->get(req_local, true);
+                fifo_ghost->set(req_local, true);
+                fifo_eviction->set(req_local, true);
             }
             return evicted;
 #endif

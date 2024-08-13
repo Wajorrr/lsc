@@ -57,6 +57,7 @@ namespace cache
         bool warmed_up = false;
         flashCache::BlockLogAbstract *_log;
         void checkWarmup();
+        void printSegment();
 
     private:
         std::unordered_map<uint64_t, bool> _historyAccess;

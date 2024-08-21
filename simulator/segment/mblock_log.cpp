@@ -12,8 +12,9 @@ namespace flashCache
         _log_stats["logCapacity"] = _total_capacity;
         _num_segments = _log_capacity / Segment::_capacity; // 包含的擦除块数量
 
-        Segment template_segment = Segment();
-        _segments.resize(_num_segments, template_segment); // 根据擦除块的数量和大小来分配擦除块数组空间
+        // Segment template_segment = Segment();
+        // _segments.resize(_num_segments, template_segment); // 根据擦除块的数量和大小来分配擦除块数组空间
+        _segments.resize(_num_segments, new Segment()); // 根据擦除块的数量和大小来分配擦除块数组空间
 
         // allow last segment to be smaller than the others
         // 对齐到段大小，多出来的空间舍弃
@@ -64,7 +65,7 @@ namespace flashCache
     void mBlockLog::_group_insert(Block &item, int group_idx)
     {
         int active_seg = *_group[group_idx]._active_seg;
-        Segment &current_segment = _segments[active_seg];
+        Segment &current_segment = *_segments[active_seg];
         _log_stats["bytes_written"] += item._capacity;              // 写入字节数
         assert(_item_active.find(item._lba) == _item_active.end()); // 保证对象在当前flash Cache中不存在
         _current_size += item._capacity;
@@ -88,7 +89,7 @@ namespace flashCache
         else
             _group[group_idx]._active_seg++;
         // _active_segment = (_active_segment + 1) % _num_segments;
-        Segment &current_segment = _segments[*_group[group_idx]._active_seg];
+        Segment &current_segment = *_segments[*_group[group_idx]._active_seg];
 
         if (current_segment._size) // 如果当前擦除块中有数据
         {
@@ -123,7 +124,7 @@ namespace flashCache
 
         for (auto &item : items)
         {
-            Segment &current_segment = _segments[*_group[group_idx]._active_seg]; // 第一组的当前开放块
+            Segment &current_segment = *_segments[*_group[group_idx]._active_seg]; // 第一组的当前开放块
             // DEBUG("group idx: %d, current_segment: _idx:%d, _wp:%ld, _capacity:%ld\n",
             //       group_idx, *_group_active_seg[group_idx], current_segment._write_point, current_segment._capacity);
             // DEBUG("item.obj_size:%ld\n", item.obj_size);
@@ -184,7 +185,7 @@ namespace flashCache
 
         for (auto &item : items)
         {
-            Segment &current_segment = _segments[*_group[0]._active_seg]; // 第一组的当前开放块
+            Segment &current_segment = *_segments[*_group[0]._active_seg]; // 第一组的当前开放块
             // DEBUG("group idx: %d, current_segment: _idx:%d, _wp:%ld, _capacity:%ld\n",
             //       group_idx, *_group_active_seg[group_idx], current_segment._write_point, current_segment._capacity);
             // DEBUG("item.obj_size:%ld\n", item.obj_size);
@@ -237,12 +238,12 @@ namespace flashCache
             if (it != _item_active.end())
             {
                 group_idx = _group_map[it->second];
-                auto old_item = _segments[it->second]._items[item._lba];
-                _segments[it->second]._size -= old_item._capacity;
-                // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]._size);
+                auto old_item = _segments[it->second]->_items[item._lba];
+                _segments[it->second]->_size -= old_item._capacity;
+                // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]->_size);
                 _log_stats["stores_requested_bytes"] -= old_item._capacity;
                 _current_size -= old_item._capacity;
-                _segments[it->second]._items.erase(item._lba);
+                _segments[it->second]->_items.erase(item._lba);
                 _item_active.erase(it);
             }
             // 由于更新造成的每个对象被重新插入，计入请求写入字节数

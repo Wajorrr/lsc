@@ -33,7 +33,10 @@ namespace flashCache
 
         /* will only return forced evictions */
         std::vector<Block> _incrementSegmentAndFlush(int32_t group_idx);
-        std::vector<Block> group_insert(std::vector<Block> &items, int32_t group_idx);
+        void _vir_incrementSegmentAndFlush(int32_t group_idx);
+        std::vector<Block> group_insert(std::vector<Block> items, int32_t group_idx);
+        bool find(uint64_t id, bool updateStats = false);
+        void _increase(Block &block);
         void _group_insert(Block &item, int group_idx);
         void print_group();
 
@@ -45,6 +48,10 @@ namespace flashCache
 
         // std::unordered_map<int32_t, int32_t> _vir_group_map; // <vir_seg_id, group_id>
         std::unordered_map<int32_t, int32_t> _vir_seg_map; // <block_id, vir_seg_id>
+
+        std::unordered_map<int32_t, int32_t> _open_vir_seg; // <group_id, vir_seg_id>
+
+        std::list<int32_t> _free_vir_segs;
 
         bool _track_hits_per_item;
         const int _insertion_points = 8;

@@ -15,8 +15,6 @@ struct Block
   int64_t oracle_count;
   bool is_dirty;
 
-  // Block(uint64_t lba, uint64_t size) : _lba(lba), _size(size) {}
-
   static Block make(const parser::Request &req)
   { // 没有用到请求的num
     return Block{._lba = req.id, ._size = req.req_size, .hit_count = 0, .oracle_count = req.oracle_count};

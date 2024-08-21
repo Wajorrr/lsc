@@ -5,6 +5,7 @@
 #include "admission/admission.hpp"
 #include "segment/block_log.hpp"
 #include "segment/mblock_log.hpp"
+#include "segment/block_ripq.hpp"
 
 namespace cache
 {

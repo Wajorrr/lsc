@@ -165,9 +165,9 @@ namespace cache
         double flashWriteAmp = calcFlashWriteAmp();
         double capacityUtilization = calcCapacityUtilization();
 
-        // INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
-        // INFO("Miss Rate: %lf, Flash Write Amp: %lf, Capacity utilization: %lf\n",
-        //      missRate, flashWriteAmp, capacityUtilization);
+        INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
+        INFO("Miss Rate: %lf, Flash Write Amp: %lf, Capacity utilization: %lf\n",
+             missRate, flashWriteAmp, capacityUtilization);
         // printSegment();
 
         // globalStats["missRate"] = missRate;

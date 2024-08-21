@@ -13,13 +13,9 @@ namespace flashCache
         _num_segments = _log_capacity / Segment::_capacity; // 包含的段数量
 
         // Segment::_capacity = Segment::_capacity;
-        Segment template_segment = Segment();
-
-        _segments.resize(_num_segments, template_segment); // 根据段的数量和大小来分配段数组空间
-        for (auto &segment : _segments)
-        {
-            segment.reset();
-        }
+        // Segment template_segment = Segment();
+        // _segments.resize(_num_segments, template_segment); // 根据段的数量和大小来分配段数组空间
+        _segments.resize(_num_segments, new Segment()); // 根据段的数量和大小来分配段数组空间
 
         // allow last segment to be smaller than the others
         // GC模式下，对齐到段大小，多出来的空间舍弃
@@ -58,7 +54,7 @@ namespace flashCache
         auto min_it = std::min_element(_sealed_segments.begin(), _sealed_segments.end(),
                                        [this](const uint32_t &a, const uint32_t &b)
                                        {
-                                           return _segments[a]._size < _segments[b]._size;
+                                           return _segments[a]->_size < _segments[b]->_size;
                                        });
         uint32_t min_idx = *min_it;
         _sealed_segments.erase(min_it);
@@ -74,7 +70,7 @@ namespace flashCache
         {
             uint32_t victim_idx = _victim_select(); // 选择一个段进行GC
             // DEBUG("victim_idx:%u\n", victim_idx);
-            Segment &victim = _segments[victim_idx];
+            Segment &victim = *_segments[victim_idx];
             uint64_t total_rewrite = 0;
             for (auto &item : victim._items)
             {
@@ -91,7 +87,7 @@ namespace flashCache
         // 有效数据迁移
         for (auto &item : rewrite_blocks)
         {
-            Segment &current_segment = _segments[_active_segment]; // 当前开放块
+            Segment &current_segment = *_segments[_active_segment]; // 当前开放块
             // DEBUG("current_segment._size:%ld,current_segment._capacity:%ld\n", current_segment._size, current_segment._capacity);
             // DEBUG("item.obj_size:%ld\n", item.obj_size);
             if (item._capacity + current_segment._write_point > current_segment._capacity) // 当前开放块空间不够了
@@ -136,7 +132,8 @@ namespace flashCache
         std::vector<Block> evicted;
         for (auto &item : items)
         {
-            Segment *current_segment = &_segments[_active_segment]; // 当前开放块
+            // Segment *current_segment = &_segments[_active_segment]; // 当前开放块
+            Segment *current_segment = _segments[_active_segment]; // 当前开放块
 
             // DEBUG("item.obj_size:%ld\n", item._capacity);
 
@@ -157,7 +154,8 @@ namespace flashCache
 
                 // 在C++中，引用一旦被初始化后，就不能被改变去引用另一个对象；它们必须在声明时被初始化，并且之后不能指向另一个对象。
                 // 这意味着，引用一旦绑定到一个对象，就会一直绑定到那个对象，不能被重新绑定。
-                current_segment = &_segments[_active_segment];
+                // current_segment = &_segments[_active_segment];
+                current_segment = _segments[_active_segment];
             }
 
             _insert(item); // 将对象插入当前开放块

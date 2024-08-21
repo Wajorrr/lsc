@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <list>
 #include "block.hpp"
 #include "stats/stats.hpp"
 #include "common/macro.h"
@@ -15,7 +16,7 @@ namespace flashCache
         static inline uint64_t _capacity = 0; // 段容量
         uint64_t _size;                       // 段中有效块数据量
         uint64_t _write_point;                // 已经写入了多少字节
-        bool _is_virtual;                     // 用于RIPQ，是否是虚拟段
+        bool _is_virtual = false;             // 用于RIPQ，是否是虚拟段
 
         Segment() { reset(); }
 
@@ -42,13 +43,14 @@ namespace flashCache
             _items.clear();
             _size = 0;
             _write_point = 0;
-            _is_virtual = false;
+            // _is_virtual = false;
         }
     };
 
     struct Group
     {
-        std::list<int32_t> _segments;             // 组中包含的段
+        std::list<int32_t> _segments; // 组中包含的段
+        // std::list<std::vector<Segment>::iterator> _segments; // 组中包含的段
         std::list<int32_t>::iterator _active_seg; // 当前开放段
         Segment write_buffer;                     // DRAM写缓冲区，用于带写入缓存的flash cache
         uint64_t _size;                           // 组中有效块数据量
@@ -82,15 +84,15 @@ namespace flashCache
                 auto it = _item_active.find(id);
                 if (it != _item_active.end())
                 {
-                    auto old_item = _segments[it->second]._items[id];
+                    auto old_item = _segments[it->second]->_items[id];
                     _log_stats["numEvictions"]++;
                     if (old_item.is_dirty)
                         _log_stats["numBlockFlushes"]++;
-                    _segments[it->second]._size -= old_item._capacity;
-                    // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]._size);
+                    _segments[it->second]->_size -= old_item._capacity;
+                    // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]->_size);
                     _log_stats["stores_requested_bytes"] -= old_item._capacity;
                     _current_size -= old_item._capacity;
-                    _segments[it->second]._items.erase(id);
+                    _segments[it->second]->_items.erase(id);
                     _item_active.erase(it);
                 }
             }
@@ -104,12 +106,12 @@ namespace flashCache
                 auto it = _item_active.find(item._lba);
                 if (it != _item_active.end())
                 {
-                    auto old_item = _segments[it->second]._items[item._lba];
-                    _segments[it->second]._size -= old_item._capacity;
-                    // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]._size);
+                    auto old_item = _segments[it->second]->_items[item._lba];
+                    _segments[it->second]->_size -= old_item._capacity;
+                    // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]->_size);
                     _log_stats["stores_requested_bytes"] -= old_item._capacity;
                     _current_size -= old_item._capacity;
-                    _segments[it->second]._items.erase(item._lba);
+                    _segments[it->second]->_items.erase(item._lba);
                     _item_active.erase(it);
                 }
             }
@@ -133,7 +135,7 @@ namespace flashCache
                 if (updateStats)
                 {
                     _log_stats["hits"]++;
-                    _segments[it->second]._items[id].hit_count++;
+                    _segments[it->second]->_items[id].hit_count++;
                 }
                 return true;
             }
@@ -192,11 +194,11 @@ namespace flashCache
             // uint64_t temptotSize2 = 0;
             for (int i = 0; i < _num_segments; i++)
             {
-                temptotSize += _segments[i]._size;
-                // temptotSize2 = temptotSize2 + _segments[i]._capacity;
+                temptotSize += _segments[i]->_size;
+                // temptotSize2 = temptotSize2 + _segments[i]->_capacity;
                 // DEBUG("temptotSize2:%lu, _total_capacity:%lu\n", temptotSize2, _total_capacity);
                 DEBUG("segment %d, item num %d, size %lu, capacity %lu\n",
-                      i, _segments[i]._items.size(), _segments[i]._size, _segments[i]._capacity);
+                      i, _segments[i]->_items.size(), _segments[i]->_size, _segments[i]->_capacity);
             }
             if (temptotSize != _current_size)
             {
@@ -212,9 +214,9 @@ namespace flashCache
             assert(_item_active.find(item._lba) == _item_active.end()); // 保证对象在当前flash Cache中不存在
             _current_size += item._capacity;
             item.hit_count = 0;
-            _segments[_active_segment].insert(item); // 将对象插入当前开放的段中
+            _segments[_active_segment]->insert(item); // 将对象插入当前开放的段中
             _item_active[item._lba] = _active_segment;
-            assert(_segments[_active_segment]._write_point <= _segments[_active_segment]._capacity);
+            assert(_segments[_active_segment]->_write_point <= _segments[_active_segment]->_capacity);
             // _num_inserts++;
             // _size_inserts += item.obj_size;
             // assert(_size_inserts == _segments[_active_segment]._size);
@@ -225,7 +227,7 @@ namespace flashCache
         int64_t _total_capacity;
 
     protected:
-        std::vector<Segment> _segments;                 // 缓存段列表
+        std::vector<Segment *> _segments;               // 缓存段列表
         std::unordered_map<uint64_t, int> _item_active; // 标识有效块及其所在的段 <lba,segment_id>
 
         // std::unordered_map<uint64_t, std::shared_ptr<Block>> _item_map; // 标识有效块

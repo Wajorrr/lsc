@@ -29,6 +29,11 @@ namespace cache
             DEBUG("Creating mFIFOLog cache\n");
             _log = new flashCache::mBlockLog(log_capacity, log_stats);
         }
+        else if (log_type == "RIPQ")
+        {
+            DEBUG("Creating RIPQ cache\n");
+            _log = new flashCache::BlockRIPQ(log_capacity, log_stats);
+        }
         else
         {
             ERROR("Unknown log type %s\n", log_type.c_str());

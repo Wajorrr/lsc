@@ -24,6 +24,7 @@ namespace flashCache
          * no guarantee for placement in multihash */
         std::vector<Block> insert(std::vector<Block> items);
         void update(std::vector<Block> items);
+        void check();
 
         // int64_t get_current_size();
         // int64_t get_total_size();
@@ -54,7 +55,7 @@ namespace flashCache
         std::list<int32_t> _free_vir_segs;
 
         bool _track_hits_per_item;
-        const int _insertion_points = 8;
+        const int _insertion_points = 3;
         uint64_t _num_inserts = 0;
         uint64_t _size_inserts = 0;
     };

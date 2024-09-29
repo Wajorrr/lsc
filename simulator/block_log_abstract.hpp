@@ -40,6 +40,7 @@ namespace flashCache
 
         void reset()
         {
+            // DEBUG("reset segment\n");
             _items.clear();
             _size = 0;
             _write_point = 0;
@@ -73,6 +74,13 @@ namespace flashCache
 
         /* ----------- Basic functionality --------------- */
         virtual ~BlockLogAbstract() = default;
+        // {
+        //     for (auto segment : _segments)
+        //     {
+        //         if (segment)
+        //             delete segment;
+        //     }
+        // }
 
         /* insert multiple items (allows amortization of flash write),
          * no guarantee for placement in multihash */
@@ -220,6 +228,15 @@ namespace flashCache
             // _num_inserts++;
             // _size_inserts += item.obj_size;
             // assert(_size_inserts == _segments[_active_segment]._size);
+        }
+
+        void init_segments()
+        {
+            _segments.resize(_num_segments);
+            for (int i = 0; i < _num_segments; i++)
+            {
+                _segments[i] = new Segment();
+            }
         }
 
     public:

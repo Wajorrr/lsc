@@ -14,7 +14,9 @@ namespace flashCache
 
         // Segment template_segment = Segment();
         // _segments.resize(_num_segments, template_segment); // 根据擦除块的数量和大小来分配擦除块数组空间
-        _segments.resize(_num_segments, new Segment()); // 根据擦除块的数量和大小来分配擦除块数组空间
+        init_segments();
+
+        // printSegment();
 
         // allow last segment to be smaller than the others
         // 对齐到段大小，多出来的空间舍弃
@@ -43,6 +45,7 @@ namespace flashCache
         std::vector<Block> evicted;
         _active_segment = (_active_segment + 1) % _num_segments; // 新的开放块
         Segment &current_segment = *_segments[_active_segment];
+        // printSegment();
 
         if (current_segment._size) // 如果当前擦除块中有数据
         {

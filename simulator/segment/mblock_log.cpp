@@ -14,7 +14,7 @@ namespace flashCache
 
         // Segment template_segment = Segment();
         // _segments.resize(_num_segments, template_segment); // 根据擦除块的数量和大小来分配擦除块数组空间
-        _segments.resize(_num_segments, new Segment()); // 根据擦除块的数量和大小来分配擦除块数组空间
+        init_segments();
 
         // allow last segment to be smaller than the others
         // 对齐到段大小，多出来的空间舍弃

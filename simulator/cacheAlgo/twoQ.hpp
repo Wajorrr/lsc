@@ -3,7 +3,6 @@
 #include "stats/stats.hpp"
 #include "cache_algo_abstract.hpp"
 #include "block.hpp"
-#include "eviction_algo_base.h"
 #include "common/logging.h"
 #include "tags.hpp"
 

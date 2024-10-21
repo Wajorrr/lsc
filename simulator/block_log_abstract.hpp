@@ -151,6 +151,7 @@ namespace flashCache
 
         int64_t get_current_size() { return _current_size; }
         int64_t get_total_size() { return _total_capacity; }
+        int64_t get_segments_num() { return _segments.size(); }
 
         /* ----------- Useful for Admission Policies --------------- */
 
@@ -249,8 +250,8 @@ namespace flashCache
 
         // std::unordered_map<uint64_t, std::shared_ptr<Block>> _item_map; // 标识有效块
 
-        uint64_t _active_segment; // 开放段标号
-        uint64_t _num_segments;   // 段数量
+        int64_t _active_segment; // 开放段标号
+        uint64_t _num_segments;  // 段数量
 
         stats::LocalStatsCollector &_log_stats;
     };

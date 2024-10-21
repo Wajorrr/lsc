@@ -80,6 +80,10 @@ namespace CacheAlgo
         {
             return current_size;
         }
+        virtual int64_t get_total_size()
+        {
+            return cache_size;
+        }
         virtual int64_t get_obj_num()
         {
             return obj_num;

@@ -65,6 +65,7 @@ namespace flashCache
     {
         uint64_t total_reclaimed = 0;
         std::vector<Block> rewrite_blocks;
+        // DEBUG("before select: free_segments size:%lu, sealed_segments size:%lu\n", _free_segments.size(), _sealed_segments.size());
         // 选取若干个段GC，保证GC回收的空间不小于一个段的大小
         while (total_reclaimed < Segment::_capacity)
         {
@@ -79,11 +80,13 @@ namespace flashCache
                 total_rewrite += item.second._capacity;
             }
             _current_size -= victim._size;
-            // DEBUG("total_reclaimed:%lu, victim._size:%lu\n", total_rewrite, victim._size);
             total_reclaimed += Segment::_capacity - victim._size;
+            // DEBUG("total_reclaimed:%lu, victim._size:%lu, segment._capacity:%lu\n",
+            //       total_reclaimed, victim._size, Segment::_capacity);
             victim.reset();
             _free_segments.push_back(victim_idx); // 将被GC的段加入空闲段列表
         }
+        // DEBUG("after select: free_segments size:%lu, sealed_segments size:%lu\n", _free_segments.size(), _sealed_segments.size());
         // 有效数据迁移
         for (auto &item : rewrite_blocks)
         {
@@ -93,6 +96,7 @@ namespace flashCache
             if (item._capacity + current_segment._write_point > current_segment._capacity) // 当前开放块空间不够了
             {
                 _incrementSegment(); // 当前开放块已写满，切换到下一个开放块
+                // DEBUG("rewrite: free_segments size:%lu, sealed_segments size:%lu\n", _free_segments.size(), _sealed_segments.size());
             }
             _insert(item); // 将对象插入当前开放块
         }
@@ -145,7 +149,10 @@ namespace flashCache
                 /* move active segment pointer */
                 if (_free_segments.empty())
                 {
-                    // DEBUG("do_gc\n");
+                    // 先把当前开放段加入_sealed_segments中，保证所有段均在sealed_segments中
+                    _sealed_segments.push_back(_active_segment);
+                    // DEBUG("do gc\n");
+                    // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                     _do_gc();
                     // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                 }

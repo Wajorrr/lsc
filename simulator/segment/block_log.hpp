@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include "block.hpp"
 #include "block_log_abstract.hpp"
+#include "common/logging.h"
 #include "stats/stats.hpp"
 
 namespace flashCache

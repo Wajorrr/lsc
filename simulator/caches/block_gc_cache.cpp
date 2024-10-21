@@ -8,17 +8,51 @@
 namespace cache
 {
 
-    BlockGCCache::BlockGCCache(stats::StatsCollector *sc, stats::LocalStatsCollector &gs, const libconfig::Setting &settings) : BlockCache(sc, gs, settings)
+    BlockGCCache::BlockGCCache(stats::StatsCollector *sc,
+                               stats::LocalStatsCollector &gs,
+                               const libconfig::Setting &settings,
+                               bool is_read_cache) : BlockCache(sc, gs, settings)
     {
         misc::ConfigReader cfg(settings);
 
-        uint64_t flash_size_mb = (uint64_t)cfg.read<int>("cache.flashSizeMB"); // 闪存容量
+        bool enabled_rw_partition = cfg.exists("cache.enabledRWPartition");
 
-        uint64_t log_capacity = flash_size_mb * 1024 * 1024;
+        uint64_t flash_size_mb = (uint64_t)cfg.read<int>("cache.flashSizeMB"); // 闪存容量
+        uint64_t log_capacity = flash_size_mb;
+
         uint64_t cache_capacity = (uint64_t)cfg.read<int>("cache.cacheSizeMB") * 1024 * 1024;
 
-        auto &log_stats = statsCollector->createLocalCollector("log");
+        std::string log_name = "log";
+        if (enabled_rw_partition)
+        {
+            double read_percent = cfg.read<double>("cache.readPercent");
+            double op_percent = cfg.read<double>("cache.opPercent");
+
+            int64_t log_size;
+            if (is_read_cache)
+            {
+                log_size = (double)(read_percent / 100) * flash_size_mb * 1024 * 1024;
+                cache_capacity = (double)((100 - op_percent) / 100) * log_size;
+                log_name = "read cache";
+                DEBUG("creating read cache, percent=%f, log_size=%lu, cache_capacity=%lu\n", read_percent, log_size, cache_capacity);
+                misc::bytes(log_size);
+            }
+            else
+            {
+                log_size = (double)((100 - read_percent) / 100) * flash_size_mb * 1024 * 1024;
+                cache_capacity = (double)((100 - op_percent) / 100) * log_size;
+                log_name = "write cache";
+                DEBUG("creating write cache, percent=%f, log_size=%lu, cache_capacity=%lu\n", 100 - read_percent, log_size, cache_capacity);
+                misc::bytes(log_size);
+            }
+            log_capacity = log_size;
+        }
+        stats::LocalStatsCollector &log_stats = statsCollector->createLocalCollector(log_name);
         _log = new flashCache::BlockGC(log_capacity, log_stats);
+        if (is_read_cache)
+            DEBUG("read cache log size %lu\n", log_capacity);
+        else
+            DEBUG("write cache log size %lu\n", log_capacity);
 
         std::string cache_algo_name = cfg.read<const char *>("cache.cacheAlgoName");
         auto &cache_algo_stats = statsCollector->createLocalCollector("cacheAlgo");

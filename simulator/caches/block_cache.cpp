@@ -6,6 +6,7 @@
 #include "caches/block_log_cache.hpp"
 #include "caches/block_gc_cache.hpp"
 #include "caches/block_cache.hpp"
+#include "caches/block_rw_partition_cache.hpp"
 #include "common/logging.h"
 
 namespace cache
@@ -61,8 +62,14 @@ namespace cache
         auto &gs = sc->createLocalCollector("global");
 
         bool enableGC = cfg.exists("log.enableGC");
+        bool enabled_rw_partition = cfg.exists("cache.enabledRWPartition");
 
-        if (!enableGC) // 只有flash上的日志记录缓存
+        if (enabled_rw_partition)
+        {
+            DEBUG("Creating RWPartitionCache\n");
+            cache_ret = new BlockRWPartitionCache(sc, gs, settings);
+        }
+        else if (!enableGC) // 只有flash上的日志记录缓存
         {
             DEBUG("Creating BlockLogCache\n");
             cache_ret = new BlockLogCache(sc, gs, settings);
@@ -104,6 +111,7 @@ namespace cache
         // 所以这里如果采用GET miss后默认写入缓存，会导致后续原本进行缓存写入的SET请求被视作更新请求
         // 需要过滤这种负载的情况
 
+        // 更新
         if (hit && req->type == parser::OP_SET)
         {
             if (_promotFlag[req->id])
@@ -120,6 +128,7 @@ namespace cache
             }
         }
 
+        // 读取
         if (req->type == parser::OP_GET)
         {
             if (hit)
@@ -160,10 +169,10 @@ namespace cache
 
     void BlockCache::dumpStats() // 打印统计信息，并输出到outputfile
     {
-
         double missRate = calcMissRate();
         double flashWriteAmp = calcFlashWriteAmp();
         double capacityUtilization = calcCapacityUtilization();
+        // DEBUG("111\n");
 
         INFO("totalAccesses: %lu, accessesAfterFlush: %lu, Printing stats\n", getTotalAccesses(), getAccessesAfterFlush());
         INFO("Miss Rate: %lf, Flash Write Amp: %lf, Capacity utilization: %lf\n",
@@ -236,6 +245,7 @@ namespace cache
 
     double BlockCache::calcCapacityUtilization()
     {
+        DEBUG("current_size:%d,total_size:%d\n", _log->get_current_size(), _log->get_total_size());
         double utilization = _log->get_current_size() / (double)_log->get_total_size();
         return utilization;
     }

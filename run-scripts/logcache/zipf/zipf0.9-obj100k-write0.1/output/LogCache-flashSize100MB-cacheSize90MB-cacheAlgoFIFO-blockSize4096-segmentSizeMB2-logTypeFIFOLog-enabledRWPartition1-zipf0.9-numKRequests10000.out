@@ -1,0 +1,583 @@
+{
+    "cacheAlgo": {
+        "fifoCacheCapacity": 9437184
+    },
+    "global": {
+        "GetsAfterFlush": 0,
+        "accessesAfterFlush": 0,
+        "misses": 0,
+        "totalAccesses": 0
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 0,
+        "logCapacity": 94371840,
+        "request_bytes_written": 0
+    },
+    "write cache": {
+        "bytes_written": 0,
+        "logCapacity": 10485760,
+        "request_bytes_written": 0
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 55586,
+        "misses": 308861,
+        "numEvictions": 31904,
+        "sizeEvictions": 130678784
+    },
+    "global": {
+        "GetsAfterFlush": 899934,
+        "SetsAfterFlush": 100066,
+        "accessesAfterFlush": 1000000,
+        "compulsoryMisses": 84757,
+        "hits": 591073,
+        "hitsSize": 2421035008,
+        "misses": 308861,
+        "missesSize": 1265094656,
+        "totalAccesses": 1000000,
+        "totalGets": 899934,
+        "totalSets": 100066,
+        "uniqueBytes": 384757760,
+        "updateCount": 65858,
+        "updateSize": 269754368
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 5444009984,
+        "current_size": 84934656,
+        "hits": 535487,
+        "logCapacity": 94371840,
+        "misses": 364447,
+        "numBlockFlushes": 26304,
+        "numEvictions": 288125,
+        "request_bytes_written": 1509679104,
+        "stores_requested": 368574,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 1299927040,
+        "current_size": 9437184,
+        "hits": 55586,
+        "logCapacity": 10485760,
+        "misses": 308861,
+        "numBlockFlushes": 31904,
+        "numEvictions": 31904,
+        "request_bytes_written": 165285888,
+        "stores_requested": 40353,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 111151,
+        "misses": 613874,
+        "numEvictions": 65737,
+        "sizeEvictions": 269258752
+    },
+    "global": {
+        "GetsAfterFlush": 1800091,
+        "SetsAfterFlush": 199909,
+        "accessesAfterFlush": 2000000,
+        "compulsoryMisses": 89655,
+        "hits": 1186217,
+        "hitsSize": 4858744832,
+        "misses": 613874,
+        "missesSize": 2514427904,
+        "totalAccesses": 2000000,
+        "totalGets": 1800091,
+        "totalSets": 199909,
+        "uniqueBytes": 406945792,
+        "updateCount": 131868,
+        "updateSize": 540131328
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 10751229952,
+        "current_size": 84934656,
+        "hits": 1075066,
+        "logCapacity": 94371840,
+        "misses": 725025,
+        "numBlockFlushes": 53649,
+        "numEvictions": 593138,
+        "request_bytes_written": 3003580416,
+        "stores_requested": 733296,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 2717368320,
+        "current_size": 9437184,
+        "hits": 111151,
+        "logCapacity": 10485760,
+        "misses": 613874,
+        "numBlockFlushes": 65737,
+        "numEvictions": 65737,
+        "request_bytes_written": 329674752,
+        "stores_requested": 80487,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 171071,
+        "misses": 917696,
+        "numEvictions": 99560,
+        "sizeEvictions": 407797760
+    },
+    "global": {
+        "GetsAfterFlush": 2699910,
+        "SetsAfterFlush": 300090,
+        "accessesAfterFlush": 3000000,
+        "compulsoryMisses": 90153,
+        "hits": 1782214,
+        "hitsSize": 7299948544,
+        "misses": 917696,
+        "missesSize": 3758882816,
+        "totalAccesses": 3000000,
+        "totalGets": 2699910,
+        "totalSets": 300090,
+        "uniqueBytes": 409251840,
+        "updateCount": 198226,
+        "updateSize": 811933696
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 15996907520,
+        "current_size": 84934656,
+        "hits": 1611143,
+        "logCapacity": 94371840,
+        "misses": 1088767,
+        "numBlockFlushes": 81280,
+        "numEvictions": 896959,
+        "request_bytes_written": 4492394496,
+        "stores_requested": 1096776,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 4129169408,
+        "current_size": 9437184,
+        "hits": 171071,
+        "logCapacity": 10485760,
+        "misses": 917696,
+        "numBlockFlushes": 99560,
+        "numEvictions": 99560,
+        "request_bytes_written": 495652864,
+        "stores_requested": 121009,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 232782,
+        "misses": 1222937,
+        "numEvictions": 133497,
+        "sizeEvictions": 546803712
+    },
+    "global": {
+        "GetsAfterFlush": 3599924,
+        "SetsAfterFlush": 400076,
+        "accessesAfterFlush": 4000000,
+        "compulsoryMisses": 90221,
+        "hits": 2376987,
+        "hitsSize": 9736138752,
+        "misses": 1222937,
+        "missesSize": 5009149952,
+        "totalAccesses": 4000000,
+        "totalGets": 3599924,
+        "totalSets": 400076,
+        "uniqueBytes": 409567232,
+        "updateCount": 264275,
+        "updateSize": 1082470400
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 21132464128,
+        "current_size": 84934656,
+        "hits": 2144205,
+        "logCapacity": 94371840,
+        "misses": 1455719,
+        "numBlockFlushes": 108685,
+        "numEvictions": 1202201,
+        "request_bytes_written": 5985378304,
+        "stores_requested": 1461274,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 5586169856,
+        "current_size": 9437184,
+        "hits": 232782,
+        "logCapacity": 10485760,
+        "misses": 1222937,
+        "numBlockFlushes": 133497,
+        "numEvictions": 133497,
+        "request_bytes_written": 662482944,
+        "stores_requested": 161739,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 300480,
+        "misses": 1528068,
+        "numEvictions": 167342,
+        "sizeEvictions": 685432832
+    },
+    "global": {
+        "GetsAfterFlush": 4500774,
+        "SetsAfterFlush": 499226,
+        "accessesAfterFlush": 5000000,
+        "compulsoryMisses": 90227,
+        "hits": 2972706,
+        "hitsSize": 12176203776,
+        "misses": 1528068,
+        "missesSize": 6258966528,
+        "totalAccesses": 5000000,
+        "totalGets": 4500774,
+        "totalSets": 499226,
+        "uniqueBytes": 409595904,
+        "updateCount": 329580,
+        "updateSize": 1349959680
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 26100465664,
+        "current_size": 84934656,
+        "hits": 2672226,
+        "logCapacity": 94371840,
+        "misses": 1828548,
+        "numBlockFlushes": 135925,
+        "numEvictions": 1507332,
+        "request_bytes_written": 7472750592,
+        "stores_requested": 1824402,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 7041695744,
+        "current_size": 9437184,
+        "hits": 300480,
+        "logCapacity": 10485760,
+        "misses": 1528068,
+        "numBlockFlushes": 167342,
+        "numEvictions": 167342,
+        "request_bytes_written": 831045632,
+        "stores_requested": 202892,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 372936,
+        "misses": 1832673,
+        "numEvictions": 201082,
+        "sizeEvictions": 823631872
+    },
+    "global": {
+        "GetsAfterFlush": 5401168,
+        "SetsAfterFlush": 598832,
+        "accessesAfterFlush": 6000000,
+        "compulsoryMisses": 90227,
+        "hits": 3568495,
+        "hitsSize": 14616555520,
+        "misses": 1832673,
+        "missesSize": 7506628608,
+        "totalAccesses": 6000000,
+        "totalGets": 5401168,
+        "totalSets": 598832,
+        "uniqueBytes": 409595904,
+        "updateCount": 395446,
+        "updateSize": 1619746816
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 30963986432,
+        "current_size": 84934656,
+        "hits": 3195559,
+        "logCapacity": 94371840,
+        "misses": 2205609,
+        "numBlockFlushes": 163368,
+        "numEvictions": 1811937,
+        "request_bytes_written": 8958074880,
+        "stores_requested": 2187030,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 8536719360,
+        "current_size": 9437184,
+        "hits": 372936,
+        "logCapacity": 10485760,
+        "misses": 1832673,
+        "numBlockFlushes": 201082,
+        "numEvictions": 201082,
+        "request_bytes_written": 1001369600,
+        "stores_requested": 244475,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 433226,
+        "misses": 2138168,
+        "numEvictions": 235028,
+        "sizeEvictions": 962674688
+    },
+    "global": {
+        "GetsAfterFlush": 6301374,
+        "SetsAfterFlush": 698626,
+        "accessesAfterFlush": 7000000,
+        "compulsoryMisses": 90227,
+        "hits": 4163206,
+        "hitsSize": 17052491776,
+        "misses": 2138168,
+        "missesSize": 8757936128,
+        "totalAccesses": 7000000,
+        "totalGets": 6301374,
+        "totalSets": 698626,
+        "uniqueBytes": 409595904,
+        "updateCount": 461294,
+        "updateSize": 1889460224
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 35850555392,
+        "current_size": 84934656,
+        "hits": 3729980,
+        "logCapacity": 94371840,
+        "misses": 2571394,
+        "numBlockFlushes": 190799,
+        "numEvictions": 2117432,
+        "request_bytes_written": 10451324928,
+        "stores_requested": 2551593,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 9965125632,
+        "current_size": 9437184,
+        "hits": 433226,
+        "logCapacity": 10485760,
+        "misses": 2138168,
+        "numBlockFlushes": 235028,
+        "numEvictions": 235028,
+        "request_bytes_written": 1168183296,
+        "stores_requested": 285201,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 494117,
+        "misses": 2442875,
+        "numEvictions": 268942,
+        "sizeEvictions": 1101586432
+    },
+    "global": {
+        "GetsAfterFlush": 7201110,
+        "SetsAfterFlush": 798890,
+        "accessesAfterFlush": 8000000,
+        "compulsoryMisses": 90227,
+        "hits": 4758235,
+        "hitsSize": 19489730560,
+        "misses": 2442875,
+        "missesSize": 10006016000,
+        "totalAccesses": 8000000,
+        "totalGets": 7201110,
+        "totalSets": 798890,
+        "uniqueBytes": 409595904,
+        "updateCount": 527644,
+        "updateSize": 2161229824
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 40791650304,
+        "current_size": 84934656,
+        "hits": 4264118,
+        "logCapacity": 94371840,
+        "misses": 2936992,
+        "numBlockFlushes": 218242,
+        "numEvictions": 2422138,
+        "request_bytes_written": 11943120896,
+        "stores_requested": 2915801,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 11409952768,
+        "current_size": 9437184,
+        "hits": 494117,
+        "logCapacity": 10485760,
+        "misses": 2442875,
+        "numBlockFlushes": 268942,
+        "numEvictions": 268942,
+        "request_bytes_written": 1335144448,
+        "stores_requested": 325963,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 558298,
+        "misses": 2747282,
+        "numEvictions": 302855,
+        "sizeEvictions": 1240494080
+    },
+    "global": {
+        "GetsAfterFlush": 8100907,
+        "SetsAfterFlush": 899093,
+        "accessesAfterFlush": 9000000,
+        "compulsoryMisses": 90227,
+        "hits": 5353625,
+        "hitsSize": 21928448000,
+        "misses": 2747282,
+        "missesSize": 11252867072,
+        "totalAccesses": 9000000,
+        "totalGets": 8100907,
+        "totalSets": 899093,
+        "uniqueBytes": 409595904,
+        "updateCount": 593934,
+        "updateSize": 2432753664
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 45692428288,
+        "current_size": 84934656,
+        "hits": 4795327,
+        "logCapacity": 94371840,
+        "misses": 3305580,
+        "numBlockFlushes": 245890,
+        "numEvictions": 2726546,
+        "request_bytes_written": 13432504320,
+        "stores_requested": 3279420,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 12867637248,
+        "current_size": 9437184,
+        "hits": 558298,
+        "logCapacity": 10485760,
+        "misses": 2747282,
+        "numBlockFlushes": 302855,
+        "numEvictions": 302855,
+        "request_bytes_written": 1503047680,
+        "stores_requested": 366955,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 622403,
+        "misses": 3052326,
+        "numEvictions": 336779,
+        "sizeEvictions": 1379446784
+    },
+    "global": {
+        "GetsAfterFlush": 9000570,
+        "SetsAfterFlush": 999430,
+        "accessesAfterFlush": 10000000,
+        "compulsoryMisses": 90227,
+        "hits": 5948244,
+        "hitsSize": 24364007424,
+        "misses": 3052326,
+        "missesSize": 12502327296,
+        "totalAccesses": 10000000,
+        "totalGets": 9000570,
+        "totalSets": 999430,
+        "uniqueBytes": 409595904,
+        "updateCount": 660347,
+        "updateSize": 2704781312
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 50571825152,
+        "current_size": 84934656,
+        "hits": 5325841,
+        "logCapacity": 94371840,
+        "misses": 3674729,
+        "numBlockFlushes": 273575,
+        "numEvictions": 3031589,
+        "request_bytes_written": 14924480512,
+        "stores_requested": 3643672,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 14325137408,
+        "current_size": 9437184,
+        "hits": 622403,
+        "logCapacity": 10485760,
+        "misses": 3052326,
+        "numBlockFlushes": 336779,
+        "numEvictions": 336779,
+        "request_bytes_written": 1671507968,
+        "stores_requested": 408083,
+        "stores_requested_bytes": 9437184
+    }
+}
+{
+    "cacheAlgo": {
+        "current_size": 9437184,
+        "fifoCacheCapacity": 9437184,
+        "hits": 638667,
+        "misses": 3125251,
+        "numEvictions": 344856,
+        "sizeEvictions": 1412530176
+    },
+    "global": {
+        "GetsAfterFlush": 9216874,
+        "SetsAfterFlush": 1023126,
+        "accessesAfterFlush": 10240000,
+        "compulsoryMisses": 90227,
+        "hits": 6091623,
+        "hitsSize": 24951287808,
+        "misses": 3125251,
+        "missesSize": 12801028096,
+        "totalAccesses": 10240000,
+        "totalGets": 9216874,
+        "totalSets": 1023126,
+        "uniqueBytes": 409595904,
+        "updateCount": 675966,
+        "updateSize": 2768756736
+    },
+    "log": null,
+    "read cache": {
+        "bytes_written": 51747020800,
+        "current_size": 84934656,
+        "hits": 5452956,
+        "logCapacity": 94371840,
+        "misses": 3763918,
+        "numBlockFlushes": 280096,
+        "numEvictions": 3104515,
+        "request_bytes_written": 15279779840,
+        "stores_requested": 3730415,
+        "stores_requested_bytes": 84934656
+    },
+    "write cache": {
+        "bytes_written": 14665248768,
+        "current_size": 9437184,
+        "hits": 638667,
+        "logCapacity": 10485760,
+        "misses": 3125251,
+        "numBlockFlushes": 344856,
+        "numEvictions": 344856,
+        "request_bytes_written": 1711972352,
+        "stores_requested": 417962,
+        "stores_requested_bytes": 9437184
+    }
+}

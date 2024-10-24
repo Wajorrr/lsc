@@ -143,7 +143,7 @@ public:
         }
         std::cerr << "zipf debug objectCount " << popDist.size() << " smallest bucket size " << popDist[0].size() << " largest bucket size " << popDist[popDist.size() - 1].size() << " effective probability " << 1.0 / popDist.size() * 1.0 / popDist[popDist.size() - 1].size() << " theoretical probability " << 1 / pow(double(objCount), zipfAlpha) << "\n";
 
-        printBucketSize();
+        // printBucketSize();
     }
 
     // 从Zipf-like分布中采样一个对象

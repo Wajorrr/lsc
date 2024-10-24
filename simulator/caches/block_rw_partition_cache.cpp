@@ -45,8 +45,8 @@ namespace cache
 
     BlockRWPartitionCache::~BlockRWPartitionCache()
     {
-        delete read_cache;
-        delete write_cache;
+        // delete read_cache;
+        // delete write_cache;
         // delete _log;
         // delete _prelog_admission;
     }

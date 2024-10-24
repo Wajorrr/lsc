@@ -172,7 +172,9 @@ namespace flashCache
             // 写入的字节数/实际存储的字节数=写放大
             // double ret = _log_stats["bytes_written"] / (double)_log_stats["stores_requested_bytes"];
             // 写入的字节数/用户请求写入的字节数=写放大
-            double ret = _log_stats["bytes_written"] / (double)_log_stats["request_bytes_written"];
+            double ret = 1;
+            if (_log_stats["request_bytes_written"] != 0)
+                ret = _log_stats["bytes_written"] / (double)_log_stats["request_bytes_written"];
             return ret;
         }
 

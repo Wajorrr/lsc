@@ -48,17 +48,19 @@ if __name__ == '__main__':
     outfiles_pattern = args.outfiles_path+'/*.out'
     traceClassName = os.path.basename(os.path.dirname(os.path.dirname(outfiles_pattern)))
     # print(traceClassName)
-
+    
     file_list=glob.glob(outfiles_pattern)
     for file in file_list:
         # print(file)
         print(os.path.basename(file))
         config=parse_file_name(os.path.basename(file))
-        print(config)
+        # print(config)
         with open(file, 'r') as f:
             content = f.read()
             json_list=to_json_list(content)
             request_count_list, miss_ratio_list, write_amp_list, capacity_util_list = to_result_list(json_list)
+            print(len(request_count_list),len(miss_ratio_list),len(write_amp_list),len(capacity_util_list))
+            print('\n')
             result_list.append((config, miss_ratio_list, write_amp_list, capacity_util_list))
 
     miss_ratio_lines=[]
@@ -83,7 +85,7 @@ if __name__ == '__main__':
         miss_ratio_lines.append({
             'x': request_count_list,
             'y': miss_ratio_list,
-            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else config['logType']}",
+            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else (config['cacheAlgo']+'_RWPartition' if config['enabledRWPartition']==1 else config['logType'])}",
             'ls': '-',
             # 'marker': marker,
             'marker': '',
@@ -98,7 +100,7 @@ if __name__ == '__main__':
         write_amp_lines.append({
             'x': request_count_list,
             'y': write_amp_list,
-            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else config['logType']}",
+            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else (config['cacheAlgo']+'_RWPartition' if config['enabledRWPartition']==1 else config['logType'])}",
             'ls': '-',
             # 'marker': marker,
             'marker': '',
@@ -113,7 +115,7 @@ if __name__ == '__main__':
         capacity_util_lines.append({
             'x': request_count_list,
             'y': capacity_util_list,
-            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else config['logType']}",
+            'label': f"{config['cacheAlgo'] if config['enableGC']==1 else (config['cacheAlgo']+'_RWPartition' if config['enabledRWPartition']==1 else config['logType'])}",
             'ls': '-',
             # 'marker': marker,
             'marker': '',
@@ -167,5 +169,7 @@ if __name__ == '__main__':
     pics.append(capacity_util_pic)
     filename = f'{traceClassName}_result'
     figure_path = os.path.join(os.path.dirname(__file__), 'figure')
+    print(figure_path)
+    # exit()
     draw_multi_pictures(pics=pics, suptitle=filename, rows=1, figsize=(16,6), draw_type='line',
                         savepath=rf'{figure_path}')

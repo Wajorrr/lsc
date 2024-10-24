@@ -18,7 +18,7 @@ namespace cache
         bool enabled_rw_partition = cfg.exists("cache.enabledRWPartition");
 
         uint64_t flash_size_mb = (uint64_t)cfg.read<int>("cache.flashSizeMB"); // 闪存容量
-        uint64_t log_capacity = flash_size_mb;
+        uint64_t log_capacity = flash_size_mb * 1024 * 1024;
 
         uint64_t cache_capacity = (uint64_t)cfg.read<int>("cache.cacheSizeMB") * 1024 * 1024;
 

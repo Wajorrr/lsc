@@ -18,11 +18,10 @@ namespace cache
     {
         misc::ConfigReader cfg(settings);
 
-        //
-        uint64_t flash_size_mb = (uint64_t)cfg.read<int>("cache.flashSizeMB"); // 闪存容量
-        uint64_t log_capacity = flash_size_mb * 1024 * 1024;
+        // uint64_t flash_size_mb = (uint64_t)cfg.read<int>("cache.flashSizeMB"); // 闪存容量
+        // uint64_t log_capacity = flash_size_mb * 1024 * 1024;
 
-        auto &log_stats = statsCollector->createLocalCollector("log");
+        // auto &log_stats = statsCollector->createLocalCollector("log");
 
         read_percent = cfg.read<double>("cache.readPercent", 90.0);
 

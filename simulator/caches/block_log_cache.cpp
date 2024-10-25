@@ -75,7 +75,10 @@ namespace cache
         // 分别查找内存缓存和flash日志缓存
         bool updateStats = false;
         if (req->type == parser::OP_GET)
+        {
+            // INFO("read: %ld\n", req->id);
             updateStats = true;
+        }
         if (_log->find(req->id, updateStats))
         {
             return true;

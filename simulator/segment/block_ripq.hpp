@@ -48,7 +48,7 @@ namespace flashCache
         std::unordered_map<int32_t, int32_t> _group_map; // <segment_id, group_id>
 
         // std::unordered_map<int32_t, int32_t> _vir_group_map; // <vir_seg_id, group_id>
-        std::unordered_map<int32_t, int32_t> _vir_seg_map; // <block_id, vir_seg_id>
+        std::unordered_map<uint64_t, int32_t> _vir_seg_map; // <block_id, vir_seg_id>
 
         std::unordered_map<int32_t, int32_t> _open_vir_seg; // <group_id, vir_seg_id>
 

@@ -201,14 +201,14 @@ namespace flashCache
 
         void printSegment()
         {
-            uint64_t temptotSize = 0;
+            int64_t temptotSize = 0;
             // uint64_t temptotSize2 = 0;
             for (int i = 0; i < _num_segments; i++)
             {
                 temptotSize += _segments[i]->_size;
                 // temptotSize2 = temptotSize2 + _segments[i]->_capacity;
                 // DEBUG("temptotSize2:%lu, _total_capacity:%lu\n", temptotSize2, _total_capacity);
-                DEBUG("segment %d, item num %d, size %lu, capacity %lu\n",
+                DEBUG("segment %d, item num %ld, size %lu, capacity %lu\n",
                       i, _segments[i]->_items.size(), _segments[i]->_size, _segments[i]->_capacity);
             }
             if (temptotSize != _current_size)
@@ -253,7 +253,7 @@ namespace flashCache
         // std::unordered_map<uint64_t, std::shared_ptr<Block>> _item_map; // 标识有效块
 
         int64_t _active_segment; // 开放段标号
-        uint64_t _num_segments;  // 段数量
+        int32_t _num_segments;   // 段数量
 
         stats::LocalStatsCollector &_log_stats;
     };

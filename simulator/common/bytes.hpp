@@ -29,7 +29,7 @@ namespace misc
       --i;
     }
 
-    printf("%d%s\n", size, suffixes[i]);
+    printf("%ld%s\n", size, suffixes[i]);
     ss << size << suffixes[i];
     return ss.str();
   }

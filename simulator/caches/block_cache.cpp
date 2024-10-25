@@ -245,7 +245,7 @@ namespace cache
 
     double BlockCache::calcCapacityUtilization()
     {
-        DEBUG("current_size:%lu,total_size:%lu\n", _log->get_current_size(), _log->get_total_size());
+        // DEBUG("current_size:%lu,total_size:%lu\n", _log->get_current_size(), _log->get_total_size());
         double utilization = _log->get_current_size() / (double)_log->get_total_size();
         return utilization;
     }

@@ -50,12 +50,12 @@ namespace flashCache
             _group_map[i] = 0;
         }
 
-        DEBUG("Log capacity: %ld, Num Segments: %ld, Segment Capacity: %ld\n",
+        DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
         DEBUG("group_num:%d\n", group_num);
         for (int i = 0; i < group_num; i++)
         {
-            DEBUG("group[%d] size:%d\n", i, _group[i]._segments.size());
+            DEBUG("group[%d] size:%ld\n", i, _group[i]._segments.size());
         }
         // std::cout << "Log capacity: " << _total_capacity
         //           << "\n\tNum Segments: " << _num_segments
@@ -142,6 +142,8 @@ namespace flashCache
                     {
                         evicted.push_back(item);
                         evited_size += item._capacity;
+                        if (item.is_dirty)
+                            _log_stats["numBlockFlushes"]++;
                     }
                 }
             }
@@ -203,6 +205,8 @@ namespace flashCache
                     {
                         evicted.push_back(item);
                         evited_size += item._capacity;
+                        if (item.is_dirty)
+                            _log_stats["numBlockFlushes"]++;
                     }
                 }
             }
@@ -259,7 +263,8 @@ namespace flashCache
 
     void mBlockLog::print_group()
     {
-        for (int i = 0; i < _group.size(); i++)
+        int group_num = _group.size();
+        for (int i = 0; i < group_num; i++)
         {
             DEBUG("group[%d]:\n", i);
             for (auto &seg : _group[i]._segments)

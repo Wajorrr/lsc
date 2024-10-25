@@ -33,7 +33,7 @@ namespace flashCache
             // _segments.push_back(template_segment);
         }
 
-        DEBUG("Log capacity: %ld, Num Segments: %ld, Segment Capacity: %ld\n",
+        DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
         // std::cout << "Log capacity: " << _total_capacity
         //           << "\n\tNum Segments: " << _num_segments
@@ -57,6 +57,8 @@ namespace flashCache
                 {
                     // only move if not already in sets
                     evicted.push_back(item);
+                    if (item.is_dirty)
+                        _log_stats["numBlockFlushes"]++;
                 }
                 // should always remove an item, otherwise code bug
                 _item_active.erase(item._lba);

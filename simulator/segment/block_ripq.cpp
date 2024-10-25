@@ -57,7 +57,7 @@ namespace flashCache
             _group_map[i] = 0;
         }
 
-        DEBUG("Log capacity: %ld, Num Segments: %ld, Segment Capacity: %ld\n",
+        DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
         // DEBUG("group_num:%d\n", group_num);
         // for (int i = 0; i < group_num; i++) {
@@ -273,11 +273,17 @@ namespace flashCache
             {
                 if (_vir_seg_map.find(item._lba) == _vir_seg_map.end())
                 {
+                    if (item.is_dirty)
+                        _log_stats["numBlockFlushes"]++;
                     evicted.push_back(item);
                     continue;
                 }
                 int vir_seg = _vir_seg_map[item._lba];
                 int new_group = _group_map[vir_seg];
+                if (_segments[vir_seg]->_items.find(item._lba) == _segments[vir_seg]->_items.end())
+                {
+                    ERROR("vir_seg:%d, group:%d don't contain block %lu\n", vir_seg, _group_map[vir_seg], item._lba);
+                }
 
                 // 从虚拟段中删除
                 _segments[vir_seg]->_size -= item._capacity;
@@ -321,7 +327,7 @@ namespace flashCache
     {
         std::vector<Block> reinsert;
         std::vector<Block> evicted;
-        int64_t evited_size = 0;
+        // int64_t evited_size = 0;
 
         for (auto &item : items)
         {
@@ -348,11 +354,17 @@ namespace flashCache
         {
             if (_vir_seg_map.find(item._lba) == _vir_seg_map.end())
             {
+                if (item.is_dirty)
+                    _log_stats["numBlockFlushes"]++;
                 evicted.push_back(item);
                 continue;
             }
             int vir_seg = _vir_seg_map[item._lba];
             int new_group = _group_map[vir_seg];
+            if (_segments[vir_seg]->_items.find(item._lba) == _segments[vir_seg]->_items.end())
+            {
+                ERROR("vir_seg:%d, group:%d don't contain block %lu\n", vir_seg, _group_map[vir_seg], item._lba);
+            }
 
             // for (int i = 0; i < _segments.size(); i++)
             // {
@@ -405,14 +417,14 @@ namespace flashCache
 
     void BlockRIPQ::update(std::vector<Block> items)
     {
-        int group_idx = 0;
+        // int group_idx = 0;
         // 先删除原有的记录
         for (auto &item : items)
         {
             auto it = _item_active.find(item._lba);
             if (it != _item_active.end())
             {
-                group_idx = _group_map[it->second];
+                // group_idx = _group_map[it->second];
                 auto old_item = _segments[it->second]->_items[item._lba];
                 _segments[it->second]->_size -= old_item._capacity;
                 // DEBUG("segments[%u]._size:%lu\n", it->second, _segments[it->second]->_size);
@@ -434,10 +446,20 @@ namespace flashCache
             if (_vir_seg_map.find(item._lba) != _vir_seg_map.end())
             {
                 int vir_seg = _vir_seg_map[item._lba];
-                _vir_seg_map.erase(item._lba);
                 Segment &old_seg = *_segments[vir_seg];
+                if (old_seg._items.find(item._lba) == old_seg._items.end())
+                {
+                    ERROR("vir_seg:%d, group:%d don't contain block %lu\n", vir_seg, _group_map[vir_seg], item._lba);
+                }
                 old_seg._size -= item._capacity;
                 old_seg._items.erase(item._lba);
+                _vir_seg_map.erase(item._lba);
+                if (old_seg._items.size() != old_seg._size / 4096)
+                {
+                    ERROR("block id:%lu, vir_seg:%d, group:%d, items_num:%lu, size/4096:%lu\n", item._lba,
+                          vir_seg, _group_map[vir_seg], old_seg._items.size(), old_seg._size / 4096);
+                }
+
                 // 若虚拟段为空，且其不为开放虚拟段
                 if (old_seg._size == 0 && _open_vir_seg[_group_map[vir_seg]] != vir_seg)
                 {
@@ -462,7 +484,7 @@ namespace flashCache
 
     void BlockRIPQ::_increase(Block &block)
     {
-        int id = block._lba;
+        uint64_t id = block._lba;
         auto it = _vir_seg_map.find(id);
 
         int old_group, new_group, open_vir_seg;
@@ -474,8 +496,13 @@ namespace flashCache
             // DEBUG("old group:%d\n", old_group);
             // DEBUG("vir_seg:%d, group:%d\n", it->second, _group_map[it->second]);
             // DEBUG("group[%d] open_vir_seg:%d\n\n", _group_map[it->second], _open_vir_seg[_group_map[it->second]]);
-            new_group = old_group == _group.size() - 1 ? old_group : old_group + 1;
+            new_group = old_group == (int)_group.size() - 1 ? old_group : old_group + 1;
             open_vir_seg = _open_vir_seg[new_group];
+            if (_segments[open_vir_seg]->_items.size() != _segments[open_vir_seg]->_size / 4096)
+            {
+                ERROR("vir_seg:%d, group:%d, items_num:%lu, size/4096:%lu\n",
+                      open_vir_seg, new_group, _segments[open_vir_seg]->_items.size(), _segments[open_vir_seg]->_size / 4096);
+            }
             // DEBUG("new group:%d, open_vir_seg:%d\n", new_group, open_vir_seg);
             // 若虚拟段已满，刷新虚拟段
             if (_segments[open_vir_seg]->_size + Block::_capacity > _segments[open_vir_seg]->_capacity)
@@ -496,7 +523,7 @@ namespace flashCache
             _old_segment._items.erase(id);
             if (_old_segment._items.size() != _old_segment._size / 4096)
             {
-                DEBUG("block id:%d, old seg idx:%d, new seg idx:%d\n", id, old_seg_idx, open_vir_seg);
+                DEBUG("block id:%ld, old seg idx:%d, new seg idx:%d\n", id, old_seg_idx, open_vir_seg);
                 ERROR("vir_seg:%d, group:%d, items_num:%lu, size/4096:%lu\n",
                       open_vir_seg, new_group, _old_segment._items.size(), _old_segment._size / 4096);
             }
@@ -505,6 +532,10 @@ namespace flashCache
             _segments[open_vir_seg]->_size += Block::_capacity;
             // 更新到新虚拟段的索引
             _vir_seg_map[id] = open_vir_seg;
+            if (_segments[open_vir_seg]->_items.find(id) == _segments[open_vir_seg]->_items.end())
+            {
+                ERROR("vir_seg:%d, group:%d don't contain block %lu\n", open_vir_seg, _group_map[open_vir_seg], id);
+            }
 
             // 若原虚拟段为空，且其不为开放虚拟段
             if (_old_segment._size == 0 && _open_vir_seg[old_group] != old_seg_idx)
@@ -522,7 +553,7 @@ namespace flashCache
         else // 对象不在虚拟段中，则更新到物理段所在组的高一级组
         {
             old_group = _group_map[_item_active[id]];
-            new_group = old_group == _group.size() - 1 ? old_group : old_group + 1;
+            new_group = old_group == (int)_group.size() - 1 ? old_group : old_group + 1;
             open_vir_seg = _open_vir_seg[new_group];
             if (_segments[open_vir_seg]->_items.size() != _segments[open_vir_seg]->_size / 4096)
             {
@@ -542,6 +573,10 @@ namespace flashCache
             _segments[open_vir_seg]->_size += Block::_capacity;
             // 更新到新虚拟段的索引
             _vir_seg_map[id] = open_vir_seg;
+            if (_segments[open_vir_seg]->_items.find(id) == _segments[open_vir_seg]->_items.end())
+            {
+                ERROR("vir_seg:%d, group:%d don't contain block %lu\n", open_vir_seg, _group_map[open_vir_seg], id);
+            }
         }
         // DEBUG("increase item:%lu from group:%d to group:%d\n", id, old_group, new_group);
         // print_group();
@@ -565,6 +600,7 @@ namespace flashCache
         auto it = _item_active.find(id);
         if (it == _item_active.end())
         {
+            // INFO("read miss, block %lu\n", id);
             if (updateStats)
                 _log_stats["misses"]++;
             return false;
@@ -573,6 +609,7 @@ namespace flashCache
         {
             if (updateStats)
             {
+                // INFO("read hit, block %lu\n", id);
                 _log_stats["hits"]++;
                 _segments[it->second]->_items[id].hit_count++;
                 _increase(_segments[it->second]->_items[id]);
@@ -583,7 +620,8 @@ namespace flashCache
 
     void BlockRIPQ::print_group()
     {
-        for (int i = 0; i < _group.size(); i++)
+        int group_num = _group.size();
+        for (int i = 0; i < group_num; i++)
         {
             DEBUG("group[%d]:\n", i);
             for (auto &seg : _group[i]._segments)

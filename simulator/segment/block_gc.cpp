@@ -35,12 +35,12 @@ namespace flashCache
         _sealed_segments.clear();
 
         // 初始化_free_segments为1到_num_segments-1(0为默认初始开放段)
-        for (uint64_t i = 1; i < _num_segments; ++i)
+        for (int i = 1; i < _num_segments; ++i)
         {
             _free_segments.push_back(i);
         }
 
-        DEBUG("Log capacity: %ld, Num Segments: %ld, Segment Capacity: %ld\n",
+        DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
         // std::cout << "Log capacity: " << _total_capacity
         //           << "\n\tNum Segments: " << _num_segments
@@ -151,10 +151,10 @@ namespace flashCache
                 {
                     // 先把当前开放段加入_sealed_segments中，保证所有段均在sealed_segments中
                     _sealed_segments.push_back(_active_segment);
-                    // DEBUG("do gc\n");
-                    // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
+                    DEBUG("do gc\n");
+                    DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                     _do_gc();
-                    // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
+                    DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                 }
                 else
                     _incrementSegment(); // 当前开放块已写满，切换到下一个开放块

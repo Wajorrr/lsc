@@ -1,0 +1,19 @@
+{
+    "cacheAlgo": {
+        "fifoCacheCapacity": 943718400
+    },
+    "global": {
+        "GetsAfterFlush": 0,
+        "accessesAfterFlush": 0,
+        "misses": 0,
+        "totalAccesses": 0
+    },
+    "read cache": {
+        "logCapacity": 9361686528,
+        "request_bytes_written": 0
+    },
+    "write cache": {
+        "logCapacity": 1006632960,
+        "request_bytes_written": 0
+    }
+}

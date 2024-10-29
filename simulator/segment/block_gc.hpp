@@ -30,6 +30,20 @@ namespace flashCache
         uint32_t _victim_select();
         void _do_gc();
         void _incrementSegment();
+        void print_sealed_free_segments()
+        {
+            DEBUG("sealed_segments:\n");
+            printf("[");
+            for (auto idx : _sealed_segments)
+                printf("%d,", idx);
+            printf("]\n");
+            DEBUG("free_segments:\n");
+            printf("[");
+            for (auto idx : _free_segments)
+                printf("%d,", idx);
+            printf("]\n");
+            DEBUG("active_segment:%d\n", _active_segment);
+        }
 
         std::deque<uint32_t> _sealed_segments; // 已写满的段标号列表
         std::deque<uint32_t> _free_segments;   // 空闲段标号列表

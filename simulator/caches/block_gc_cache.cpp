@@ -32,7 +32,12 @@ namespace cache
             if (is_read_cache)
             {
                 log_size = (double)(read_percent / 100) * flash_size_mb * 1024 * 1024;
+                log_size -= log_size % flashCache::Segment::_capacity;
                 cache_capacity = (double)((100 - op_percent) / 100) * log_size;
+                if (log_size - cache_capacity < flashCache::Segment::_capacity)
+                {
+                    ERROR("op percent too small\n");
+                }
                 log_name = "read cache";
                 DEBUG("creating read cache, percent=%f, log_size=%lu, cache_capacity=%lu\n", read_percent, log_size, cache_capacity);
                 misc::bytes(log_size);
@@ -40,7 +45,14 @@ namespace cache
             else
             {
                 log_size = (double)((100 - read_percent) / 100) * flash_size_mb * 1024 * 1024;
+                log_size -= log_size % flashCache::Segment::_capacity;
                 cache_capacity = (double)((100 - op_percent) / 100) * log_size;
+
+                // ERROR("log_size - cache_capacity:%lu,Segment::_capacity:%lu\n", log_size - cache_capacity, flashCache::Segment::_capacity);
+                if (log_size - cache_capacity < flashCache::Segment::_capacity)
+                {
+                    ERROR("op percent too small\n");
+                }
                 log_name = "write cache";
                 DEBUG("creating write cache, percent=%f, log_size=%lu, cache_capacity=%lu\n", 100 - read_percent, log_size, cache_capacity);
                 misc::bytes(log_size);
@@ -105,14 +117,19 @@ namespace cache
 
     void BlockGCCache::insert(const parser::Request *req)
     {
+        // if (getTotalAccesses() % 1000 == 0)
+        //     WARN("insert %lu, cacheAlgo size %lu, log size %lu, cache capacity %lu\n",
+        //          req->id, _cache_algo->get_current_size(), _log->get_current_size(), _cache_algo->get_total_size());
+
         // bool test = _cache_algo->find(req, false);
         std::vector<uint64_t> evict = _cache_algo->set(req, false);
         _log->evict(evict);
         Block id = Block::make(*req);
         if (req->type == parser::OP_SET)
             id.is_dirty = true;
+
         _log->insert({id});
-        // INFO("insert %lu,lru size %lu, log size %lu\n", id._lba, _cache_algo->get_current_size(), _log->getTotalSize());
+
         if (_cache_algo->get_current_size() != _log->get_current_size())
         {
             // INFO("test %d\n", test);

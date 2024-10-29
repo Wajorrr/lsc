@@ -39,6 +39,7 @@ namespace flashCache
         {
             _free_segments.push_back(i);
         }
+        // print_sealed_free_segments();
 
         DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
@@ -84,8 +85,14 @@ namespace flashCache
             // DEBUG("total_reclaimed:%lu, victim._size:%lu, segment._capacity:%lu\n",
             //       total_reclaimed, victim._size, Segment::_capacity);
             victim.reset();
+            // WARN("victim_segment:%lu, size:%lu, capacity:%lu\n", victim_idx, _segments[victim_idx]->_size, _segments[victim_idx]->_capacity);
             _free_segments.push_back(victim_idx); // 将被GC的段加入空闲段列表
         }
+        // GC前将开放段加入到封闭段中了，此时选取完要GC的段后，更新开放段编号
+        _active_segment = _free_segments.front();
+        _free_segments.pop_front();
+        // print_sealed_free_segments();
+        // INFO("victim select finished, start rewrite\n");
         // DEBUG("after select: free_segments size:%lu, sealed_segments size:%lu\n", _free_segments.size(), _sealed_segments.size());
         // 有效数据迁移
         for (auto &item : rewrite_blocks)
@@ -100,6 +107,8 @@ namespace flashCache
             }
             _insert(item); // 将对象插入当前开放块
         }
+        // print_sealed_free_segments();
+        // INFO("GC finished\n");
     }
 
     // void debug_segments()
@@ -125,7 +134,7 @@ namespace flashCache
         // DEBUG("seal —— active_segment:%lu, size:%lu, capacity:%lu\n", _active_segment, _segments[_active_segment]._size, _segments[_active_segment]._capacity);
         _sealed_segments.push_back(_active_segment); // 将当前开放段标号加入已写满段列表
         _active_segment = _free_segments.front();    // 切换到下一个开放段
-        // DEBUG("active_segment:%lu\n, size:%lu, capacity:%lu\n", _active_segment, _segments[_active_segment]._size, _segments[_active_segment]._capacity);
+        // DEBUG("active_segment:%lu, size:%lu, capacity:%lu\n", _active_segment, _segments[_active_segment]->_size, _segments[_active_segment]->_capacity);
         _free_segments.pop_front();
 
         return;
@@ -151,10 +160,14 @@ namespace flashCache
                 {
                     // 先把当前开放段加入_sealed_segments中，保证所有段均在sealed_segments中
                     _sealed_segments.push_back(_active_segment);
-                    DEBUG("do gc\n");
-                    DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
+                    // print_sealed_free_segments();
+                    // DEBUG("do gc\n");
+                    // DEBUG("item id:%lu\n", item._lba);
+                    // INFO("log_current_size:%lu, log_capacity:%lu, rest space:%lu, segment_capacity:%lu\n",
+                    //      _current_size, _total_capacity, _total_capacity - _current_size, Segment::_capacity);
+                    // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                     _do_gc();
-                    DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
+                    // DEBUG("current total size:%lu, tot_capacity:%lu\n", _current_size, _total_capacity);
                 }
                 else
                     _incrementSegment(); // 当前开放块已写满，切换到下一个开放块

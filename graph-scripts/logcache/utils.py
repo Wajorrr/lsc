@@ -54,7 +54,7 @@ def to_result_list(json_list):
             continue
         request_num=entry['global']['totalAccesses']
         # print(request_num)
-        log = entry['log']
+        log = None if 'log' not in entry else entry['log']
         if(log!=None):
             if request_num==0:
                 continue

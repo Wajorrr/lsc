@@ -66,6 +66,29 @@ namespace parser
             }
         }
 
+        int read_one_req(parser::Request *req)
+        {
+            uint64_t obj_id;
+            uint64_t obj_size;
+            zipf.Sample(obj_id, obj_size); // 从zipf分布中采样一个对象，返回对象ID和对象大小
+            req->id = obj_id;              // 请求id赋值为对象id
+            req->req_size = obj_size;      // 请求大小赋值为对象大小
+            // req->req_num = i;              // 请求数量
+
+            std::mt19937 gen;                               // 使用 Mersenne Twister 算法的随机数生成器
+            std::uniform_real_distribution<> dis(0.0, 1.0); // 生成 0 到 1 之间的均匀分布的随机数
+
+            // 根据 writeRatio 随机设置 req->type
+            if (dis(gen) < writeRatio)
+            {
+                req->type = parser::OP_SET;
+            }
+            else
+            {
+                req->type = parser::OP_GET;
+            }
+        }
+
     private:
         ZipfRequests zipf;
         uint64_t numRequests;

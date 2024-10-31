@@ -41,10 +41,6 @@ namespace flashCache
         }
         // print_sealed_free_segments();
 
-        // SepBIT，负载驱动，根据数据重写的情况写到相应组中，组的大小由其实际数据量决定
-        // MiDAS，预分配组配置，组内FIFO，超出组配置的大小时进行FIFO数据迁移
-        // #TODO 添加分组
-
         DEBUG("Log capacity: %ld, Num Segments: %d, Segment Capacity: %ld\n",
               _total_capacity, _num_segments, Segment::_capacity);
         // std::cout << "Log capacity: " << _total_capacity
@@ -133,6 +129,7 @@ namespace flashCache
 
     void BlockGC::_incrementSegment()
     {
+
         // DEBUG("increment segment\n");
         // DEBUG("seal —— active_segment:%lu, size:%lu, capacity:%lu\n", _active_segment, _segments[_active_segment]._size, _segments[_active_segment]._capacity);
         _sealed_segments.push_back(_active_segment); // 将当前开放段标号加入已写满段列表

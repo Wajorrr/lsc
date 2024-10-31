@@ -48,6 +48,9 @@ namespace flashCache
         std::deque<uint32_t> _sealed_segments; // 已写满的段标号列表
         std::deque<uint32_t> _free_segments;   // 空闲段标号列表
 
+        std::vector<Group> _group;                       // 对段进行分组
+        std::unordered_map<int32_t, int32_t> _group_map; // <segment_id, group_id>
+
         // std::vector<Block> _blocks; // 用于缓存驱逐对象选取，FIFO
         // std::list<Block> _blocks;   // 用于缓存驱逐对象选取，LRU
 

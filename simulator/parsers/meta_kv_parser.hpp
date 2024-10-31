@@ -42,6 +42,7 @@ namespace parser
             totalRequests = _numRequests;
             sampling = _sampling;
             scaling = _object_scaling;
+            rest_count = 0;
             if (sampling != 1)
             {
                 randomGenerator.seed(_seed);
@@ -148,6 +149,59 @@ namespace parser
             INFO("Read EOF, Processed %ld Requests\n", req.req_num);
         }
 
+        int read_one_req(parser::Request *req)
+        {
+            if (rest_count)
+            {
+                rest_count--;
+                return 1;
+            }
+
+            int64_t shard = 0;
+
+            std::string key;
+            std::string op;
+            int64_t size = 0;
+            size_t op_count = 0;
+            int64_t key_size = 0;
+
+            reader->read_row(key, op, size, op_count, key_size);
+
+            req->id = std::hash<std::string>{}(key);
+            req->req_size = size + key_size;
+            double s = req->req_size * scaling;
+            req->req_size = round(s);
+            rest_count = op_count;
+
+            // 这里用于控制kv的大小，若过大，放不进一个4kb block，则应特殊处理
+            // 这里是直接设置成大小上限了
+            if (req->req_size >= MAX_TAO_SIZE)
+            {
+                req->req_size = MAX_TAO_SIZE - 1;
+            }
+            if (req->req_size == 0)
+            {
+                req->req_size = 1;
+            }
+
+            // if (req->req_num <= 10)
+            // if (req->req_num <= 1)
+            //     INFO("id:%" PRIu64 ",req_size:%ld,time:%ld,type:%d,next_access_vtime:%ld,next_access_op:%d\n, future_invalid_time:%ld\n",
+            //          req->id, req->req_size, req->time, req->type, req->next_access_vtime, req->next_access_op, req->future_invalid_time);
+
+            // req->req_num++;
+
+            if (numRequests < 0) // numRequests < 0表示不限制请求数量
+                return 1;
+            if (numRequests != 0)
+                numRequests--;
+            else
+            {
+                INFO("Finished Processing %ld Requests\n", req->req_num);
+                return 0;
+            }
+        }
+
     private:
         typedef io::CSVReader<5, io::trim_chars<' '>, io::no_quote_escape<','>> MetaKVCSVformat;
         MetaKVCSVformat *reader;
@@ -159,6 +213,7 @@ namespace parser
         std::uniform_real_distribution<double> unif;
         std::unordered_set<int64_t> selected_items;
         std::unordered_set<int64_t> discarded_items;
+        int rest_count;
     };
 
 } // namespace parser

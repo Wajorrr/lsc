@@ -110,6 +110,11 @@ namespace parser
       }
     }
 
+    int read_one_req(parser::Request *req)
+    {
+      return 0;
+    }
+
   private:
     typedef io::CSVReader<3, io::trim_chars<' '>, io::no_quote_escape<','>> FacebookSimpleCSVformat;
     FacebookSimpleCSVformat *reader;

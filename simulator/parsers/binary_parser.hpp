@@ -28,6 +28,7 @@ namespace parser
         BinaryParser(std::string trace_path, uint64_t _numRequests, std::string fmt_str, int32_t fields_num, int trace_start_offset = 0)
             : numRequests(_numRequests), fmt_str(fmt_str), fields_num(fields_num), trace_start_offset(trace_start_offset)
         {
+            trace_path_ = trace_path;
             INFO("Parsing binary trace file: %s\n", trace_path.c_str());
             size_t slen = trace_path.length();
             if (trace_path.substr(slen - 4) == ".zst")
@@ -162,6 +163,76 @@ namespace parser
                     INFO("Finished Processing %ld Requests\n", req.req_num);
                     break;
                 }
+            }
+        }
+
+        int read_one_req(parser::Request *req)
+        {
+            uint32_t clock_time;
+            uint64_t obj_id;
+            uint64_t obj_size;
+            parser::req_op_e op;
+            uint64_t next_access_vtime;
+            parser::req_op_e next_access_op;
+
+            if (fmt_str == "IQQB")
+            {
+                char *record = read_bytes();
+                if (record == NULL)
+                {
+                    INFO("Read EOF, Processed %ld Requests\n", req->req_num);
+                    return 0;
+                }
+                clock_time = *(uint32_t *)record;
+                obj_id = *(uint64_t *)(record + 4);
+                obj_size = *(uint64_t *)(record + 12);
+                op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 20));
+            }
+            else if (fmt_str == "IQQBQB")
+            {
+                char *record = read_bytes();
+                if (record == NULL)
+                {
+                    INFO("Read EOF, Processed %ld Requests\n", req->req_num);
+                    return 0;
+                }
+                clock_time = *(uint32_t *)record;
+                obj_id = *(uint64_t *)(record + 4);
+                obj_size = *(uint64_t *)(record + 12);
+                op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 20));
+                next_access_vtime = *(uint64_t *)(record + 21);
+                next_access_op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 29));
+            }
+            else
+            {
+                ERROR("unknown format string %s\n", fmt_str.c_str());
+            }
+
+            req->id = obj_id;
+            req->req_size = obj_size;
+            req->time = clock_time;
+            req->type = op;
+            req->next_access_vtime = next_access_vtime;
+            req->next_access_op = next_access_op;
+            req->req_num++;
+            if (req->req_num <= 10)
+                INFO("id:%" PRIu64 ",req_size:%ld,time:%ld,type:%d,next_access_vtime:%ld,next_access_op:%d\n",
+                     req->id, req->req_size, req->time, req->type, req->next_access_vtime, req->next_access_op);
+            // if (req->req_size >= MAX_TAO_SIZE)
+            // {
+            //     req->req_size = MAX_TAO_SIZE - 1;
+            // }
+            if (numRequests < 0) // numRequests < 0表示不限制请求数量
+                return 1;
+            if (numRequests != 0)
+            {
+                numRequests--;
+                return 1;
+            }
+            else
+            {
+                INFO("Finished Processing %ld Requests\n", req->req_num);
+                return 0;
             }
         }
 

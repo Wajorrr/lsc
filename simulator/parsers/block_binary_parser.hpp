@@ -28,6 +28,7 @@ namespace parser
         BlockBinaryParser(std::string trace_path, int32_t _page_size, uint64_t _numRequests, std::string fmt_str, int32_t fields_num, int trace_start_offset = 0)
             : page_size(_page_size), numRequests(_numRequests), fmt_str(fmt_str), fields_num(fields_num), trace_start_offset(trace_start_offset)
         {
+            trace_path_ = trace_path;
             INFO("Parsing binary trace file: %s\n", trace_path.c_str());
             size_t slen = trace_path.length();
             if (trace_path.substr(slen - 4) == ".zst")
@@ -90,6 +91,8 @@ namespace parser
                     (unsigned long)file_size % item_size);
             }
             totalRequests = (uint64_t)data_region_size / (item_size); // 对于bin文件可以计算请求总数，对于zstd压缩的文件无效
+
+            rest_lba.first = -1;
         }
 
         void go(VisitorFn visit) // VisitorFn visit为缓存的访问函数
@@ -196,6 +199,111 @@ namespace parser
             }
         }
 
+        int read_one_req(parser::Request *req)
+        {
+            uint32_t clock_time;
+            uint64_t obj_id;
+            uint64_t obj_size;
+            parser::req_op_e op;
+            uint64_t next_access_vtime;
+            parser::req_op_e next_access_op;
+            uint64_t future_invalid_time;
+
+            if (rest_lba.first != -1)
+            {
+                req->id = rest_lba.first++;
+                rest_lba.second--;
+                if (!rest_lba.second)
+                    rest_lba.first = -1;
+                return 1;
+            }
+
+            if (fmt_str == "IQQB")
+            {
+                char *record = read_bytes();
+                if (record == NULL)
+                {
+                    INFO("Read EOF, Processed %ld Requests\n", req->req_num);
+                    return 0;
+                }
+                clock_time = *(uint32_t *)record;
+                obj_id = *(uint64_t *)(record + 4);
+                obj_size = *(uint64_t *)(record + 12);
+                op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 20));
+            }
+            else if (fmt_str == "IQQBQB")
+            {
+                char *record = read_bytes();
+                if (record == NULL)
+                {
+                    INFO("Read EOF, Processed %ld Requests\n", req->req_num);
+                    return 0;
+                }
+                clock_time = *(uint32_t *)record;
+                obj_id = *(uint64_t *)(record + 4);
+                obj_size = *(uint64_t *)(record + 12);
+                op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 20));
+                next_access_vtime = *(uint64_t *)(record + 21);
+                next_access_op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 29));
+            }
+            else if (fmt_str == "IQQBQBQ")
+            {
+                char *record = read_bytes();
+                if (record == NULL)
+                {
+                    INFO("Read EOF, Processed %ld Requests\n", req->req_num);
+                    return 0;
+                }
+                clock_time = *(uint32_t *)record;
+                obj_id = *(uint64_t *)(record + 4);
+                obj_size = *(uint64_t *)(record + 12);
+                op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 20));
+                next_access_vtime = *(uint64_t *)(record + 21);
+                next_access_op = static_cast<parser::req_op_e>(*(uint8_t *)(record + 29));
+                future_invalid_time = *(uint64_t *)(record + 30);
+            }
+            else
+            {
+                ERROR("unknown format string %s\n", fmt_str.c_str());
+            }
+
+            req->id = obj_id;
+            req->req_size = obj_size;
+            req->time = clock_time;
+            req->type = op;
+            req->next_access_vtime = next_access_vtime;
+            req->next_access_op = next_access_op;
+            req->future_invalid_time = future_invalid_time;
+
+            // if (req->req_num <= 10)
+            if (req->req_num <= 1)
+                INFO("id:%" PRIu64 ",req_size:%ld,time:%ld,type:%d,next_access_vtime:%ld,next_access_op:%d\n, future_invalid_time:%ld\n",
+                     req->id, req->req_size, req->time, req->type, req->next_access_vtime, req->next_access_op, req->future_invalid_time);
+
+            uint64_t lba = req->id;
+            int64_t io_size = req->req_size;
+            int block_num = (io_size + page_size - 1) / page_size;
+            // req->req_num++;
+
+            req->req_num++;
+            req->id = lba;
+            req->req_size = page_size;
+            rest_lba.first = lba + 1;
+            rest_lba.second = block_num - 1;
+            // req->req_size = io_size >= page_size ? page_size : io_size;
+            // io_size -= req->req_size;
+
+            if (numRequests < 0) // numRequests < 0表示不限制请求数量
+                return 1;
+            if (numRequests != 0)
+                numRequests--;
+            else
+            {
+                INFO("Finished Processing %ld Requests\n", req->req_num);
+                return 0;
+            }
+        }
+
         // 用于直接读取未解压的数据文件
         inline char *read_bytes()
         {
@@ -247,6 +355,8 @@ namespace parser
 
         struct zstd_reader *zstd_reader_p; // 用于读取zstd文件
         bool is_zstd_file;                 // 是否是 zstd 格式
+
+        std::pair<int, int> rest_lba;
 
         int page_size;
     };

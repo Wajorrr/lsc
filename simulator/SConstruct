@@ -16,3 +16,4 @@ env.Append(CPPDEFINES = [('LOGLEVEL', '6')])
 
 
 env.SConscript('SConscript', {'env': env}, variant_dir='bin', duplicate=0)
+# env.SConscript('SConscript', {'env': env}, variant_dir='bin2', duplicate=0)

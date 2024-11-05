@@ -14,11 +14,45 @@ dir_list.append('segment')
 dir_list.append('kangaroo')
 dir_list.append('cacheAlgo')
 
+dir_list2 = dir_list.copy()
+dir_list2.append('analyzer_t')
+dir_list2.append('./analyzer_t/experimental')
+dir_list2.append('./analyzer_t/stats')
+dir_list2.append('./analyzer_t/utils')
+
+# dir_list2.append('analyzer_stats')
+# dir_list2.append('analyzer_utils')
+# dir_list2.append('analyzer_experimental')
+# dir_list2.append('analyze')
+
 # Add all cpp files in subdirs
 files = []
+files_list = []
 for dir in dir_list:
     files.append(Glob('%s/*.cpp' % dir))
     files.append(Glob('%s/*.c' % dir))
+    files_list.append(('%s/*.cpp' % dir))
+    files_list.append(('%s/*.c' % dir))
+
+files.append("./exc/main.cpp")
+
+# print(files)
+# print(f"file_list1:{files_list}")
+
+
+files2 = []
+files_list2 = []
+for dir2 in dir_list2:
+    files2.append(Glob('%s/*.cpp' % dir2))
+    files2.append(Glob('%s/*.c' % dir2))
+    files_list2.append(('%s/*.cpp' % dir))
+    files_list2.append(('%s/*.c' % dir))
+
+files2.append("./exc/analyzer_main.cpp")
+
+# print(f"file_list2:{files_list2}")
+
+# exit()
 
 # 添加 Zstandard 库名称，确保不包含前缀 'lib' 和后缀 '.so' 或 '.a'
 env.Append(LIBS=['zstd'])
@@ -32,5 +66,7 @@ env.Append(CPPFLAGS=glib_cflags.split())
 env.Append(LINKFLAGS=glib_libs.split())
 
 env.Program('cache', files)
+
+env.Program('analyzer', files2)
 
 # env.SConscript('lib/SConscript', {'env': env}, variant_dir='', duplicate=0)
